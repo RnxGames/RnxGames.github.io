@@ -24,6 +24,16 @@
     body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f6f4; color: #23221f; }
     a { color: #4a4740; }
     a:hover { color: #23221f; }
+    @media (max-width: 780px) {
+      .rnx-nav-links, .rnx-nav-cta { display: none !important; }
+      .rnx-hamburger { display: flex !important; }
+      .rnx-products-grid { grid-template-columns: 1fr !important; }
+      .rnx-rzen-card { grid-template-columns: 1fr !important; padding: 26px !important; }
+      .rnx-about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    }
+    @media (max-width: 620px) {
+      .rnx-footer-row { flex-direction: column !important; text-align: center; }
+    }
   </style>
 </helmet>
 
@@ -39,14 +49,29 @@
         <div style="font-family: 'Lora', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em;">RnxGames</div>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 30px;">
+      <div class="rnx-nav-links" style="display: flex; align-items: center; gap: 30px;">
         <a href="#home" style="font-size: .88rem; font-weight: 600; color: #23221f; text-decoration: none;">Home</a>
         <a href="#products" style="font-size: .88rem; font-weight: 500; color: #6b675f; text-decoration: none;">Products</a>
         <a href="#about" style="font-size: .88rem; font-weight: 500; color: #6b675f; text-decoration: none;">About</a>
         <a href="#contact" style="font-size: .88rem; font-weight: 500; color: #6b675f; text-decoration: none;">Contact</a>
       </div>
 
-      <a href="#products" style="display: inline-flex; align-items: center; height: 38px; padding: 0 18px; border-radius: 999px; background: #23221f; color: #f7f6f4; font-size: .82rem; font-weight: 700; text-decoration: none;">View products</a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="#products" class="rnx-nav-cta" style="display: inline-flex; align-items: center; height: 38px; padding: 0 18px; border-radius: 999px; background: #23221f; color: #f7f6f4; font-size: .82rem; font-weight: 700; text-decoration: none;">View products</a>
+        <button type="button" onclick="{{ toggleMenu }}" aria-label="Menu" class="rnx-hamburger" style="display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(35,34,31,.15); background: transparent; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: 0 0 auto; padding: 0;">
+          <span style="{{ barTopStyle }}"></span>
+          <span style="{{ barMidStyle }}"></span>
+          <span style="{{ barBotStyle }}"></span>
+        </button>
+      </div>
+    </div>
+
+    <div style="{{ mobileMenuStyle }}">
+      <a href="#home" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: #23221f; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">Home</a>
+      <a href="#products" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: #4a4740; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">Products</a>
+      <a href="#about" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: #4a4740; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">About</a>
+      <a href="#contact" onclick="{{ closeMenu }}" style="padding: 14px 4px 18px; font-size: 1rem; font-weight: 500; color: #4a4740; text-decoration: none;">Contact</a>
+      <a href="#products" onclick="{{ closeMenu }}" style="margin-top: 4px; display: inline-flex; align-items: center; justify-content: center; height: 46px; border-radius: 12px; background: #23221f; color: #f7f6f4; font-weight: 700; font-size: .95rem; text-decoration: none;">View products</a>
     </div>
   </nav>
 
@@ -78,9 +103,9 @@
         <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 12px 0 0; line-height: 1.3;">Wellness today. Games, coming soon.</h2>
       </div>
 
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 22px;">
+      <div class="rnx-products-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 22px;">
 
-        <a href="./r-zen.html" style="text-decoration: none; color: inherit; min-width: 0; position: relative; background: radial-gradient(120% 140% at 100% 0%, rgba(149,133,242,.35), transparent 60%), #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 24px; padding: 32px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 20px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 20px 44px -18px rgba(149,133,242,.45);">
+        <a href="./r-zen.html" class="rnx-rzen-card" style="text-decoration: none; color: inherit; min-width: 0; position: relative; background: radial-gradient(120% 140% at 100% 0%, rgba(149,133,242,.35), transparent 60%), #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 24px; padding: 32px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 20px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 20px 44px -18px rgba(149,133,242,.45);">
           <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
             <span style="display: inline-flex; align-items: center; gap: 6px; font-size: .68rem; font-weight: 700; letter-spacing: .07em; color: #9585f2; background: rgba(149,133,242,.16); padding: 5px 12px; border-radius: 999px; align-self: flex-start;">
               <span style="width: 6px; height: 6px; border-radius: 50%; background: #9585f2;"></span>WELLNESS · COMING SOON
@@ -118,7 +143,7 @@
 
   <!-- ABOUT -->
   <section id="about" style="background: #efe9db; padding: 84px 32px;" data-screen-label="about">
-    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
+    <div class="rnx-about-grid" style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;">
       <div>
         <p style="font-size: .74rem; font-weight: 700; letter-spacing: .1em; color: #6b675f; margin: 0;">ABOUT ME</p>
         <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 12px 0 0; line-height: 1.3;">Two passions, one person.</h2>
@@ -145,7 +170,7 @@
         <a href="mailto:xnerzogames@gmail.com" style="display: inline-flex; margin-top: 20px; align-items: center; height: 46px; padding: 0 26px; border-radius: 12px; background: #23221f; color: #f7f6f4; font-weight: 700; font-size: .95rem; text-decoration: none;">xnerzogames@gmail.com</a>
       </div>
 
-      <div style="border-top: 1px solid rgba(35,34,31,.1); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <div class="rnx-footer-row" style="border-top: 1px solid rgba(35,34,31,.1); padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="width: 26px; height: 26px; border-radius: 7px; background: #faf6f0; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; overflow: hidden; padding: 2px;">
             <img src="./assets/rnxgames-icon.png" alt="RnxGames" style="width: 100%; height: 100%; object-fit: contain;">
@@ -173,8 +198,27 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  state = { menuOpen: false };
+
+  toggleMenu = () => {
+    this.setState((s) => ({ menuOpen: !s.menuOpen }));
+  };
+
+  closeMenu = () => {
+    this.setState({ menuOpen: false });
+  };
+
   renderVals() {
-    return {};
+    const open = this.state.menuOpen;
+    const barBase = 'width:20px;height:2px;background:#23221f;border-radius:2px;transition:transform .25s ease, opacity .2s ease;display:block;';
+    return {
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      barTopStyle: barBase + (open ? 'transform:translateY(6px) rotate(45deg);' : ''),
+      barMidStyle: barBase + (open ? 'opacity:0;' : ''),
+      barBotStyle: barBase + (open ? 'transform:translateY(-6px) rotate(-45deg);' : ''),
+      mobileMenuStyle: 'display:' + (open ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:#f7f6f4; border-bottom:1px solid rgba(35,34,31,.08); box-shadow:0 16px 32px -16px rgba(0,0,0,.18); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;'
+    };
   }
 }
 
