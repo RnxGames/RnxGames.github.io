@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R-Zen Experience — Mandalas, Puzzles & Paint by Number</title>
+<meta name="description" content="A calm space with no ads and no accounts. Color mandalas, solve puzzles, and unwind with ambient music — all offline, on your iPhone or iPad.">
+<meta property="og:title" content="R-Zen Experience">
+<meta property="og:description" content="A calm space with no ads and no accounts — mandalas, puzzles, paint by number, and ambient music, all offline.">
+<meta property="og:image" content="./assets/logo.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    @font-face {
+      font-family: 'Great Vibes';
+      src: url('./assets/fonts/GreatVibes-Regular.otf') format('opentype'),
+           url('./assets/fonts/GreatVibes-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @keyframes rzSpin { to { transform: rotate(360deg); } }
+    @keyframes rzPulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+    @keyframes rzFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes rzBar1 { 0%, 100% { height: 30%; } 50% { height: 100%; } }
+    @keyframes rzBar2 { 0%, 100% { height: 60%; } 50% { height: 20%; } }
+    @keyframes rzBar3 { 0%, 100% { height: 100%; } 50% { height: 45%; } }
+    @keyframes rzBar4 { 0%, 100% { height: 40%; } 50% { height: 85%; } }
+    @keyframes rzBar5 { 0%, 100% { height: 70%; } 50% { height: 30%; } }
+  </style>
+</helmet>
+
+<audio ref="{{ audioRef }}" style="display: none;"></audio>
+<div ref="{{ rootRef }}" style="--bg:{{ t0.bg }}; --bgGlow:{{ t0.bgGlow }}; --bgSection:{{ t0.bgSection }}; --card:{{ t0.card }}; --cardBorder:{{ t0.cardBorder }}; --pill:{{ t0.pill }}; --ink:{{ t0.ink }}; --muted:{{ t0.muted }}; --accent:{{ t0.accent }}; --accentSoft:{{ t0.accentSoft }}; --line:{{ t0.line }}; --shadow:{{ t0.shadow }}; --stripe:{{ t0.stripe }}; --bezel:{{ t0.bezel }}; --screen:{{ t0.screen }}; --accent2:{{ t0.accent2 }}; background: var(--bg); color: var(--ink); transition: background .35s ease, color .35s ease; min-height: 100vh; overflow-x: hidden;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="./index.html" style="display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--muted); font-size: .78rem; font-weight: 600; margin-right: 6px; padding-right: 16px; border-right: 1px solid var(--line);">
+          <span style="font-size: .9rem;">&#8592;</span> RnxGames
+        </a>
+        <span style="width: 40px; height: 40px; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; overflow: hidden; padding: 3px;">
+          <img src="./assets/logo.png" alt="R-Zen Experience" style="width: 100%; height: 100%; object-fit: contain;">
+        </span>
+        <div style="line-height: 1.15;">
+          <div style="font-family: 'Lora', serif; font-weight: 600; font-size: 1.02rem;">R-Zen</div>
+          <div style="font-size: .66rem; letter-spacing: .04em; color: var(--muted);">Experience</div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 30px;" data-nav-links="1">
+        <a href="#home" style="font-size: .88rem; font-weight: 600; color: var(--ink); text-decoration: none; position: relative; padding-bottom: 14px;">{{ copy.navHome }}
+          <span style="position: absolute; bottom: 0; left: 50%; translate: -50% 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>
+        </a>
+        <a href="#features" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navFeatures }}</a>
+        <a href="#benefits" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navBenefits }}</a>
+        <a href="#pricing" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navPricing }}</a>
+        <a href="./support.html" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navFaq }}</a>
+        <a href="#contact" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navContact }}</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button type="button" onclick="{{ toggleLang }}" style="display: flex; align-items: center; gap: 7px; height: 38px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--pill); color: var(--ink); font-family: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;">
+          <span style="width: 13px; height: 13px; border-radius: 50%; border: 1.4px solid var(--accent); position: relative; flex: 0 0 auto;">
+            <span style="position: absolute; top: 50%; left: -1.4px; right: -1.4px; height: 1.2px; background: var(--accent); translate: 0 -50%;"></span>
+          </span>
+          {{ langLabel }}
+          <span style="font-size: .6rem; color: var(--muted);">&#9662;</span>
+        </button>
+        <button type="button" onclick="{{ toggleTheme }}" aria-label="Toggle theme" style="position: relative; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--pill); cursor: pointer; overflow: hidden;">
+          <span style="{{ moonIconStyle }}">&#9790;</span>
+          <span style="{{ sunIconStyle }}">&#9728;</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" style="position: relative; padding: 76px 32px 0; overflow: hidden; background: radial-gradient(1100px 520px at 78% -8%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%);">
+    <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}">
+      <img src="./assets/hero-bg.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
+      <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
+    </sc-if>
+    <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}">
+      <img src="./assets/hero-bg-light.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
+      <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
+    </sc-if>
+    <div style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
+
+      <div>
+        <span style="display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--accent); background: var(--accentSoft); border: 1px solid var(--line); padding: 7px 16px; border-radius: 999px;">{{ copy.eyebrow }}</span>
+
+        <h1 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(2.2rem, 3.6vw, 3rem); line-height: 1.14; margin: 20px 0 0;">
+          {{ copy.heroLine1 }}<br>{{ copy.heroLine2Pre }}<span style="font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; font-size: 1.15em; color: var(--accent2); text-shadow: 0 0 22px color-mix(in srgb, var(--accent2) 65%, transparent), 0 0 46px color-mix(in srgb, var(--accent2) 35%, transparent);">{{ copy.heroAccent }}</span>
+        </h1>
+
+        <p style="margin: 18px 0 0; max-width: 42ch; color: var(--muted); font-size: 1.02rem; line-height: 1.6;">{{ copy.heroLede }}</p>
+
+        <button type="button" style="margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; box-shadow: 0 16px 32px -12px color-mix(in srgb, var(--accent) 70%, transparent);">
+          <span style="width: 16px; height: 16px; border: 1.6px solid #fff; border-radius: 4px; position: relative; flex: 0 0 auto;">
+            <span style="position: absolute; left: 50%; top: 2px; bottom: 2px; width: 1.4px; background: #fff; translate: -50% 0;"></span>
+            <span style="position: absolute; top: 50%; left: 2px; right: 2px; height: 1.4px; background: #fff; translate: 0 -50%;"></span>
+          </span>
+          {{ copy.ctaButton }}
+        </button>
+        <p style="margin: 12px 0 0; max-width: 38ch; color: var(--muted); font-size: .84rem; line-height: 1.5;">{{ copy.ctaNote }}</p>
+
+        <p style="margin: 14px 0 0; font-size: .95rem; font-variant-numeric: tabular-nums;">
+          <span style="text-decoration: line-through; color: var(--muted); margin-right: 8px;">$5.99</span>
+          <span style="color: var(--accent2); font-weight: 800; font-size: 1.12rem; text-shadow: 0 0 18px color-mix(in srgb, var(--accent2) 60%, transparent);">$1.99</span>
+          <span style="color: var(--muted);"> {{ copy.priceNote }}</span>
+        </p>
+      </div>
+
+      <div style="position: relative; height: 520px;">
+
+        <div style="position: absolute; left: 0; top: 0; width: 66%; aspect-ratio: 3/4; border-radius: 24px; background: var(--bezel); border: 9px solid var(--bezel); box-shadow: var(--shadow); overflow: hidden; z-index: 1;">
+          <div style="position: absolute; inset: 0; margin: 3px; border-radius: 17px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
+            <img src="./assets/screen-ipad.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+        </div>
+
+        <div style="position: absolute; right: 2%; bottom: 0; width: 44%; aspect-ratio: 9/19.5; border-radius: 34px; background: var(--bezel); border: 7px solid var(--bezel); box-shadow: var(--shadow); overflow: hidden; z-index: 3;">
+          <div style="position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 34%; height: 16px; border-radius: 10px; background: var(--bezel); z-index: 2;"></div>
+          <div style="position: absolute; inset: 0; margin: 4px; border-radius: 28px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
+            <img src="./assets/screen-iphone.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 22px;">
+          </div>
+        </div>
+
+        <div style="position: absolute; right: 4%; bottom: 4%; display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 9px 16px; box-shadow: var(--shadow);">
+          <span style="width: 20px; height: 20px; border-radius: 6px; border: 1.4px solid var(--ink);"></span>
+          <span style="line-height: 1.25;">
+            <span style="display: block; font-size: .62rem; color: var(--muted);">{{ copy.designedFor }}</span>
+            <span style="display: block; font-size: .82rem; font-weight: 700;">{{ copy.designedForDevice }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FOUR EXPERIENCES -->
+  <section id="features" style="background: var(--bgSection); margin-top: 64px; padding: 72px 32px;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto 46px;">
+        <p style="font-size: .74rem; font-weight: 700; letter-spacing: .1em; color: var(--accent); margin: 0;">{{ copy.modesEyebrow }}</p>
+        <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 12px 0 0; line-height: 1.25;">
+          {{ copy.modesHPre }}<br><span style="font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; font-size: 1.04em; color: var(--accent2); text-shadow: 0 0 22px color-mix(in srgb, var(--accent2) 65%, transparent), 0 0 46px color-mix(in srgb, var(--accent2) 35%, transparent);">{{ copy.modesHAccent }}</span>
+        </h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;">
+        <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 30px; height: 30px; border-radius: 50%; background: var(--accentSoft); color: var(--accent); font-family: 'Lora', serif; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center;">M</span>
+            <h3 style="font-size: 1rem; font-weight: 700; margin: 0;">{{ copy.modeMandalaH }}</h3>
+          </div>
+          <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modeMandalaP }}</p>
+          <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
+            <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
+              <img src="./assets/mandala-photo.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 30px; height: 30px; border-radius: 50%; background: var(--accentSoft); color: var(--accent); font-family: 'Lora', serif; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center;">P</span>
+            <h3 style="font-size: 1rem; font-weight: 700; margin: 0;">{{ copy.modePuzzleH }}</h3>
+          </div>
+          <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modePuzzleP }}</p>
+          <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
+            <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
+              <img src="./assets/puzzle-photo.jpeg" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 30px; height: 30px; border-radius: 50%; background: var(--accentSoft); color: var(--accent); font-family: 'Lora', serif; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center;">N</span>
+            <h3 style="font-size: 1rem; font-weight: 700; margin: 0;">{{ copy.modePbnH }}</h3>
+          </div>
+          <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modePbnP }}</p>
+          <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
+            <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
+              <img src="./assets/pbn-photo.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 30px; height: 30px; border-radius: 50%; background: var(--accentSoft); color: var(--accent); font-family: 'Lora', serif; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center;">D</span>
+            <h3 style="font-size: 1rem; font-weight: 700; margin: 0;">{{ copy.modeDiaryH }}</h3>
+          </div>
+          <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modeDiaryP }}</p>
+          <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
+            <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 16px;">
+              <div style="width: 74px; height: 96px; border-radius: 5px; overflow: hidden; box-shadow: 0 12px 22px -8px rgba(0,0,0,.45); animation: rzFloat 4s ease-in-out infinite;">
+                <img src="./assets/diary-book.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </div>
+
+              <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <button type="button" onclick="{{ togglePlay }}" aria-label="Play" style="width: 44px; height: 44px; border-radius: 50%; background: var(--accent); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto;">
+                  <sc-if value="{{ isPlaying }}" hint-placeholder-val="{{ false }}">
+                    <span style="display: flex; gap: 3px;"><span style="width: 3.5px; height: 13px; background: #fff; border-radius: 1px;"></span><span style="width: 3.5px; height: 13px; background: #fff; border-radius: 1px;"></span></span>
+                  </sc-if>
+                  <sc-if value="{{ isPaused }}" hint-placeholder-val="{{ true }}">
+                    <span style="width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 11px solid #fff; margin-left: 2px;"></span>
+                  </sc-if>
+                </button>
+                <div style="font-size: .68rem; font-weight: 700; text-align: center;">{{ currentTrack.name }}</div>
+                <div style="display: flex; align-items: flex-end; gap: 3px; height: 16px;">
+                  <span style="{{ barStyle1 }}"></span>
+                  <span style="{{ barStyle2 }}"></span>
+                  <span style="{{ barStyle3 }}"></span>
+                  <span style="{{ barStyle4 }}"></span>
+                  <span style="{{ barStyle5 }}"></span>
+                </div>
+                <div style="display: flex; gap: 6px;">
+                  <button type="button" onclick="{{ selectTrack1 }}" aria-label="Track 1" style="{{ dot1Style }}"></button>
+                  <button type="button" onclick="{{ selectTrack2 }}" aria-label="Track 2" style="{{ dot2Style }}"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- feature strip -->
+      <div id="benefits" style="margin-top: 40px; border: 1px solid var(--cardBorder); border-radius: 18px; padding: 30px 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.4px solid var(--accent); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; position: relative;">
+            <span style="width: 20px; height: 20px; border-radius: 50%; border: 1.6px solid var(--accent);"></span>
+            <span style="position: absolute; width: 22px; height: 1.6px; background: var(--accent); transform: rotate(45deg);"></span>
+          </span>
+          <div><h4 style="margin: 0 0 4px; font-size: .92rem; font-weight: 700;">{{ copy.fAdsH }}</h4><p style="margin: 0; font-size: .78rem; color: var(--muted);">{{ copy.fAdsP }}</p></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.4px solid var(--accent); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; position: relative;">
+            <span style="position: absolute; width: 16px; height: 16px; border: 1.6px solid var(--accent); border-top: none; border-right: none; border-radius: 0 0 0 16px; transform: rotate(45deg) translate(1px, -3px);"></span>
+            <span style="position: absolute; width: 10px; height: 10px; border: 1.6px solid var(--accent); border-top: none; border-right: none; border-radius: 0 0 0 10px; transform: rotate(45deg) translate(0px, -1px);"></span>
+            <span style="position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--accent); transform: translateY(6px);"></span>
+            <span style="position: absolute; width: 26px; height: 1.6px; background: var(--accent); transform: rotate(-40deg);"></span>
+          </span>
+          <div><h4 style="margin: 0 0 4px; font-size: .92rem; font-weight: 700;">{{ copy.fOfflineH }}</h4><p style="margin: 0; font-size: .78rem; color: var(--muted);">{{ copy.fOfflineP }}</p></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.4px solid var(--accent); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; position: relative;">
+            <span style="width: 15px; height: 17px; clip-path: polygon(50% 0%, 100% 18%, 100% 55%, 50% 100%, 0% 55%, 0% 18%); background: var(--accent); position: relative; display: flex; align-items: center; justify-content: center;"></span>
+            <span style="position: absolute; width: 5px; height: 3px; border-left: 1.4px solid var(--card); border-bottom: 1.4px solid var(--card); transform: rotate(-45deg) translate(-1px, -1px);"></span>
+          </span>
+          <div><h4 style="margin: 0 0 4px; font-size: .92rem; font-weight: 700;">{{ copy.fPrivacyH }}</h4><p style="margin: 0; font-size: .78rem; color: var(--muted);">{{ copy.fPrivacyP }}</p></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.4px solid var(--accent); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; position: relative;">
+            <span style="width: 19px; height: 19px; border-radius: 50%; border: 1.4px solid var(--accent); position: relative; overflow: hidden;">
+              <span style="position: absolute; top: 50%; left: -2px; right: -2px; height: 1.2px; background: var(--accent); translate: 0 -50%;"></span>
+              <span style="position: absolute; inset: 0 6px; border-left: 1.2px solid var(--accent); border-right: 1.2px solid var(--accent); border-radius: 50%;"></span>
+            </span>
+          </span>
+          <div><h4 style="margin: 0 0 4px; font-size: .92rem; font-weight: 700;">{{ copy.fLangH }}</h4><p style="margin: 0; font-size: .78rem; color: var(--muted);">{{ copy.fLangP }}</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" style="padding: 72px 32px;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="position: relative; border-radius: 24px; padding: 52px 64px 52px 0; display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; box-shadow: var(--shadow); overflow: hidden; min-height: 560px;">
+        <img src="./assets/pricing-bg.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; {{ pricingImgDarkStyle }}">
+        <img src="./assets/pricing-bg-light.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; {{ pricingImgLightStyle }}">
+        <div style="grid-column: 1;"></div>
+
+        <div style="position: relative; z-index: 1; color: var(--ink);">
+          <span style="display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--accent2); background: color-mix(in srgb, var(--ink) 8%, transparent); border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); padding: 7px 16px; border-radius: 999px;">{{ copy.ticketRibbon }}</span>
+          <div style="margin-top: 18px; font-variant-numeric: tabular-nums;">
+            <span style="text-decoration: line-through; color: color-mix(in srgb, var(--ink) 55%, transparent); font-size: 1.6rem; font-weight: 600; margin-right: 12px;">$5.99</span>
+            <span style="font-family: 'Lora', serif; font-size: 3rem; font-weight: 700; color: var(--accent2); text-shadow: 0 0 28px color-mix(in srgb, var(--accent2) 60%, transparent);">$1.99</span>
+          </div>
+          <p style="margin: 16px 0 0; color: color-mix(in srgb, var(--ink) 75%, transparent); font-size: 1.05rem; max-width: 40ch; line-height: 1.55;">{{ copy.ticketFine }}</p>
+          <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 13px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.4px solid var(--accent2); position: relative; flex: 0 0 auto;">
+                <span style="position: absolute; left: 50%; top: 45%; width: 5px; height: 10px; border-right: 1.6px solid var(--accent2); border-bottom: 1.6px solid var(--accent2); transform: translate(-50%, -50%) rotate(40deg);"></span>
+              </span>
+              <span style="font-size: 1.02rem;">{{ copy.ticketLi1 }}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.4px solid var(--accent2); position: relative; flex: 0 0 auto;">
+                <span style="position: absolute; left: 50%; top: 45%; width: 5px; height: 10px; border-right: 1.6px solid var(--accent2); border-bottom: 1.6px solid var(--accent2); transform: translate(-50%, -50%) rotate(40deg);"></span>
+              </span>
+              <span style="font-size: 1.02rem;">{{ copy.ticketLi2 }}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.4px solid var(--accent2); position: relative; flex: 0 0 auto;">
+                <span style="position: absolute; left: 50%; top: 45%; width: 5px; height: 10px; border-right: 1.6px solid var(--accent2); border-bottom: 1.6px solid var(--accent2); transform: translate(-50%, -50%) rotate(40deg);"></span>
+              </span>
+              <span style="font-size: 1.02rem;">{{ copy.ticketLi3 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" style="border-top: 1px solid var(--line); padding: 40px 32px 36px;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px;">
+        <div style="max-width: 260px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 30px; height: 30px; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; overflow: hidden; padding: 2px;">
+              <img src="./assets/logo.png" alt="R-Zen Experience" style="width: 100%; height: 100%; object-fit: contain;">
+            </span>
+            <div style="font-family: 'Lora', serif; font-weight: 600; font-size: .95rem;">R-Zen <span style="font-weight: 400; opacity: .8;">Experience</span></div>
+          </div>
+          <p style="margin: 12px 0 0; color: var(--muted); font-size: .82rem; line-height: 1.5;">{{ copy.footTagline }}</p>
+        </div>
+
+        <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+          <a href="./support.html" style="color: var(--muted); text-decoration: none; font-size: .86rem;">{{ copy.footSupport }}</a>
+          <a href="./privacy-policy.html" style="color: var(--muted); text-decoration: none; font-size: .86rem;">{{ copy.footPrivacy }}</a>
+          <a href="mailto:xnerzogames@gmail.com" style="color: var(--muted); text-decoration: none; font-size: .86rem;">{{ copy.footContact }}</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+          <div style="display: flex; gap: 10px;">
+            <a href="https://www.instagram.com/denegrirenzo/" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">IG</a>
+            <a href="https://www.tiktok.com/@_rnxgames_" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">TT</a>
+            <a href="https://x.com/DenegriRenzo" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">X</a>
+          </div>
+          <a href="mailto:xnerzogames@gmail.com" style="color: var(--muted); text-decoration: none; font-size: .8rem;">xnerzogames@gmail.com</a>
+        </div>
+      </div>
+
+      <p style="margin: 30px 0 0; text-align: center; color: var(--muted); font-size: .78rem;">{{ copy.footCopy }}</p>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const THEMES = {
+  dark: {
+    bg: '#14101f',
+    bgGlow: '#1c1730',
+    bgSection: '#100c1a',
+    card: 'rgba(255,255,255,.045)',
+    cardBorder: 'rgba(255,255,255,.09)',
+    pill: 'rgba(255,255,255,.06)',
+    ink: '#f4f1fa',
+    muted: '#a49bc2',
+    accent: '#9585f2',
+    accentSoft: 'rgba(149,133,242,.16)',
+    line: 'rgba(255,255,255,.1)',
+    shadow: '0 26px 60px -22px rgba(0,0,0,.65)',
+    stripe: 'rgba(255,255,255,.05)',
+    bezel: '#241d33',
+    screen: '#0f0b18',
+    accent2: 'oklch(74% 0.17 45)'
+  },
+  light: {
+    bg: '#faf7fb',
+    bgGlow: '#f1eaf9',
+    bgSection: '#f5f0fa',
+    card: '#ffffff',
+    cardBorder: 'rgba(124,92,240,.14)',
+    pill: '#ffffff',
+    ink: '#241b36',
+    muted: '#6f6785',
+    accent: '#7c5cf0',
+    accentSoft: 'rgba(124,92,240,.1)',
+    line: 'rgba(124,92,240,.14)',
+    shadow: '0 26px 55px -24px rgba(124,92,240,.28)',
+    stripe: 'rgba(124,92,240,.06)',
+    bezel: '#2a2536',
+    screen: '#f4f0fb',
+    accent2: 'oklch(60% 0.17 45)'
+  }
+};
+
+const DICT = {
+  en: {
+    navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Pricing', navFaq: 'FAQ', navContact: 'Contact',
+    eyebrow: 'PUZZLES & MANDALAS',
+    heroLine1: 'R-Zen Experience',
+    heroLine2Pre: 'Create. Relax. ',
+    heroAccent: 'Unwind.',
+    heroLede: 'Mandalas, puzzles and paint-by-number in a single app. No ads, no accounts, fully offline.',
+    ctaButton: 'Coming soon to the App Store',
+    ctaNote: "We're in the final stage of Apple's review — available very soon for iPhone and iPad.",
+    priceNote: 'for the first 6 months',
+    joinSub: 'Be the first to know.',
+    designedFor: 'Designed for',
+    designedForDevice: 'iPhone & iPad',
+    phBgArt: 'bg: dusk mountains + moon',
+    phScreenTablet: 'app screenshot — iPad',
+    phScreenPhone: 'app screenshot — iPhone',
+    modesEyebrow: 'FOUR EXPERIENCES. ONE CALM SPACE.',
+    modesHPre: 'Everything you need',
+    modesHAccent: 'to relax and create.',
+    modeMandalaH: 'Mandalas', modeMandalaP: 'Color intricate mandalas to clear your mind and find balance.',
+    modePuzzleH: 'Puzzles', modePuzzleP: 'Solve beautiful jigsaw puzzles at your own pace. No timer, no pressure.',
+    modePbnH: 'Paint by Number', modePbnP: 'Reveal stunning art one cell, one number at a time.',
+    modeDiaryH: 'Diary & Music', modeDiaryP: 'Journal your thoughts and unwind with original ambient music.',
+    phMandala: 'mandala photo', phPuzzle: 'puzzle photo', phPbn: 'paint-by-number photo',
+    phDiaryBook: 'floating diary book',
+    diaryToday: "Today's reflection",
+    diaryText: 'Grateful for small moments, quiet mind, and a kind heart.',
+    fAdsH: 'No ads', fAdsP: 'Ever. No interruptions, no pop-ups.',
+    fOfflineH: 'Works offline', fOfflineP: 'All content lives right on your device.',
+    fPrivacyH: 'Zero data collected', fPrivacyP: 'No accounts, no tracking, no analytics.',
+    fLangH: 'Multilingual support', fLangP: '8 languages to support your journey.',
+    phZen: 'zen stones + lotus photo',
+    ticketRibbon: 'LAUNCH PRICE',
+    ticketFine: 'Promotional price for the first 6 months. After that: $5.99, one-time purchase — no subscriptions.',
+    ticketLi1: 'Every mandala, puzzle and image',
+    ticketLi2: 'All music and ambient effects',
+    ticketLi3: 'No ads, ever',
+    footTagline: 'A calm space for your mind, whenever you need it.',
+    footSupport: 'Support & FAQ', footPrivacy: 'Privacy Policy', footContact: 'Contact',
+    footCopy: '© 2026 R-Zen Experience. All rights reserved.'
+  },
+  es: {
+    navHome: 'Inicio', navFeatures: 'Funciones', navBenefits: 'Beneficios', navPricing: 'Precio', navFaq: 'Preguntas', navContact: 'Contacto',
+    eyebrow: 'PUZZLES Y MANDALAS',
+    heroLine1: 'R-Zen Experience',
+    heroLine2Pre: 'Crea. Relaja. ',
+    heroAccent: 'Desconecta.',
+    heroLede: 'Mandalas, puzzles y pintura por número en una sola app. Sin anuncios, sin cuentas, y funciona sin conexión.',
+    ctaButton: 'Próximamente en la App Store',
+    ctaNote: 'Estamos en la etapa final de revisión de Apple — disponible muy pronto para iPhone y iPad.',
+    priceNote: 'los primeros 6 meses',
+    joinSub: 'Sé el primero en enterarte.',
+    designedFor: 'Diseñado para',
+    designedForDevice: 'iPhone y iPad',
+    phBgArt: 'fondo: montañas + luna',
+    phScreenTablet: 'captura de app — iPad',
+    phScreenPhone: 'captura de app — iPhone',
+    modesEyebrow: 'CUATRO EXPERIENCIAS. UN ESPACIO EN CALMA.',
+    modesHPre: 'Todo lo que necesitas',
+    modesHAccent: 'para relajarte y crear.',
+    modeMandalaH: 'Mandalas', modeMandalaP: 'Colorea mandalas intrincados para despejar tu mente y encontrar equilibrio.',
+    modePuzzleH: 'Puzzles', modePuzzleP: 'Arma hermosos rompecabezas a tu ritmo. Sin límite de tiempo ni presión.',
+    modePbnH: 'Pintar por número', modePbnP: 'Revela ilustraciones asombrosas celda por celda, número por número.',
+    modeDiaryH: 'Diario y música', modeDiaryP: 'Guarda tus pensamientos y relájate con música ambiental original.',
+    phMandala: 'foto de mandala', phPuzzle: 'foto de puzzle', phPbn: 'foto de pintar por número',
+    phDiaryBook: 'libro de diario levitando',
+    diaryToday: 'Reflexión de hoy',
+    diaryText: 'Agradecido por los pequeños momentos, la mente en calma y un corazón amable.',
+    fAdsH: 'Sin anuncios', fAdsP: 'Nunca. Ni interrupciones, ni pop-ups.',
+    fOfflineH: 'Funciona sin internet', fOfflineP: 'Todo el contenido vive en tu dispositivo.',
+    fPrivacyH: 'Cero datos recolectados', fPrivacyP: 'Sin cuentas, sin rastreo, sin analítica.',
+    fLangH: 'Soporte multilingüe', fLangP: '8 idiomas para acompañar tu camino.',
+    phZen: 'foto de piedras zen + loto',
+    ticketRibbon: 'PRECIO DE LANZAMIENTO',
+    ticketFine: 'Precio promocional durante los primeros 6 meses. Después: $5.99, compra única — sin suscripciones.',
+    ticketLi1: 'Todos los mandalas, puzzles e imágenes',
+    ticketLi2: 'Toda la música y efectos ambientales',
+    ticketLi3: 'Sin anuncios, para siempre',
+    footTagline: 'Un espacio de calma para tu mente, cuando lo necesites.',
+    footSupport: 'Ayuda y preguntas', footPrivacy: 'Privacidad', footContact: 'Contacto',
+    footCopy: '© 2026 R-Zen Experience. Todos los derechos reservados.'
+  }
+};
+
+const TRACKS = [
+  { name: 'Soft Focus', src: './assets/song-1.mp3' },
+  { name: 'Whispering Bamboo', src: './assets/song-2.mp3' }
+];
+
+class Component extends DCLogic {
+  state = { theme: 'dark', lang: 'en', trackIndex: 0, playing: false };
+
+  audioRef = (el) => { this._audio = el; };
+
+  barStyle(n, dur) {
+    const playing = this.state.playing;
+    return 'width:3px;border-radius:2px;background:var(--accent);height:' + (playing ? '30%' : '18%') + ';' +
+      (playing ? 'animation: rzBar' + n + ' ' + dur + 's ease-in-out infinite;' : 'animation:none;transition:height .3s ease;');
+  }
+
+  playTrack(index) {
+    if (!this._audio) return;
+    const needsLoad = this.state.trackIndex !== index || !this._audio.src;
+    if (needsLoad) {
+      this.setState({ trackIndex: index, playing: true }, () => {
+        this._audio.src = TRACKS[index].src;
+        this._audio.currentTime = 0;
+        this._audio.play().catch(() => { this.setState({ playing: false }); });
+      });
+    } else {
+      if (this.state.playing) {
+        this._audio.pause();
+        this.setState({ playing: false });
+      } else {
+        this._audio.play().then(() => this.setState({ playing: true })).catch(() => {});
+      }
+    }
+  }
+
+  rootRef = (el) => {
+    this._root = el;
+    if (el) this.applyTheme(this.state.theme, false);
+  };
+
+  applyTheme(theme, animate) {
+    if (!this._root) return;
+    const t = THEMES[theme] || THEMES.dark;
+    Object.keys(t).forEach((k) => {
+      this._root.style.setProperty('--' + (k === 'bg' ? 'bg' : k), t[k]);
+    });
+    // explicit var names used in template
+    this._root.style.setProperty('--bg', t.bg);
+    this._root.style.setProperty('--bgGlow', t.bgGlow);
+    this._root.style.setProperty('--bgSection', t.bgSection);
+    this._root.style.setProperty('--card', t.card);
+    this._root.style.setProperty('--cardBorder', t.cardBorder);
+    this._root.style.setProperty('--pill', t.pill);
+    this._root.style.setProperty('--ink', t.ink);
+    this._root.style.setProperty('--muted', t.muted);
+    this._root.style.setProperty('--accent', t.accent);
+    this._root.style.setProperty('--accentSoft', t.accentSoft);
+    this._root.style.setProperty('--line', t.line);
+    this._root.style.setProperty('--shadow', t.shadow);
+    this._root.style.setProperty('--stripe', t.stripe);
+    this._root.style.setProperty('--bezel', t.bezel);
+    this._root.style.setProperty('--screen', t.screen);
+    this._root.style.setProperty('--accent2', t.accent2);
+  }
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('rzen-theme-v2');
+      const savedLang = localStorage.getItem('rzen-lang-v2');
+      const next = {};
+      if (saved && THEMES[saved]) next.theme = saved;
+      if (savedLang && DICT[savedLang]) next.lang = savedLang;
+      if (Object.keys(next).length) this.setState(next);
+    } catch (e) {}
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.theme !== this.state.theme) {
+      this.applyTheme(this.state.theme, true);
+      try { localStorage.setItem('rzen-theme-v2', this.state.theme); } catch (e) {}
+    }
+    if (prevState.lang !== this.state.lang) {
+      try { localStorage.setItem('rzen-lang-v2', this.state.lang); } catch (e) {}
+    }
+  }
+
+  toggleTheme = () => {
+    this.setState((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' }));
+  };
+
+  toggleLang = () => {
+    this.setState((s) => ({ lang: s.lang === 'en' ? 'es' : 'en' }));
+  };
+
+  renderVals() {
+    const theme = this.state.theme;
+    const t0 = THEMES[theme];
+    const copy = DICT[this.state.lang] || DICT.en;
+    const isDark = theme === 'dark';
+
+    const iconBase = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:#fff;transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .4s ease;';
+    const moonIconStyle = iconBase + (isDark
+      ? 'transform:rotate(0deg) scale(1);opacity:1;background:' + t0.accent + ';'
+      : 'transform:rotate(-160deg) scale(.4);opacity:0;background:' + t0.accent + ';');
+    const sunIconStyle = iconBase + (isDark
+      ? 'transform:rotate(160deg) scale(.4);opacity:0;background:' + t0.accent + ';'
+      : 'transform:rotate(0deg) scale(1);opacity:1;background:' + t0.accent + ';');
+
+    const dotBase = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;';
+
+    return {
+      rootRef: this.rootRef,
+      t0,
+      copy,
+      isDark,
+      isLight: !isDark,
+      pricingImgDarkStyle: 'opacity:' + (isDark ? '1' : '0') + ';transition:opacity .35s ease;',
+      pricingImgLightStyle: 'opacity:' + (isDark ? '0' : '1') + ';transition:opacity .35s ease;',
+      audioRef: this.audioRef,
+      isPlaying: this.state.playing,
+      isPaused: !this.state.playing,
+      currentTrack: TRACKS[this.state.trackIndex],
+      togglePlay: () => this.playTrack(this.state.trackIndex),
+      selectTrack1: () => this.playTrack(0),
+      selectTrack2: () => this.playTrack(1),
+      dot1Style: dotBase + 'background:' + (this.state.trackIndex === 0 ? t0.accent : t0.line) + ';',
+      dot2Style: dotBase + 'background:' + (this.state.trackIndex === 1 ? t0.accent : t0.line) + ';',
+      barStyle1: this.barStyle(1, 0.85),
+      barStyle2: this.barStyle(2, 1.05),
+      barStyle3: this.barStyle(3, 0.7),
+      barStyle4: this.barStyle(4, 0.95),
+      barStyle5: this.barStyle(5, 1.15),
+      langLabel: this.state.lang === 'en' ? 'EN' : 'ES',
+      toggleLang: this.toggleLang,
+      toggleTheme: this.toggleTheme,
+      sunWrapStyle: sunIconStyle,
+      moonWrapStyle: moonIconStyle,
+      sunIconStyle,
+      moonIconStyle
+    };
+  }
+}
+
+</script>
+</body>
+</html>
