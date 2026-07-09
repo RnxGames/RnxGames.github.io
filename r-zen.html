@@ -109,10 +109,9 @@
         <p style="margin: 18px 0 0; max-width: 42ch; color: var(--muted); font-size: 1.02rem; line-height: 1.6;">{{ copy.heroLede }}</p>
 
         <button type="button" style="margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; box-shadow: 0 16px 32px -12px color-mix(in srgb, var(--accent) 70%, transparent);">
-          <span style="width: 16px; height: 16px; border: 1.6px solid #fff; border-radius: 4px; position: relative; flex: 0 0 auto;">
-            <span style="position: absolute; left: 50%; top: 2px; bottom: 2px; width: 1.4px; background: #fff; translate: -50% 0;"></span>
-            <span style="position: absolute; top: 50%; left: 2px; right: 2px; height: 1.4px; background: #fff; translate: 0 -50%;"></span>
-          </span>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
+            <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
+          </svg>
           {{ copy.ctaButton }}
         </button>
         <p style="margin: 12px 0 0; max-width: 38ch; color: var(--muted); font-size: .84rem; line-height: 1.5;">{{ copy.ctaNote }}</p>
@@ -339,9 +338,15 @@
 
         <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
           <div style="display: flex; gap: 10px;">
-            <a href="https://www.instagram.com/denegrirenzo/" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">IG</a>
-            <a href="https://www.tiktok.com/@_rnxgames_" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">TT</a>
-            <a href="https://x.com/DenegriRenzo" target="_blank" rel="noopener" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--muted); text-decoration: none;">X</a>
+            <a href="https://www.instagram.com/denegrirenzo/" target="_blank" rel="noopener" aria-label="Instagram" style="width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); display: flex; align-items: center; justify-content: center; text-decoration: none;">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" aria-hidden="true"><path d="M12 0C8.74 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.014 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@_rnxgames_" target="_blank" rel="noopener" aria-label="TikTok" style="width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; text-decoration: none;">
+              <svg viewBox="0 0 448 512" width="15" height="15" fill="#000" aria-hidden="true"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+            </a>
+            <a href="https://x.com/DenegriRenzo" target="_blank" rel="noopener" aria-label="X" style="width: 34px; height: 34px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="#fff" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zm-1.61 19.514h2.039L6.486 3.24H4.298z"/></svg>
+            </a>
           </div>
           <a href="mailto:xnerzogames@gmail.com" style="color: var(--muted); text-decoration: none; font-size: .8rem;">xnerzogames@gmail.com</a>
         </div>
