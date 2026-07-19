@@ -25,6 +25,24 @@
     body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f6f4; color: #23221f; }
     a { color: #4a4740; }
     a:hover { color: #23221f; }
+    .rnx-rzen-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .rnx-rzen-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px -18px rgba(149,133,242,.45); }
+    @keyframes rnxCtaGlow {
+      0%, 100% { box-shadow: 0 12px 26px -12px rgba(149,133,242,.55); }
+      50% { box-shadow: 0 16px 36px -10px rgba(149,133,242,.75), 0 0 0 6px rgba(149,133,242,.16); }
+    }
+    @keyframes rnxCtaShine { 0%, 20% { left: -60%; } 55%, 100% { left: 130%; } }
+    .rnx-cta-btn { position: relative; overflow: hidden; animation: rnxCtaGlow 2.8s ease-in-out infinite; transition: transform .2s ease; }
+    .rnx-cta-btn:hover { transform: translateY(-2px); }
+    .rnx-cta-btn::after {
+      content: ''; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
+      background: linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
+      transform: skewX(-18deg); animation: rnxCtaShine 3.4s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rnx-cta-btn, .rnx-cta-btn::after { animation: none !important; }
+      .rnx-cta-btn:hover, .rnx-rzen-card:hover { transform: none; }
+    }
     @media (max-width: 780px) {
       .rnx-nav-links, .rnx-nav-cta { display: none !important; }
       .rnx-hamburger { display: flex !important; }
@@ -39,6 +57,33 @@
 </helmet>
 
 <div style="min-height: 100vh; overflow-x: hidden;">
+
+  <!-- LAUNCH POPUP -->
+  <sc-if value="{{ showLaunchPopup }}" hint-placeholder-val="{{ false }}">
+    <div onclick="{{ closeLaunchPopup }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(20,16,31,.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px;">
+      <div onclick="{{ stopClick }}" style="position: relative; max-width: 400px; width: 100%; background: #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 22px; padding: 36px 30px 28px; text-align: center; box-shadow: 0 40px 80px -20px rgba(0,0,0,.6);">
+        <button type="button" onclick="{{ closeLaunchPopup }}" aria-label="Close" style="position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 50%; border: none; background: rgba(255,255,255,.08); color: #a49bc2; font-size: 1rem; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#215;</button>
+
+        <span style="width: 62px; height: 62px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto; overflow: hidden; padding: 4px;">
+          <img src="./assets/logo.png" alt="R-Zen Experience" style="width: 100%; height: 100%; object-fit: contain;">
+        </span>
+
+        <span style="display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: .68rem; font-weight: 700; letter-spacing: .07em; color: #9585f2; background: rgba(149,133,242,.16); padding: 5px 12px; border-radius: 999px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #9585f2;"></span>NOW AVAILABLE
+        </span>
+
+        <h3 style="font-family: 'Lora', serif; font-weight: 600; font-size: 1.4rem; color: #f4f1fa; margin: 14px 0 0;">R-Zen Experience is here.</h3>
+        <p style="margin: 10px 0 0; color: #a49bc2; font-size: .92rem; line-height: 1.55;">Mandalas, puzzles and paint-by-number — free to download, right now on the App Store.</p>
+
+        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" class="rnx-cta-btn" style="margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #9585f2; color: #14101f; border: none; border-radius: 12px; padding: 14px 24px; font-family: inherit; font-weight: 700; font-size: .92rem; text-decoration: none;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#14101f" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/></svg>
+          Download on the App Store
+        </a>
+
+        <button type="button" onclick="{{ dismissLaunchPopupForever }}" style="margin-top: 16px; background: none; border: none; color: #8a82a3; font-size: .78rem; text-decoration: underline; font-family: inherit; cursor: pointer;">Don't show this again</button>
+      </div>
+    </div>
+  </sc-if>
 
   <!-- NAV -->
   <nav style="position: sticky; top: 0; z-index: 50; background: rgba(247,246,244,.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(35,34,31,.08);">
@@ -106,7 +151,7 @@
 
       <div class="rnx-products-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 22px;">
 
-        <a href="./r-zen.html" class="rnx-rzen-card" style="text-decoration: none; color: inherit; min-width: 0; position: relative; background: radial-gradient(120% 140% at 100% 0%, rgba(149,133,242,.35), transparent 60%), #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 24px; padding: 32px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 20px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 20px 44px -18px rgba(149,133,242,.45);">
+        <div class="rnx-rzen-card" style="min-width: 0; position: relative; background: radial-gradient(120% 140% at 100% 0%, rgba(149,133,242,.35), transparent 60%), #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 24px; padding: 32px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 20px; overflow: hidden;">
           <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
             <span style="display: inline-flex; align-items: center; gap: 6px; font-size: .68rem; font-weight: 700; letter-spacing: .07em; color: #9585f2; background: rgba(149,133,242,.16); padding: 5px 12px; border-radius: 999px; align-self: flex-start;">
               <span style="width: 6px; height: 6px; border-radius: 50%; background: #9585f2;"></span>WELLNESS · AVAILABLE NOW
@@ -116,9 +161,15 @@
               <div style="font-size: .82rem; color: #a49bc2; margin-top: 4px;">Mandalas · Puzzles · Paint by Number</div>
             </div>
             <p style="margin: 0; color: #a49bc2; font-size: .92rem; line-height: 1.55; max-width: 40ch;">A calm space with no ads and no accounts — color, solve puzzles, and unwind with ambient music, all offline.</p>
-            <span style="margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; font-weight: 700; color: #14101f; background: #9585f2; padding: 11px 20px; border-radius: 10px; width: fit-content;">
-              Explore R-Zen <span>&#8594;</span>
-            </span>
+            <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" class="rnx-cta-btn" style="display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; font-weight: 700; color: #14101f; background: #9585f2; padding: 11px 20px; border-radius: 10px; text-decoration: none;">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="#14101f" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/></svg>
+                Download on the App Store
+              </a>
+              <a href="./r-zen.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; font-weight: 700; color: #f4f1fa; background: transparent; border: 1px solid rgba(149,133,242,.4); padding: 10px 19px; border-radius: 10px; text-decoration: none;">
+                Explore R-Zen <span>&#8594;</span>
+              </a>
+            </div>
           </div>
 
           <div style="position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;">
@@ -127,7 +178,7 @@
               <img src="./assets/screen-iphone.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
           </div>
-        </a>
+        </div>
 
         <div style="min-width: 0; background: #fff; border: 1px dashed rgba(35,34,31,.16); border-radius: 20px; padding: 28px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px;">
           <div style="display: flex; gap: 7px;">
@@ -198,8 +249,18 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+const LAUNCH_POPUP_KEY = 'rnx_hide_launch_popup';
+
 class Component extends DCLogic {
-  state = { menuOpen: false };
+  state = { menuOpen: false, showLaunchPopup: false };
+
+  componentDidMount() {
+    try {
+      if (localStorage.getItem(LAUNCH_POPUP_KEY) !== '1') {
+        this.setState({ showLaunchPopup: true });
+      }
+    } catch {}
+  }
 
   toggleMenu = () => {
     this.setState((s) => ({ menuOpen: !s.menuOpen }));
@@ -207,6 +268,19 @@ class Component extends DCLogic {
 
   closeMenu = () => {
     this.setState({ menuOpen: false });
+  };
+
+  closeLaunchPopup = () => {
+    this.setState({ showLaunchPopup: false });
+  };
+
+  stopClick = (e) => {
+    e.stopPropagation();
+  };
+
+  dismissLaunchPopupForever = () => {
+    try { localStorage.setItem(LAUNCH_POPUP_KEY, '1'); } catch {}
+    this.setState({ showLaunchPopup: false });
   };
 
   renderVals() {
@@ -218,7 +292,11 @@ class Component extends DCLogic {
       barTopStyle: barBase + (open ? 'transform:translateY(6px) rotate(45deg);' : ''),
       barMidStyle: barBase + (open ? 'opacity:0;' : ''),
       barBotStyle: barBase + (open ? 'transform:translateY(-6px) rotate(-45deg);' : ''),
-      mobileMenuStyle: 'display:' + (open ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:#f7f6f4; border-bottom:1px solid rgba(35,34,31,.08); box-shadow:0 16px 32px -16px rgba(0,0,0,.18); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;'
+      mobileMenuStyle: 'display:' + (open ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:#f7f6f4; border-bottom:1px solid rgba(35,34,31,.08); box-shadow:0 16px 32px -16px rgba(0,0,0,.18); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;',
+      showLaunchPopup: this.state.showLaunchPopup,
+      closeLaunchPopup: this.closeLaunchPopup,
+      stopClick: this.stopClick,
+      dismissLaunchPopupForever: this.dismissLaunchPopupForever
     };
   }
 }
