@@ -50,9 +50,11 @@
       background: linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
       transform: skewX(-18deg); animation: rzCtaShine 3.4s ease-in-out infinite;
     }
+    .rz-live-dot { animation: rzPulse 1.8s ease-in-out infinite; }
     @media (prefers-reduced-motion: reduce) {
       .rz-cta-btn, .rz-cta-btn::after { animation: none !important; }
       .rz-cta-btn:hover { transform: none; }
+      .rz-live-dot { animation: none !important; }
     }
     @media (max-width: 860px) {
       [data-nav-links="1"] { display: none !important; }
@@ -173,7 +175,10 @@
           </svg>
           {{ copy.ctaButton }}
         </a>
-        <p style="margin: 12px 0 0; max-width: 38ch; color: var(--muted); font-size: .84rem; line-height: 1.5;">{{ copy.ctaNote }}</p>
+        <p style="margin: 16px 0 0; max-width: 40ch; display: flex; align-items: center; gap: 9px; font-size: 1.12rem; font-weight: 800; line-height: 1.4; color: var(--accent2); text-shadow: 0 0 22px color-mix(in srgb, var(--accent2) 55%, transparent);">
+          <span class="rz-live-dot" style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 12px 2px color-mix(in srgb, var(--accent2) 70%, transparent); flex: 0 0 auto;"></span>
+          {{ copy.ctaNote }}
+        </p>
       </div>
 
       <div class="rz-hero-mockups" style="position: relative; height: 520px;">
