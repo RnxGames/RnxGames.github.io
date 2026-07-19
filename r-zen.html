@@ -105,7 +105,7 @@
         </a>
         <a href="#features" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navFeatures }}</a>
         <a href="#benefits" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navBenefits }}</a>
-        <a href="#pricing" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navPricing }}</a>
+        <a href="#download" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navPricing }}</a>
         <a href="./support.html" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navFaq }}</a>
         <a href="#contact" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navContact }}</a>
       </div>
@@ -134,7 +134,7 @@
       <a href="#home" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navHome }}</a>
       <a href="#features" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navFeatures }}</a>
       <a href="#benefits" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navBenefits }}</a>
-      <a href="#pricing" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navPricing }}</a>
+      <a href="#download" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navPricing }}</a>
       <a href="./support.html" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navFaq }}</a>
       <a href="#contact" onclick="{{ closeMenu }}" style="padding: 14px 4px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navContact }}</a>
       <button type="button" onclick="{{ toggleLang }}" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 7px; height: 42px; border-radius: 999px; border: 1px solid var(--line); background: var(--pill); color: var(--ink); font-family: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;">
@@ -174,12 +174,6 @@
           {{ copy.ctaButton }}
         </a>
         <p style="margin: 12px 0 0; max-width: 38ch; color: var(--muted); font-size: .84rem; line-height: 1.5;">{{ copy.ctaNote }}</p>
-
-        <p style="margin: 14px 0 0; font-size: .95rem; font-variant-numeric: tabular-nums;">
-          <span style="text-decoration: line-through; color: var(--muted); margin-right: 8px;">$5.99</span>
-          <span style="color: var(--accent2); font-weight: 800; font-size: 1.12rem; text-shadow: 0 0 18px color-mix(in srgb, var(--accent2) 60%, transparent);">$1.99</span>
-          <span style="color: var(--muted);"> {{ copy.priceNote }}</span>
-        </p>
       </div>
 
       <div class="rz-hero-mockups" style="position: relative; height: 520px;">
@@ -335,8 +329,8 @@
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" style="padding: 72px 32px;">
+  <!-- DOWNLOAD -->
+  <section id="download" style="padding: 72px 32px;">
     <div style="max-width: 1180px; margin: 0 auto;">
       <div class="rz-pricing-grid" style="position: relative; border-radius: 24px; padding: 52px 64px 52px 0; display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; box-shadow: var(--shadow); overflow: hidden; min-height: 560px;">
         <img src="./assets/pricing-bg.png" alt="" class="rz-pricing-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; {{ pricingImgDarkStyle }}">
@@ -345,12 +339,17 @@
 
         <div style="position: relative; z-index: 1; color: var(--ink); background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 22px; padding: 34px 38px; box-shadow: 0 24px 48px -26px rgba(0,0,0,.4);">
           <span style="display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--accent2); background: color-mix(in srgb, var(--ink) 8%, transparent); border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); padding: 7px 16px; border-radius: 999px;">{{ copy.ticketRibbon }}</span>
-          <div style="margin-top: 18px; font-variant-numeric: tabular-nums;">
-            <span style="text-decoration: line-through; color: color-mix(in srgb, var(--ink) 55%, transparent); font-size: 1.6rem; font-weight: 600; margin-right: 12px;">$5.99</span>
-            <span style="font-family: 'Lora', serif; font-size: 3rem; font-weight: 700; color: var(--accent2); text-shadow: 0 0 28px color-mix(in srgb, var(--accent2) 60%, transparent);">$1.99</span>
-          </div>
-          <p style="margin: 16px 0 0; color: color-mix(in srgb, var(--ink) 75%, transparent); font-size: 1.05rem; max-width: 40ch; line-height: 1.55;">{{ copy.ticketFine }}</p>
-          <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 13px;">
+          <div style="margin-top: 18px; font-family: 'Lora', serif; font-size: 2.1rem; font-weight: 700; color: var(--ink);">{{ copy.ticketHeadline }}</div>
+          <p style="margin: 12px 0 0; color: color-mix(in srgb, var(--ink) 75%, transparent); font-size: 1.05rem; max-width: 40ch; line-height: 1.55;">{{ copy.ticketFine }}</p>
+
+          <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" class="rz-cta-btn" style="margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
+              <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
+            </svg>
+            {{ copy.ctaButton }}
+          </a>
+
+          <div style="margin-top: 26px; display: flex; flex-direction: column; gap: 13px;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.4px solid var(--accent2); position: relative; flex: 0 0 auto;">
                 <span style="position: absolute; left: 50%; top: 45%; width: 5px; height: 10px; border-right: 1.6px solid var(--accent2); border-bottom: 1.6px solid var(--accent2); transform: translate(-50%, -50%) rotate(40deg);"></span>
@@ -460,7 +459,7 @@ const THEMES = {
 
 const DICT = {
   en: {
-    navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Pricing', navFaq: 'FAQ', navContact: 'Contact',
+    navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Download', navFaq: 'FAQ', navContact: 'Contact',
     eyebrow: 'PUZZLES & MANDALAS',
     heroLine1: 'R-Zen Experience',
     heroLine2Pre: 'Create. Relax. ',
@@ -468,7 +467,6 @@ const DICT = {
     heroLede: 'Mandalas, puzzles and paint-by-number in a single app. No ads, no accounts, fully offline.',
     ctaButton: 'Download on the App Store',
     ctaNote: 'Available now — free to download for iPhone and iPad.',
-    priceNote: 'for the first 6 months',
     joinSub: 'Be the first to know.',
     designedFor: 'Designed for',
     designedForDevice: 'iPhone & iPad',
@@ -491,8 +489,9 @@ const DICT = {
     fPrivacyH: 'Zero data collected', fPrivacyP: 'No accounts, no tracking, no analytics.',
     fLangH: 'Multilingual support', fLangP: '8 languages to support your journey.',
     phZen: 'zen stones + lotus photo',
-    ticketRibbon: 'LAUNCH PRICE',
-    ticketFine: 'Promotional price for the first 6 months. After that: $5.99, one-time purchase — no subscriptions.',
+    ticketRibbon: 'TRY FOR FREE',
+    ticketHeadline: 'Try for free.',
+    ticketFine: 'Free to download — jump straight in on your iPhone or iPad.',
     ticketLi1: 'Every mandala, puzzle and image',
     ticketLi2: 'All music and ambient effects',
     ticketLi3: 'No ads, ever',
@@ -501,7 +500,7 @@ const DICT = {
     footCopy: '© 2026 R-Zen Experience. All rights reserved.'
   },
   es: {
-    navHome: 'Inicio', navFeatures: 'Funciones', navBenefits: 'Beneficios', navPricing: 'Precio', navFaq: 'Preguntas', navContact: 'Contacto',
+    navHome: 'Inicio', navFeatures: 'Funciones', navBenefits: 'Beneficios', navPricing: 'Descargar', navFaq: 'Preguntas', navContact: 'Contacto',
     eyebrow: 'PUZZLES Y MANDALAS',
     heroLine1: 'R-Zen Experience',
     heroLine2Pre: 'Crea. Relaja. ',
@@ -509,7 +508,6 @@ const DICT = {
     heroLede: 'Mandalas, puzzles y pintura por número en una sola app. Sin anuncios, sin cuentas, y funciona sin conexión.',
     ctaButton: 'Descárgala en la App Store',
     ctaNote: 'Ya disponible — gratis para descargar en iPhone y iPad.',
-    priceNote: 'los primeros 6 meses',
     joinSub: 'Sé el primero en enterarte.',
     designedFor: 'Diseñado para',
     designedForDevice: 'iPhone y iPad',
@@ -532,8 +530,9 @@ const DICT = {
     fPrivacyH: 'Cero datos recolectados', fPrivacyP: 'Sin cuentas, sin rastreo, sin analítica.',
     fLangH: 'Soporte multilingüe', fLangP: '8 idiomas para acompañar tu camino.',
     phZen: 'foto de piedras zen + loto',
-    ticketRibbon: 'PRECIO DE LANZAMIENTO',
-    ticketFine: 'Precio promocional durante los primeros 6 meses. Después: $5.99, compra única — sin suscripciones.',
+    ticketRibbon: 'PRUÉBALA GRATIS',
+    ticketHeadline: 'Pruébala gratis.',
+    ticketFine: 'Gratis para descargar — empieza ya en tu iPhone o iPad.',
     ticketLi1: 'Todos los mandalas, puzzles e imágenes',
     ticketLi2: 'Toda la música y efectos ambientales',
     ticketLi3: 'Sin anuncios, para siempre',
