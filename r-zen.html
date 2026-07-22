@@ -170,7 +170,7 @@
 
         <p style="margin: 18px 0 0; max-width: 42ch; color: var(--muted); font-size: 1.02rem; line-height: 1.6;">{{ copy.heroLede }}</p>
 
-        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" class="rz-cta-btn" style="margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
+        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
             <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
           </svg>
@@ -348,7 +348,7 @@
           <div style="margin-top: 18px; font-family: 'Lora', serif; font-size: 2.1rem; font-weight: 700; color: var(--ink);">{{ copy.ticketHeadline }}</div>
           <p style="margin: 12px 0 0; color: color-mix(in srgb, var(--ink) 75%, transparent); font-size: 1.05rem; max-width: 40ch; line-height: 1.55;">{{ copy.ticketFine }}</p>
 
-          <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" class="rz-cta-btn" style="margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
+          <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 26px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
               <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
             </svg>
@@ -650,6 +650,12 @@ class Component extends DCLogic {
     this.setState((s) => ({ lang: s.lang === 'en' ? 'es' : 'en' }));
   };
 
+  trackDownloadClick = () => {
+    try {
+      fetch('https://script.google.com/macros/s/AKfycbxjD3tsT3Jt5JaAjF0J_ga3QsPeEbixUgKTYe1nPhBSPMJ_nR-e7Z_8CDD3w36UMVzmnA/exec', { mode: 'no-cors' });
+    } catch {}
+  };
+
   renderVals() {
     const theme = this.state.theme;
     const t0 = THEMES[theme];
@@ -703,7 +709,8 @@ class Component extends DCLogic {
       sunWrapStyle: sunIconStyle,
       moonWrapStyle: moonIconStyle,
       sunIconStyle,
-      moonIconStyle
+      moonIconStyle,
+      trackDownloadClick: this.trackDownloadClick
     };
   }
 }
