@@ -52,6 +52,12 @@
       transform: skewX(-18deg); animation: rzCtaShine 3.4s ease-in-out infinite;
     }
     .rz-live-dot { animation: rzPulse 1.8s ease-in-out infinite; }
+    .rz-v2-track { scrollbar-width: none; }
+    .rz-v2-track::-webkit-scrollbar { height: 0; background: transparent; }
+    .rz-v2-frame { flex: 0 0 auto; border-radius: 26px; overflow: hidden; background: var(--bezel); border: 6px solid var(--bezel); box-shadow: var(--shadow); scroll-snap-align: center; }
+    .rz-v2-ipad { width: 230px; aspect-ratio: 2064 / 2752; }
+    .rz-v2-iphone { width: 168px; aspect-ratio: 1242 / 2688; border-radius: 32px; }
+    .rz-v2-arrow { position: absolute; top: 44%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--pill); color: var(--ink); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); z-index: 2; }
     @media (prefers-reduced-motion: reduce) {
       .rz-cta-btn, .rz-cta-btn::after { animation: none !important; }
       .rz-cta-btn:hover { transform: none; }
@@ -70,6 +76,13 @@
       .rz-lang-toggle { display: none !important; }
       .rz-back-label { display: none !important; }
       .rz-nav-inner { padding: 14px 16px !important; gap: 10px !important; }
+      .rz-v2-arrow { display: none !important; }
+      .rz-v2-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 480px) {
+      .rz-v2-ipad { width: 190px; }
+      .rz-v2-iphone { width: 138px; }
+      .rz-v2-grid { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 420px) {
       .rz-nav-inner { gap: 6px !important; }
@@ -106,6 +119,7 @@
         <a href="#home" style="font-size: .88rem; font-weight: 600; color: var(--ink); text-decoration: none; position: relative; padding-bottom: 14px;">{{ copy.navHome }}
           <span style="position: absolute; bottom: 0; left: 50%; translate: -50% 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>
         </a>
+        <a href="#v2" style="font-size: .88rem; font-weight: 700; color: var(--accent2); text-decoration: none;">{{ copy.navWhatsNew }}</a>
         <a href="#features" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navFeatures }}</a>
         <a href="#benefits" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navBenefits }}</a>
         <a href="#download" style="font-size: .88rem; font-weight: 500; color: var(--muted); text-decoration: none;">{{ copy.navPricing }}</a>
@@ -135,6 +149,7 @@
 
     <div style="{{ mobileMenuStyle }}">
       <a href="#home" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navHome }}</a>
+      <a href="#v2" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 700; color: var(--accent2); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navWhatsNew }}</a>
       <a href="#features" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navFeatures }}</a>
       <a href="#benefits" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navBenefits }}</a>
       <a href="#download" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navPricing }}</a>
@@ -148,6 +163,85 @@
       </button>
     </div>
   </nav>
+
+  <!-- R-ZEN 2.0 ANNOUNCEMENT -->
+  <section id="v2" style="position: relative; padding: 52px 32px 60px; background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, var(--bg)) 0%, var(--bg) 60%); border-bottom: 1px solid var(--line); overflow: hidden;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+
+      <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 800; letter-spacing: .09em; color: #fff; background: var(--accent); padding: 7px 16px; border-radius: 999px;">
+          <span class="rz-live-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #fff;"></span>{{ copy.v2Eyebrow }}
+        </span>
+
+        <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.18; margin: 20px 0 0;">
+          {{ copy.v2HeadlinePre }}<span style="font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; font-size: 1.1em; color: var(--accent2); text-shadow: 0 0 22px color-mix(in srgb, var(--accent2) 55%, transparent), 0 0 46px color-mix(in srgb, var(--accent2) 30%, transparent);">{{ copy.v2HeadlineAccent }}</span>
+        </h2>
+
+        <p style="margin: 16px auto 0; max-width: 56ch; color: var(--muted); font-size: 1.04rem; line-height: 1.6;">{{ copy.v2Lede }}</p>
+
+        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 28px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
+            <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
+          </svg>
+          {{ copy.ctaButton }}
+        </a>
+        <p style="margin: 14px 0 0; font-size: .78rem; color: var(--muted);">{{ copy.v2CtaNote }}</p>
+      </div>
+
+      <!-- SCREENSHOT CAROUSEL -->
+      <div style="position: relative; margin-top: 44px;">
+        <div class="rz-v2-track" ref="{{ v2CarouselRef }}" style="display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 6px 6px; -webkit-overflow-scrolling: touch;">
+          <sc-for list="{{ v2Slides }}" as="slide">
+            <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div class="rz-v2-frame {{ slide.frameClass }}">
+                <img src="{{ slide.img }}" alt="{{ slide.caption }}" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
+              </div>
+              <p style="margin: 0; max-width: 190px; text-align: center; font-size: .78rem; color: var(--muted); line-height: 1.4;">{{ slide.caption }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <button type="button" onclick="{{ v2ScrollPrev }}" aria-label="Previous" class="rz-v2-arrow" style="left: -6px;">&#8592;</button>
+        <button type="button" onclick="{{ v2ScrollNext }}" aria-label="Next" class="rz-v2-arrow" style="right: -6px;">&#8594;</button>
+      </div>
+
+      <!-- WHAT'S NEW GRID -->
+      <div style="margin-top: 52px;">
+        <h3 style="text-align: center; font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.25rem, 2.2vw, 1.55rem); margin: 0 0 26px;">{{ copy.v2GridTitle }}</h3>
+        <div class="rz-v2-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+
+          <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px;">
+            <h4 style="margin: 0 0 12px; font-size: .92rem; font-weight: 700; color: var(--accent);">{{ copy.v2Cat1Title }}</h4>
+            <ul style="margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 9px; font-size: .8rem; color: var(--muted); line-height: 1.5;">
+              <sc-for list="{{ copy.v2Cat1Items }}" as="item"><li>{{ item }}</li></sc-for>
+            </ul>
+          </div>
+
+          <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px;">
+            <h4 style="margin: 0 0 12px; font-size: .92rem; font-weight: 700; color: var(--accent);">{{ copy.v2Cat2Title }}</h4>
+            <ul style="margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 9px; font-size: .8rem; color: var(--muted); line-height: 1.5;">
+              <sc-for list="{{ copy.v2Cat2Items }}" as="item"><li>{{ item }}</li></sc-for>
+            </ul>
+          </div>
+
+          <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px;">
+            <h4 style="margin: 0 0 12px; font-size: .92rem; font-weight: 700; color: var(--accent);">{{ copy.v2Cat3Title }}</h4>
+            <ul style="margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 9px; font-size: .8rem; color: var(--muted); line-height: 1.5;">
+              <sc-for list="{{ copy.v2Cat3Items }}" as="item"><li>{{ item }}</li></sc-for>
+            </ul>
+          </div>
+
+          <div style="background: var(--card); border: 1px solid var(--cardBorder); border-radius: 18px; padding: 22px;">
+            <h4 style="margin: 0 0 12px; font-size: .92rem; font-weight: 700; color: var(--accent);">{{ copy.v2Cat4Title }}</h4>
+            <ul style="margin: 0; padding-left: 17px; display: flex; flex-direction: column; gap: 9px; font-size: .8rem; color: var(--muted); line-height: 1.5;">
+              <sc-for list="{{ copy.v2Cat4Items }}" as="item"><li>{{ item }}</li></sc-for>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- HERO -->
   <header id="home" style="position: relative; padding: 76px 32px 0; overflow: hidden; background: radial-gradient(1100px 520px at 78% -8%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%);">
@@ -465,7 +559,53 @@ const THEMES = {
 
 const DICT = {
   en: {
-    navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Download', navFaq: 'FAQ', navContact: 'Contact',
+    navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Download', navFaq: 'FAQ', navContact: 'Contact', navWhatsNew: "What's new",
+    v2Eyebrow: 'R-ZEN 2.0 · OUT NOW',
+    v2HeadlinePre: 'The biggest R-Zen update yet, ',
+    v2HeadlineAccent: 'reimagined.',
+    v2Lede: 'A full redesign, two new game modes and months of new content. Free to download, right now.',
+    v2CtaNote: 'Already have R-Zen? The update is live — just open the App Store.',
+    v2GridTitle: "Everything that's new in 2.0",
+    v2Cat1Title: 'REDESIGN',
+    v2Cat1Items: [
+      'A 3D globe in Puzzle mode — spin the world, lit by the real time of day. The classic list is still there.',
+      'Mandala gallery rebuilt into lanes: new & packs, your progress, recommendations and favorites — plus a lane for every downloaded pack, split by Traditional, Reveal, By Number and Comes to Life.',
+      'Packs screen is now a carousel, with a heads-up when an installed pack gets a new version.',
+      'Redesigned tool panel: it opens without moving the canvas, and clear and undo always stay in place.',
+      'Its own finishing animation for every mode, with a shower of petals.'
+    ],
+    v2Cat2Title: 'NEW MODES',
+    v2Cat2Items: [
+      'Swap: tap two squares to trade places until the picture comes back together — 3×3, 4×4 or 5×5.',
+      'Comes to Life: 8 By Number sheets that start animating on their own the moment you finish them, and play again in your journal.',
+      'Two players: each one gets a floating panel for brush, color, opacity and size on the same canvas.'
+    ],
+    v2Cat3Title: 'NEW CONTENT',
+    v2Cat3Items: [
+      'Canada and Jamaica — 20 new cities. That makes 12 countries and 123 puzzles.',
+      'Three Zodiac packs, free: 13 mandalas to color and reveal, 13 Zodiac Pixel and 13 Zodiac Chibi sheets to paint by number.',
+      'Pro brush mode — 12 new tools: watercolor, dry oil, fur, pastel, technical pen, ballpoint, Pro marker, calligraphy, glitter, flare, neon and smudge.'
+    ],
+    v2Cat4Title: 'MORE',
+    v2Cat4Items: [
+      'High contrast rebuilt in By Number — highlights only the cells you still owe for the chosen number, without touching the sheet’s colors.',
+      'Absolute fill: a new tool that paints every cell of the chosen number at once.',
+      'Petals while painting, and a zoom button to move and magnify the canvas without leaving a mark.',
+      'News button — catches you up on everything that has been added.',
+      'Soundtrack links open Spotify, Apple Music or YouTube Music straight in their own app.',
+      'Multi-finger dragging in Puzzle, smoother painting in By Number, and lower battery and memory use.',
+      'The app is half the size — from 505 MB down to 259 MB, with no loss in sheet or music quality.'
+    ],
+    v2CapGlobe: 'Spin the globe to pick your destination',
+    v2CapModes: 'Traditional, Slide or the new Swap mode',
+    v2CapMandalas: 'A gallery rebuilt into lanes',
+    v2CapDiary: 'Journal your thoughts after every sheet',
+    v2CapGameplay1: 'Multi-finger dragging, smoother than ever',
+    v2CapCanada: '12 countries, 123 puzzles and counting',
+    v2CapTypes: 'Five ways to create, all in one app',
+    v2CapZodiac: 'New: three free Zodiac packs',
+    v2CapPacks: '59+ paint-by-number sheets to unlock',
+    v2CapGameplay2: 'Smoother painting, lower battery use',
     eyebrow: 'PUZZLES & MANDALAS',
     heroLine1: 'R-Zen Experience',
     heroLine2Pre: 'Create. Relax. ',
@@ -506,7 +646,53 @@ const DICT = {
     footCopy: '© 2026 R-Zen Experience. All rights reserved.'
   },
   es: {
-    navHome: 'Inicio', navFeatures: 'Funciones', navBenefits: 'Beneficios', navPricing: 'Descargar', navFaq: 'Preguntas', navContact: 'Contacto',
+    navHome: 'Inicio', navFeatures: 'Funciones', navBenefits: 'Beneficios', navPricing: 'Descargar', navFaq: 'Preguntas', navContact: 'Contacto', navWhatsNew: 'Novedades',
+    v2Eyebrow: 'R-ZEN 2.0 · YA DISPONIBLE',
+    v2HeadlinePre: 'La actualización más grande de R-Zen, ',
+    v2HeadlineAccent: 'reinventada.',
+    v2Lede: 'Un rediseño completo, dos modos de juego nuevos y meses de contenido nuevo. Gratis para descargar, ahora mismo.',
+    v2CtaNote: '¿Ya tienes R-Zen? La actualización ya está disponible — solo abre la App Store.',
+    v2GridTitle: 'Todo lo nuevo en la 2.0',
+    v2Cat1Title: 'REDISEÑO',
+    v2Cat1Items: [
+      'Un globo 3D en el modo Puzzle: gira el mundo, iluminado por la hora real del día. La lista clásica sigue ahí.',
+      'Galería de mandalas reorganizada en carriles: novedades y packs, tu progreso, recomendaciones y favoritos — más un carril para cada pack descargado, dividido en Tradicional, Revelar, Por número y Cobra vida.',
+      'La pantalla de packs ahora es un carrusel, con un aviso cuando un pack instalado tiene una nueva versión.',
+      'Panel de herramientas rediseñado: se abre sin mover el lienzo, y borrar y deshacer siempre quedan en su lugar.',
+      'Una animación de cierre propia para cada modo, con una lluvia de pétalos.'
+    ],
+    v2Cat2Title: 'MODOS NUEVOS',
+    v2Cat2Items: [
+      'Swap: un modo de puzzle nuevo. Toca dos casillas para intercambiarlas hasta armar la imagen, en 3×3, 4×4 o 5×5.',
+      'Cobra vida: 8 láminas Por número que empiezan a animarse solas en cuanto las terminas, y se reproducen de nuevo en tu diario.',
+      'Dos jugadores: cada uno tiene su propio panel flotante de pincel, color, opacidad y tamaño en el mismo lienzo.'
+    ],
+    v2Cat3Title: 'CONTENIDO NUEVO',
+    v2Cat3Items: [
+      'Canadá y Jamaica: 20 ciudades nuevas. Ya son 12 países y 123 puzzles.',
+      'Tres packs Zodiac gratis: 13 mandalas para colorear y revelar, 13 Zodiac Pixel y 13 Zodiac Chibi para pintar por número.',
+      'Modo pincel Pro: 12 herramientas nuevas — acuarela, óleo seco, pelo, pastel, pluma técnica, bolígrafo, marcador Pro, caligrafía, purpurina, destello, neón y difuminado.'
+    ],
+    v2Cat4Title: 'MÁS',
+    v2Cat4Items: [
+      'Alto contraste renovado en Por número: resalta solo las celdas que te faltan del número elegido, sin tocar los colores de la lámina.',
+      'Relleno absoluto: una herramienta nueva que pinta de una vez todas las celdas del número elegido.',
+      'Pétalos mientras pintas, y un botón de zoom para mover y ampliar el lienzo sin dejar marca.',
+      'Botón de novedades: te pone al día con todo lo que se ha agregado.',
+      'Los enlaces de la banda sonora abren Spotify, Apple Music o YouTube Music directo en su propia app.',
+      'Arrastre multitáctil en Puzzle, pintura más fluida en Por número, y menor consumo de batería y memoria.',
+      'La app pesa la mitad: de 505 MB bajó a 259 MB, sin perder calidad en láminas ni música.'
+    ],
+    v2CapGlobe: 'Gira el globo para elegir tu destino',
+    v2CapModes: 'Tradicional, Slide o el nuevo modo Swap',
+    v2CapMandalas: 'Una galería reorganizada en carriles',
+    v2CapDiary: 'Escribe tu diario después de cada lámina',
+    v2CapGameplay1: 'Arrastre multitáctil, más fluido que nunca',
+    v2CapCanada: '12 países, 123 puzzles y sumando',
+    v2CapTypes: 'Cinco formas de crear, todas en una app',
+    v2CapZodiac: 'Nuevo: tres packs Zodiac gratis',
+    v2CapPacks: 'Más de 59 láminas para pintar por número',
+    v2CapGameplay2: 'Pintura más fluida, menor consumo',
     eyebrow: 'PUZZLES Y MANDALAS',
     heroLine1: 'R-Zen Experience',
     heroLine2Pre: 'Crea. Relaja. ',
@@ -553,6 +739,19 @@ const TRACKS = [
   { name: 'Whispering Bamboo', src: './assets/song-2.mp3' }
 ];
 
+const V2_SLIDES = [
+  { img: './assets/v2/ipad-globe.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapGlobe' },
+  { img: './assets/v2/iphone-canada.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapCanada' },
+  { img: './assets/v2/ipad-modes.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapModes' },
+  { img: './assets/v2/iphone-types.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapTypes' },
+  { img: './assets/v2/ipad-mandalas.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapMandalas' },
+  { img: './assets/v2/iphone-zodiac.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapZodiac' },
+  { img: './assets/v2/ipad-diary.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapDiary' },
+  { img: './assets/v2/iphone-packs.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapPacks' },
+  { img: './assets/v2/ipad-gameplay.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapGameplay1' },
+  { img: './assets/v2/iphone-gameplay.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapGameplay2' }
+];
+
 class Component extends DCLogic {
   state = { theme: 'dark', lang: 'en', trackIndex: 0, playing: false, menuOpen: false };
 
@@ -565,6 +764,16 @@ class Component extends DCLogic {
   };
 
   audioRef = (el) => { this._audio = el; };
+
+  v2CarouselRef = (el) => { this._v2Carousel = el; };
+
+  v2ScrollPrev = () => {
+    if (this._v2Carousel) this._v2Carousel.scrollBy({ left: -360, behavior: 'smooth' });
+  };
+
+  v2ScrollNext = () => {
+    if (this._v2Carousel) this._v2Carousel.scrollBy({ left: 360, behavior: 'smooth' });
+  };
 
   barStyle(n, dur) {
     const playing = this.state.playing;
@@ -671,6 +880,7 @@ class Component extends DCLogic {
       : 'transform:rotate(0deg) scale(1);opacity:1;background:' + t0.accent + ';');
 
     const dotBase = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;';
+    const v2Slides = V2_SLIDES.map((s) => ({ img: s.img, frameClass: s.frameClass, caption: copy[s.capKey] }));
 
     const menuOpen = this.state.menuOpen;
     const barBase = 'width:20px;height:2px;border-radius:2px;transition:transform .25s ease, opacity .2s ease;display:block;background:' + t0.ink + ';';
@@ -690,6 +900,10 @@ class Component extends DCLogic {
       pricingImgDarkStyle: 'opacity:' + (isDark ? '1' : '0') + ';transition:opacity .35s ease;',
       pricingImgLightStyle: 'opacity:' + (isDark ? '0' : '1') + ';transition:opacity .35s ease;',
       audioRef: this.audioRef,
+      v2CarouselRef: this.v2CarouselRef,
+      v2ScrollPrev: this.v2ScrollPrev,
+      v2ScrollNext: this.v2ScrollNext,
+      v2Slides,
       isPlaying: this.state.playing,
       isPaused: !this.state.playing,
       currentTrack: TRACKS[this.state.trackIndex],
