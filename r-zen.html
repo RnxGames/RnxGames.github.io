@@ -52,16 +52,39 @@
       transform: skewX(-18deg); animation: rzCtaShine 3.4s ease-in-out infinite;
     }
     .rz-live-dot { animation: rzPulse 1.8s ease-in-out infinite; }
-    .rz-v2-track { scrollbar-width: none; }
-    .rz-v2-track::-webkit-scrollbar { height: 0; background: transparent; }
-    .rz-v2-frame { flex: 0 0 auto; border-radius: 26px; overflow: hidden; background: var(--bezel); border: 6px solid var(--bezel); box-shadow: var(--shadow); scroll-snap-align: center; }
-    .rz-v2-ipad { width: 230px; aspect-ratio: 2064 / 2752; }
-    .rz-v2-iphone { width: 168px; aspect-ratio: 1242 / 2688; border-radius: 32px; }
-    .rz-v2-arrow { position: absolute; top: 44%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--pill); color: var(--ink); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); z-index: 2; }
+    @keyframes rzV2Marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .rz-v2-viewport { overflow: hidden; padding: 26px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+    .rz-v2-marquee { display: flex; width: max-content; animation: rzV2Marquee 64s linear infinite; }
+    .rz-v2-viewport:hover .rz-v2-marquee { animation-play-state: paused; }
+    .rz-v2-cell { flex: 0 0 auto; margin-right: 22px; display: flex; flex-direction: column; align-items: center; gap: 11px; }
+    .rz-v2-frame {
+      display: block; padding: 0; margin: 0; cursor: zoom-in; position: relative;
+      border-radius: 26px; overflow: hidden; background: var(--v2-bezel); border: 6px solid var(--v2-bezel);
+      box-shadow: 0 24px 50px -22px rgba(0,0,0,.75);
+      transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s ease;
+    }
+    .rz-v2-frame:hover, .rz-v2-frame:focus-visible { transform: scale(1.1); z-index: 3; box-shadow: 0 30px 60px -20px rgba(0,0,0,.85); outline: none; }
+    .rz-v2-frame:focus-visible { border-color: var(--accent2); }
+    .rz-v2-ipad { width: 236px; aspect-ratio: 2064 / 2752; }
+    .rz-v2-iphone { width: 172px; aspect-ratio: 1242 / 2688; border-radius: 32px; }
+    .rz-v2-zoom {
+      position: absolute; right: 9px; bottom: 9px; width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(12,8,10,.62); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.24);
+      display: flex; align-items: center; justify-content: center; color: #fff; font-size: .82rem;
+      opacity: 0; transition: opacity .28s ease;
+    }
+    .rz-v2-frame:hover .rz-v2-zoom, .rz-v2-frame:focus-visible .rz-v2-zoom { opacity: 1; }
+    .rz-v2-tab { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 22px; border-radius: 999px; font-family: inherit; font-size: .86rem; font-weight: 700; cursor: pointer; transition: background .3s ease, color .3s ease, border-color .3s ease; }
+    .rz-v2-lightbox-img { max-width: min(92vw, 620px); max-height: 82vh; width: auto; height: auto; border-radius: 18px; display: block; box-shadow: 0 40px 90px -30px rgba(0,0,0,.9); }
+    .rz-v2-lb-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.1); backdrop-filter: blur(8px); color: #fff; font-size: 1.1rem; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; transition: background .25s ease; }
+    .rz-v2-lb-btn:hover { background: rgba(255,255,255,.2); }
     @media (prefers-reduced-motion: reduce) {
       .rz-cta-btn, .rz-cta-btn::after { animation: none !important; }
       .rz-cta-btn:hover { transform: none; }
       .rz-live-dot { animation: none !important; }
+      .rz-v2-marquee { animation: none !important; }
+      .rz-v2-viewport { overflow-x: auto; }
+      .rz-v2-frame:hover { transform: none; }
     }
     @media (max-width: 860px) {
       [data-nav-links="1"] { display: none !important; }
@@ -76,12 +99,13 @@
       .rz-lang-toggle { display: none !important; }
       .rz-back-label { display: none !important; }
       .rz-nav-inner { padding: 14px 16px !important; gap: 10px !important; }
-      .rz-v2-arrow { display: none !important; }
       .rz-v2-grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
     @media (max-width: 480px) {
-      .rz-v2-ipad { width: 190px; }
-      .rz-v2-iphone { width: 138px; }
+      .rz-v2-ipad { width: 192px; }
+      .rz-v2-iphone { width: 140px; }
+      .rz-v2-cell { margin-right: 16px; }
+      .rz-v2-viewport { -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
       .rz-v2-grid { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 420px) {
@@ -165,12 +189,24 @@
   </nav>
 
   <!-- R-ZEN 2.0 ANNOUNCEMENT -->
-  <section id="v2" style="position: relative; padding: 52px 32px 60px; background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, var(--bg)) 0%, var(--bg) 60%); border-bottom: 1px solid var(--line); overflow: hidden;">
-    <div style="max-width: 1180px; margin: 0 auto;">
+  <section id="v2" style="
+    --accent: #d8a353; --accent2: #f0c886;
+    --ink: #f8efe9; --muted: #d3b3ac;
+    --card: rgba(255,255,255,.055); --cardBorder: rgba(240,200,134,.18);
+    --line: rgba(255,255,255,.14); --pill: rgba(255,255,255,.07);
+    --v2-bezel: #1c1015;
+    position: relative; padding: 60px 32px 66px; color: var(--ink); overflow: hidden;
+    border-top: 1px solid rgba(240,200,134,.28); border-bottom: 1px solid rgba(240,200,134,.28);
+    background:
+      radial-gradient(940px 520px at 10% 4%, rgba(134,26,52,.62), transparent 62%),
+      radial-gradient(860px 620px at 92% 96%, rgba(16,62,49,.72), transparent 64%),
+      linear-gradient(134deg, #43101f 0%, #34141f 38%, #1b2a25 72%, #0e2620 100%);
+  ">
+    <div style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1;">
 
       <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-        <span style="display: inline-flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 800; letter-spacing: .09em; color: #fff; background: var(--accent); padding: 7px 16px; border-radius: 999px;">
-          <span class="rz-live-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #fff;"></span>{{ copy.v2Eyebrow }}
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 800; letter-spacing: .1em; color: var(--accent2); background: rgba(240,200,134,.1); border: 1px solid rgba(240,200,134,.34); padding: 7px 17px; border-radius: 999px;">
+          <span class="rz-live-dot" style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 10px 1px rgba(240,200,134,.7);"></span>{{ copy.v2Eyebrow }}
         </span>
 
         <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.18; margin: 20px 0 0;">
@@ -179,8 +215,8 @@
 
         <p style="margin: 16px auto 0; max-width: 56ch; color: var(--muted); font-size: 1.04rem; line-height: 1.6;">{{ copy.v2Lede }}</p>
 
-        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 15px 28px; font-family: inherit; font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff" style="flex: 0 0 auto;" aria-hidden="true">
+        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f0c886, #d8a353); color: #3a0f1c; border: none; border-radius: 12px; padding: 15px 28px; font-family: inherit; font-weight: 800; font-size: .95rem; text-decoration: none; cursor: pointer;">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="#3a0f1c" style="flex: 0 0 auto;" aria-hidden="true">
             <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
           </svg>
           {{ copy.ctaButton }}
@@ -188,21 +224,37 @@
         <p style="margin: 14px 0 0; font-size: .78rem; color: var(--muted);">{{ copy.v2CtaNote }}</p>
       </div>
 
-      <!-- SCREENSHOT CAROUSEL -->
-      <div style="position: relative; margin-top: 44px;">
-        <div class="rz-v2-track" ref="{{ v2CarouselRef }}" style="display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 6px 6px; -webkit-overflow-scrolling: touch;">
-          <sc-for list="{{ v2Slides }}" as="slide">
-            <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-              <div class="rz-v2-frame {{ slide.frameClass }}">
-                <img src="{{ slide.img }}" alt="{{ slide.caption }}" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
-              </div>
-              <p style="margin: 0; max-width: 190px; text-align: center; font-size: .78rem; color: var(--muted); line-height: 1.4;">{{ slide.caption }}</p>
+      <!-- DEVICE TABS -->
+      <div style="margin-top: 34px; display: flex; justify-content: center;">
+        <div style="display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: rgba(0,0,0,.28); border: 1px solid var(--line);">
+          <button type="button" onclick="{{ v2ShowIpad }}" class="rz-v2-tab" style="{{ v2TabIpadStyle }}">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.4"/><line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/></svg>
+            {{ copy.v2TabIpad }}
+          </button>
+          <button type="button" onclick="{{ v2ShowIphone }}" class="rz-v2-tab" style="{{ v2TabIphoneStyle }}">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.4"/><line x1="10.8" y1="18.8" x2="13.2" y2="18.8"/></svg>
+            {{ copy.v2TabIphone }}
+          </button>
+        </div>
+      </div>
+
+      <!-- AUTO-SCROLLING SCREENSHOT MARQUEE -->
+      <div class="rz-v2-viewport" style="margin-top: 18px;">
+        <div class="rz-v2-marquee">
+          <sc-for list="{{ v2Track }}" as="slide">
+            <div class="rz-v2-cell">
+              <button type="button" onclick="{{ slide.open }}" aria-label="{{ slide.caption }}" class="rz-v2-frame {{ slide.frameClass }}">
+                <img src="{{ slide.img }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
+                <span class="rz-v2-zoom" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.4" y1="15.4" x2="21" y2="21"/><line x1="10.5" y1="7.8" x2="10.5" y2="13.2"/><line x1="7.8" y1="10.5" x2="13.2" y2="10.5"/></svg>
+                </span>
+              </button>
+              <p style="margin: 0; max-width: 200px; text-align: center; font-size: .78rem; color: var(--muted); line-height: 1.4;">{{ slide.caption }}</p>
             </div>
           </sc-for>
         </div>
-        <button type="button" onclick="{{ v2ScrollPrev }}" aria-label="Previous" class="rz-v2-arrow" style="left: -6px;">&#8592;</button>
-        <button type="button" onclick="{{ v2ScrollNext }}" aria-label="Next" class="rz-v2-arrow" style="right: -6px;">&#8594;</button>
       </div>
+      <p style="margin: 4px 0 0; text-align: center; font-size: .74rem; color: var(--muted); opacity: .75;">{{ copy.v2CarouselHint }}</p>
 
       <!-- WHAT'S NEW GRID -->
       <div style="margin-top: 52px;">
@@ -241,6 +293,21 @@
       </div>
 
     </div>
+
+    <!-- LIGHTBOX -->
+    <sc-if value="{{ v2LightboxOpen }}" hint-placeholder-val="{{ false }}">
+      <div onclick="{{ v2Close }}" style="position: fixed; inset: 0; z-index: 120; background: rgba(10,6,9,.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 24px;">
+        <div onclick="{{ stopClick }}" style="display: flex; align-items: center; gap: 18px; max-width: 100%;">
+          <button type="button" onclick="{{ v2Prev }}" aria-label="{{ copy.v2Prev }}" class="rz-v2-lb-btn">&#8592;</button>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0;">
+            <img src="{{ v2LightboxImg }}" alt="{{ v2LightboxCaption }}" class="rz-v2-lightbox-img">
+            <p style="margin: 0; text-align: center; font-size: .88rem; font-weight: 600; color: #f6ece6; max-width: 40ch;">{{ v2LightboxCaption }}</p>
+          </div>
+          <button type="button" onclick="{{ v2Next }}" aria-label="{{ copy.v2Next }}" class="rz-v2-lb-btn">&#8594;</button>
+        </div>
+        <button type="button" onclick="{{ v2Close }}" aria-label="{{ copy.v2CloseLabel }}" class="rz-v2-lb-btn" style="position: absolute; top: 20px; right: 20px;">&#215;</button>
+      </div>
+    </sc-if>
   </section>
 
   <!-- HERO -->
@@ -596,6 +663,9 @@ const DICT = {
       'Multi-finger dragging in Puzzle, smoother painting in By Number, and lower battery and memory use.',
       'The app is half the size — from 505 MB down to 259 MB, with no loss in sheet or music quality.'
     ],
+    v2TabIpad: 'iPad', v2TabIphone: 'iPhone',
+    v2CarouselHint: 'Hover to pause · click any screen to see it up close',
+    v2Prev: 'Previous', v2Next: 'Next', v2CloseLabel: 'Close',
     v2CapGlobe: 'Spin the globe to pick your destination',
     v2CapModes: 'Traditional, Slide or the new Swap mode',
     v2CapMandalas: 'A gallery rebuilt into lanes',
@@ -683,6 +753,9 @@ const DICT = {
       'Arrastre multitáctil en Puzzle, pintura más fluida en Por número, y menor consumo de batería y memoria.',
       'La app pesa la mitad: de 505 MB bajó a 259 MB, sin perder calidad en láminas ni música.'
     ],
+    v2TabIpad: 'iPad', v2TabIphone: 'iPhone',
+    v2CarouselHint: 'Pasa el cursor para pausar · haz clic en cualquier pantalla para verla de cerca',
+    v2Prev: 'Anterior', v2Next: 'Siguiente', v2CloseLabel: 'Cerrar',
     v2CapGlobe: 'Gira el globo para elegir tu destino',
     v2CapModes: 'Tradicional, Slide o el nuevo modo Swap',
     v2CapMandalas: 'Una galería reorganizada en carriles',
@@ -740,20 +813,24 @@ const TRACKS = [
 ];
 
 const V2_SLIDES = [
-  { img: './assets/v2/ipad-globe.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapGlobe' },
-  { img: './assets/v2/iphone-canada.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapCanada' },
-  { img: './assets/v2/ipad-modes.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapModes' },
-  { img: './assets/v2/iphone-types.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapTypes' },
-  { img: './assets/v2/ipad-mandalas.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapMandalas' },
-  { img: './assets/v2/iphone-zodiac.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapZodiac' },
-  { img: './assets/v2/ipad-diary.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapDiary' },
-  { img: './assets/v2/iphone-packs.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapPacks' },
-  { img: './assets/v2/ipad-gameplay.jpg', frameClass: 'rz-v2-ipad', capKey: 'v2CapGameplay1' },
-  { img: './assets/v2/iphone-gameplay.jpg', frameClass: 'rz-v2-iphone', capKey: 'v2CapGameplay2' }
+  { device: 'ipad', file: 'ipad-globe.jpg', capKey: 'v2CapGlobe' },
+  { device: 'ipad', file: 'ipad-modes.jpg', capKey: 'v2CapModes' },
+  { device: 'ipad', file: 'ipad-mandalas.jpg', capKey: 'v2CapMandalas' },
+  { device: 'ipad', file: 'ipad-diary.jpg', capKey: 'v2CapDiary' },
+  { device: 'ipad', file: 'ipad-gameplay.jpg', capKey: 'v2CapGameplay1' },
+  { device: 'iphone', file: 'iphone-canada.jpg', capKey: 'v2CapCanada' },
+  { device: 'iphone', file: 'iphone-types.jpg', capKey: 'v2CapTypes' },
+  { device: 'iphone', file: 'iphone-zodiac.jpg', capKey: 'v2CapZodiac' },
+  { device: 'iphone', file: 'iphone-packs.jpg', capKey: 'v2CapPacks' },
+  { device: 'iphone', file: 'iphone-gameplay.jpg', capKey: 'v2CapGameplay2' }
 ];
 
+// Each half of the marquee must be wider than the viewport for the loop to look
+// seamless, so the filtered set is repeated twice per half.
+const V2_MARQUEE_REPEATS = 4;
+
 class Component extends DCLogic {
-  state = { theme: 'dark', lang: 'en', trackIndex: 0, playing: false, menuOpen: false };
+  state = { theme: 'dark', lang: 'en', trackIndex: 0, playing: false, menuOpen: false, v2Device: 'ipad', v2Index: -1 };
 
   toggleMenu = () => {
     this.setState((s) => ({ menuOpen: !s.menuOpen }));
@@ -765,15 +842,36 @@ class Component extends DCLogic {
 
   audioRef = (el) => { this._audio = el; };
 
-  v2CarouselRef = (el) => { this._v2Carousel = el; };
+  v2Filtered() {
+    return V2_SLIDES.filter((s) => s.device === this.state.v2Device);
+  }
 
-  v2ScrollPrev = () => {
-    if (this._v2Carousel) this._v2Carousel.scrollBy({ left: -360, behavior: 'smooth' });
-  };
+  // Locked imperatively rather than from componentDidUpdate: the runtime does not
+  // always hand this component a prevState to diff against.
+  v2LockScroll(lock) {
+    try { document.body.style.overflow = lock ? 'hidden' : ''; } catch (e) {}
+  }
 
-  v2ScrollNext = () => {
-    if (this._v2Carousel) this._v2Carousel.scrollBy({ left: 360, behavior: 'smooth' });
-  };
+  v2Open(index) {
+    this.v2LockScroll(true);
+    this.setState({ v2Index: index });
+  }
+
+  v2ShowIpad = () => { this.v2LockScroll(false); this.setState({ v2Device: 'ipad', v2Index: -1 }); };
+  v2ShowIphone = () => { this.v2LockScroll(false); this.setState({ v2Device: 'iphone', v2Index: -1 }); };
+
+  v2Close = () => { this.v2LockScroll(false); this.setState({ v2Index: -1 }); };
+
+  v2Step(delta) {
+    const n = this.v2Filtered().length;
+    if (!n) return;
+    this.setState((s) => ({ v2Index: (s.v2Index + delta + n) % n }));
+  }
+
+  v2Prev = () => { this.v2Step(-1); };
+  v2Next = () => { this.v2Step(1); };
+
+  stopClick = (e) => { e.stopPropagation(); };
 
   barStyle(n, dur) {
     const playing = this.state.playing;
@@ -842,6 +940,7 @@ class Component extends DCLogic {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (!prevState) return;
     if (prevState.theme !== this.state.theme) {
       this.applyTheme(this.state.theme, true);
       try { localStorage.setItem('rzen-theme-v2', this.state.theme); } catch (e) {}
@@ -880,7 +979,22 @@ class Component extends DCLogic {
       : 'transform:rotate(0deg) scale(1);opacity:1;background:' + t0.accent + ';');
 
     const dotBase = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;';
-    const v2Slides = V2_SLIDES.map((s) => ({ img: s.img, frameClass: s.frameClass, caption: copy[s.capKey] }));
+    const v2Filtered = this.v2Filtered();
+    const v2Track = [];
+    for (let r = 0; r < V2_MARQUEE_REPEATS; r++) {
+      v2Filtered.forEach((s, i) => {
+        v2Track.push({
+          img: './assets/v2/' + s.file,
+          frameClass: s.device === 'ipad' ? 'rz-v2-ipad' : 'rz-v2-iphone',
+          caption: copy[s.capKey],
+          open: () => this.v2Open(i)
+        });
+      });
+    }
+    const v2Active = this.state.v2Index >= 0 ? v2Filtered[this.state.v2Index] : null;
+    const v2TabOn = 'border:1px solid transparent;background:linear-gradient(135deg,#f0c886,#d8a353);color:#3a0f1c;';
+    const v2TabOff = 'border:1px solid transparent;background:transparent;color:#d3b3ac;';
+    const v2IsIpad = this.state.v2Device === 'ipad';
 
     const menuOpen = this.state.menuOpen;
     const barBase = 'width:20px;height:2px;border-radius:2px;transition:transform .25s ease, opacity .2s ease;display:block;background:' + t0.ink + ';';
@@ -900,10 +1014,18 @@ class Component extends DCLogic {
       pricingImgDarkStyle: 'opacity:' + (isDark ? '1' : '0') + ';transition:opacity .35s ease;',
       pricingImgLightStyle: 'opacity:' + (isDark ? '0' : '1') + ';transition:opacity .35s ease;',
       audioRef: this.audioRef,
-      v2CarouselRef: this.v2CarouselRef,
-      v2ScrollPrev: this.v2ScrollPrev,
-      v2ScrollNext: this.v2ScrollNext,
-      v2Slides,
+      v2Track,
+      v2TabIpadStyle: v2IsIpad ? v2TabOn : v2TabOff,
+      v2TabIphoneStyle: v2IsIpad ? v2TabOff : v2TabOn,
+      v2ShowIpad: this.v2ShowIpad,
+      v2ShowIphone: this.v2ShowIphone,
+      v2LightboxOpen: !!v2Active,
+      v2LightboxImg: v2Active ? './assets/v2/full/' + v2Active.file : '',
+      v2LightboxCaption: v2Active ? copy[v2Active.capKey] : '',
+      v2Close: this.v2Close,
+      v2Prev: this.v2Prev,
+      v2Next: this.v2Next,
+      stopClick: this.stopClick,
       isPlaying: this.state.playing,
       isPaused: !this.state.playing,
       currentTrack: TRACKS[this.state.trackIndex],
