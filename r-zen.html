@@ -60,10 +60,10 @@
     .rz-v2-frame {
       display: block; padding: 0; margin: 0; cursor: zoom-in; position: relative;
       border-radius: 26px; overflow: hidden; background: var(--v2-bezel); border: 6px solid var(--v2-bezel);
-      box-shadow: 0 24px 50px -22px rgba(0,0,0,.75);
+      box-shadow: var(--v2-frameShadow);
       transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s ease;
     }
-    .rz-v2-frame:hover, .rz-v2-frame:focus-visible { transform: scale(1.1); z-index: 3; box-shadow: 0 30px 60px -20px rgba(0,0,0,.85); outline: none; }
+    .rz-v2-frame:hover, .rz-v2-frame:focus-visible { transform: scale(1.1); z-index: 3; box-shadow: var(--v2-frameShadowHover); outline: none; }
     .rz-v2-frame:focus-visible { border-color: var(--accent2); }
     .rz-v2-ipad { width: 236px; aspect-ratio: 2064 / 2752; }
     .rz-v2-iphone { width: 172px; aspect-ratio: 1242 / 2688; border-radius: 32px; }
@@ -189,34 +189,22 @@
   </nav>
 
   <!-- R-ZEN 2.0 ANNOUNCEMENT -->
-  <section id="v2" style="
-    --accent: #d8a353; --accent2: #f0c886;
-    --ink: #f8efe9; --muted: #d3b3ac;
-    --card: rgba(255,255,255,.055); --cardBorder: rgba(240,200,134,.18);
-    --line: rgba(255,255,255,.14); --pill: rgba(255,255,255,.07);
-    --v2-bezel: #1c1015;
-    position: relative; padding: 60px 32px 66px; color: var(--ink); overflow: hidden;
-    border-top: 1px solid rgba(240,200,134,.28); border-bottom: 1px solid rgba(240,200,134,.28);
-    background:
-      radial-gradient(940px 520px at 10% 4%, rgba(134,26,52,.62), transparent 62%),
-      radial-gradient(860px 620px at 92% 96%, rgba(16,62,49,.72), transparent 64%),
-      linear-gradient(134deg, #43101f 0%, #34141f 38%, #1b2a25 72%, #0e2620 100%);
-  ">
+  <section id="v2" style="{{ v2SectionStyle }}">
     <div style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1;">
 
       <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 800; letter-spacing: .1em; color: var(--accent2); background: rgba(240,200,134,.1); border: 1px solid rgba(240,200,134,.34); padding: 7px 17px; border-radius: 999px;">
-          <span class="rz-live-dot" style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 10px 1px rgba(240,200,134,.7);"></span>{{ copy.v2Eyebrow }}
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 800; letter-spacing: .1em; color: var(--accent2); background: var(--v2-badgeBg); border: 1px solid var(--v2-badgeBorder); padding: 7px 17px; border-radius: 999px;">
+          <span class="rz-live-dot" style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); box-shadow: var(--v2-dotGlow);"></span>{{ copy.v2Eyebrow }}
         </span>
 
         <h2 style="font-family: 'Lora', serif; font-weight: 600; font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.18; margin: 20px 0 0;">
-          {{ copy.v2HeadlinePre }}<span style="font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; font-size: 1.1em; color: var(--accent2); text-shadow: 0 0 22px color-mix(in srgb, var(--accent2) 55%, transparent), 0 0 46px color-mix(in srgb, var(--accent2) 30%, transparent);">{{ copy.v2HeadlineAccent }}</span>
+          {{ copy.v2HeadlinePre }}<span style="font-family: 'Great Vibes', cursive; font-style: normal; font-weight: 400; font-size: 1.1em; color: var(--accent2); text-shadow: var(--v2-glow);">{{ copy.v2HeadlineAccent }}</span>
         </h2>
 
         <p style="margin: 16px auto 0; max-width: 56ch; color: var(--muted); font-size: 1.04rem; line-height: 1.6;">{{ copy.v2Lede }}</p>
 
-        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f0c886, #d8a353); color: #3a0f1c; border: none; border-radius: 12px; padding: 15px 28px; font-family: inherit; font-weight: 800; font-size: .95rem; text-decoration: none; cursor: pointer;">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="#3a0f1c" style="flex: 0 0 auto;" aria-hidden="true">
+        <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rz-cta-btn" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; background: var(--v2-ctaBg); color: var(--v2-ctaInk); border: none; border-radius: 12px; padding: 15px 28px; font-family: inherit; font-weight: 800; font-size: .95rem; text-decoration: none; cursor: pointer;">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" style="flex: 0 0 auto;" aria-hidden="true">
             <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zm3.365-3.03c.837-1.014 1.4-2.428 1.245-3.828-1.207.052-2.663.805-3.53 1.818-.78.896-1.454 2.336-1.273 3.714 1.35.104 2.72-.688 3.558-1.704z"/>
           </svg>
           {{ copy.ctaButton }}
@@ -226,7 +214,7 @@
 
       <!-- DEVICE TABS -->
       <div style="margin-top: 34px; display: flex; justify-content: center;">
-        <div style="display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: rgba(0,0,0,.28); border: 1px solid var(--line);">
+        <div style="display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: var(--v2-tabTrack); border: 1px solid var(--line);">
           <button type="button" onclick="{{ v2ShowIpad }}" class="rz-v2-tab" style="{{ v2TabIpadStyle }}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.4"/><line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/></svg>
             {{ copy.v2TabIpad }}
@@ -624,6 +612,65 @@ const THEMES = {
   }
 };
 
+// The 2.0 section keeps its own wine-red/green identity in both site themes
+// rather than inheriting THEMES, so it always reads as a distinct block.
+const V2_SKIN = {
+  dark: {
+    bg: 'radial-gradient(940px 520px at 10% 4%, rgba(134,26,52,.62), transparent 62%),' +
+        'radial-gradient(860px 620px at 92% 96%, rgba(16,62,49,.72), transparent 64%),' +
+        'linear-gradient(134deg, #43101f 0%, #34141f 38%, #1b2a25 72%, #0e2620 100%)',
+    edge: 'rgba(240,200,134,.28)',
+    ink: '#f8efe9',
+    muted: '#d3b3ac',
+    accent: '#d8a353',
+    accent2: '#f0c886',
+    card: 'rgba(255,255,255,.055)',
+    cardBorder: 'rgba(240,200,134,.18)',
+    line: 'rgba(255,255,255,.14)',
+    pill: 'rgba(255,255,255,.07)',
+    bezel: '#1c1015',
+    badgeBg: 'rgba(240,200,134,.1)',
+    badgeBorder: 'rgba(240,200,134,.34)',
+    dotGlow: '0 0 10px 1px rgba(240,200,134,.7)',
+    glow: '0 0 22px rgba(240,200,134,.55), 0 0 46px rgba(240,200,134,.3)',
+    ctaBg: 'linear-gradient(135deg, #f0c886, #d8a353)',
+    ctaInk: '#3a0f1c',
+    tabTrack: 'rgba(0,0,0,.28)',
+    tabOnBg: 'linear-gradient(135deg, #f0c886, #d8a353)',
+    tabOnInk: '#3a0f1c',
+    tabOffInk: '#d3b3ac',
+    frameShadow: '0 24px 50px -22px rgba(0,0,0,.75)',
+    frameShadowHover: '0 30px 60px -20px rgba(0,0,0,.85)'
+  },
+  light: {
+    bg: 'radial-gradient(940px 520px at 10% 4%, rgba(150,30,60,.34), transparent 62%),' +
+        'radial-gradient(860px 620px at 92% 96%, rgba(18,78,60,.36), transparent 64%),' +
+        'linear-gradient(134deg, #f7dde2 0%, #f4e6e0 38%, #dfeee3 72%, #cfe6d7 100%)',
+    edge: 'rgba(147,37,63,.3)',
+    ink: '#3d1220',
+    muted: '#7d5560',
+    accent: '#93253f',
+    accent2: '#9c5a2b',
+    card: '#ffffff',
+    cardBorder: 'rgba(147,37,63,.16)',
+    line: 'rgba(61,18,32,.16)',
+    pill: '#ffffff',
+    bezel: '#2a1a20',
+    badgeBg: 'rgba(147,37,63,.09)',
+    badgeBorder: 'rgba(147,37,63,.28)',
+    dotGlow: '0 0 8px 1px rgba(156,90,43,.45)',
+    glow: 'none',
+    ctaBg: 'linear-gradient(135deg, #a82b49, #7e1b33)',
+    ctaInk: '#fff7f2',
+    tabTrack: 'rgba(61,18,32,.07)',
+    tabOnBg: 'linear-gradient(135deg, #a82b49, #7e1b33)',
+    tabOnInk: '#fff7f2',
+    tabOffInk: '#7d5560',
+    frameShadow: '0 22px 46px -22px rgba(61,18,32,.38)',
+    frameShadowHover: '0 28px 56px -20px rgba(61,18,32,.5)'
+  }
+};
+
 const DICT = {
   en: {
     navHome: 'Home', navFeatures: 'Features', navBenefits: 'Benefits', navPricing: 'Download', navFaq: 'FAQ', navContact: 'Contact', navWhatsNew: "What's new",
@@ -992,8 +1039,24 @@ class Component extends DCLogic {
       });
     }
     const v2Active = this.state.v2Index >= 0 ? v2Filtered[this.state.v2Index] : null;
-    const v2TabOn = 'border:1px solid transparent;background:linear-gradient(135deg,#f0c886,#d8a353);color:#3a0f1c;';
-    const v2TabOff = 'border:1px solid transparent;background:transparent;color:#d3b3ac;';
+    const sk = isDark ? V2_SKIN.dark : V2_SKIN.light;
+    const v2SectionStyle =
+      '--accent:' + sk.accent + ';--accent2:' + sk.accent2 + ';' +
+      '--ink:' + sk.ink + ';--muted:' + sk.muted + ';' +
+      '--card:' + sk.card + ';--cardBorder:' + sk.cardBorder + ';' +
+      '--line:' + sk.line + ';--pill:' + sk.pill + ';' +
+      '--v2-bezel:' + sk.bezel + ';' +
+      '--v2-badgeBg:' + sk.badgeBg + ';--v2-badgeBorder:' + sk.badgeBorder + ';' +
+      '--v2-dotGlow:' + sk.dotGlow + ';--v2-glow:' + sk.glow + ';' +
+      '--v2-ctaBg:' + sk.ctaBg + ';--v2-ctaInk:' + sk.ctaInk + ';' +
+      '--v2-tabTrack:' + sk.tabTrack + ';' +
+      '--v2-frameShadow:' + sk.frameShadow + ';--v2-frameShadowHover:' + sk.frameShadowHover + ';' +
+      'position:relative;padding:60px 32px 66px;color:' + sk.ink + ';overflow:hidden;' +
+      'border-top:1px solid ' + sk.edge + ';border-bottom:1px solid ' + sk.edge + ';' +
+      'background:' + sk.bg + ';transition:background .35s ease,color .35s ease;';
+
+    const v2TabOn = 'border:1px solid transparent;background:' + sk.tabOnBg + ';color:' + sk.tabOnInk + ';';
+    const v2TabOff = 'border:1px solid transparent;background:transparent;color:' + sk.tabOffInk + ';';
     const v2IsIpad = this.state.v2Device === 'ipad';
 
     const menuOpen = this.state.menuOpen;
@@ -1014,6 +1077,7 @@ class Component extends DCLogic {
       pricingImgDarkStyle: 'opacity:' + (isDark ? '1' : '0') + ';transition:opacity .35s ease;',
       pricingImgLightStyle: 'opacity:' + (isDark ? '0' : '1') + ';transition:opacity .35s ease;',
       audioRef: this.audioRef,
+      v2SectionStyle,
       v2Track,
       v2TabIpadStyle: v2IsIpad ? v2TabOn : v2TabOff,
       v2TabIphoneStyle: v2IsIpad ? v2TabOff : v2TabOn,
