@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RnxGames — Independent wellness apps & games</title>
 <meta name="description" content="RnxGames is an independent wellness app and video game brand run by one person. Home of R-Zen Experience, with more games on the way.">
+<link rel="canonical" href="https://rnxgames.com/">
+<meta name="theme-color" content="#f7f6f4">
+<link rel="manifest" href="./site.webmanifest">
+<link rel="apple-touch-icon" href="./assets/logo.png">
 <meta property="og:title" content="RnxGames">
 <meta property="og:description" content="Independent wellness app and video game brand run by one person. Home of R-Zen Experience.">
 <meta property="og:image" content="https://rnxgames.com/assets/rnxgames-logo-full.png">
 <meta property="og:url" content="https://rnxgames.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<script src="./support.js"></script>
+  <meta name="twitter:title" content="RnxGames">
+  <meta name="twitter:description" content="Independent wellness apps and video games. Home of R-Zen Experience.">
+  <meta name="twitter:image" content="https://rnxgames.com/assets/rnxgames-logo-full.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"RnxGames","url":"https://rnxgames.com/","logo":"https://rnxgames.com/assets/rnxgames-logo-full.png","description":"Independent wellness app and video game brand. Home of R-Zen Experience."}</script>
+  <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -22,9 +30,12 @@
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f6f4; color: #23221f; }
     a { color: #4a4740; }
     a:hover { color: #23221f; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #7567c8; outline-offset: 3px; }
+    header, section, footer { scroll-margin-top: 74px; }
     .rnx-rzen-card { transition: transform .25s ease, box-shadow .25s ease; }
     .rnx-rzen-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px -18px rgba(149,133,242,.45); }
     @keyframes rnxCtaGlow {
@@ -61,7 +72,7 @@
   <!-- LAUNCH POPUP -->
   <sc-if value="{{ showLaunchPopup }}" hint-placeholder-val="{{ false }}">
     <div onclick="{{ closeLaunchPopup }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(20,16,31,.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px;">
-      <div onclick="{{ stopClick }}" style="position: relative; max-width: 400px; width: 100%; background: #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 22px; padding: 36px 30px 28px; text-align: center; box-shadow: 0 40px 80px -20px rgba(0,0,0,.6);">
+      <div onclick="{{ stopClick }}" role="dialog" aria-modal="true" aria-labelledby="launch-popup-title" tabindex="-1" ref="{{ launchDialogRef }}" style="position: relative; max-width: 400px; width: 100%; background: #14101f; border: 1px solid rgba(149,133,242,.3); border-radius: 22px; padding: 36px 30px 28px; text-align: center; box-shadow: 0 40px 80px -20px rgba(0,0,0,.6);">
         <button type="button" onclick="{{ closeLaunchPopup }}" aria-label="Close" style="position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 50%; border: none; background: rgba(255,255,255,.08); color: #a49bc2; font-size: 1rem; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center;">&#215;</button>
 
         <span style="width: 62px; height: 62px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto; overflow: hidden; padding: 4px;">
@@ -72,7 +83,7 @@
           <span style="width: 6px; height: 6px; border-radius: 50%; background: #9585f2;"></span>NOW AVAILABLE
         </span>
 
-        <h3 style="font-family: 'Lora', serif; font-weight: 600; font-size: 1.4rem; color: #f4f1fa; margin: 14px 0 0;">R-Zen Experience is here.</h3>
+        <h2 id="launch-popup-title" style="font-family: 'Lora', serif; font-weight: 600; font-size: 1.4rem; color: #f4f1fa; margin: 14px 0 0;">R-Zen Experience is here.</h2>
         <p style="margin: 10px 0 0; color: #a49bc2; font-size: .92rem; line-height: 1.55;">Mandalas, puzzles and paint-by-number — free to download, right now on the App Store.</p>
 
         <a href="https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057" target="_blank" rel="noopener" onclick="{{ trackDownloadClick }}" class="rnx-cta-btn" style="margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #9585f2; color: #14101f; border: none; border-radius: 12px; padding: 14px 24px; font-family: inherit; font-weight: 700; font-size: .92rem; text-decoration: none;">
@@ -104,7 +115,7 @@
 
       <div style="display: flex; align-items: center; gap: 12px;">
         <a href="#products" class="rnx-nav-cta" style="display: inline-flex; align-items: center; height: 38px; padding: 0 18px; border-radius: 999px; background: #23221f; color: #f7f6f4; font-size: .82rem; font-weight: 700; text-decoration: none;">View products</a>
-        <button type="button" onclick="{{ toggleMenu }}" aria-label="Menu" class="rnx-hamburger" style="display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(35,34,31,.15); background: transparent; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: 0 0 auto; padding: 0;">
+        <button type="button" onclick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuOpen }}" aria-controls="main-mobile-menu" class="rnx-hamburger" style="display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(35,34,31,.15); background: transparent; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: 0 0 auto; padding: 0;">
           <span style="{{ barTopStyle }}"></span>
           <span style="{{ barMidStyle }}"></span>
           <span style="{{ barBotStyle }}"></span>
@@ -112,7 +123,7 @@
       </div>
     </div>
 
-    <div style="{{ mobileMenuStyle }}">
+    <div id="main-mobile-menu" style="{{ mobileMenuStyle }}">
       <a href="#home" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: #23221f; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">Home</a>
       <a href="#products" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: #4a4740; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">Products</a>
       <a href="#about" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: #4a4740; text-decoration: none; border-bottom: 1px solid rgba(35,34,31,.08);">About</a>
@@ -121,6 +132,7 @@
     </div>
   </nav>
 
+  <main>
   <!-- HERO -->
   <header id="home" style="padding: 96px 32px 80px; text-align: center;" data-screen-label="hero">
     <div style="max-width: 780px; margin: 0 auto;">
@@ -175,7 +187,7 @@
           <div style="position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;">
             <div style="width: 118px; aspect-ratio: 9/19.5; border-radius: 26px; background: #241d33; border: 6px solid #241d33; box-shadow: 0 24px 48px -16px rgba(0,0,0,.6); overflow: hidden; transform: rotate(4deg);">
               <div style="position: absolute; z-index: 2; top: 8px; left: 50%; translate: -50% 0; width: 30%; height: 12px; border-radius: 8px; background: #241d33;"></div>
-              <img src="./assets/screen-iphone.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <img src="./assets/screen-iphone.png" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
           </div>
         </div>
@@ -207,10 +219,12 @@
         </p>
       </div>
       <div style="position: relative; aspect-ratio: 4/3; border-radius: 20px; overflow: hidden;">
-        <img src="./assets/portrait.png" alt="Portrait" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="./assets/portrait.png" alt="Portrait of the independent developer behind RnxGames" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;">
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- CONTACT / FOOTER -->
   <footer id="contact" style="padding: 72px 32px 40px;" data-screen-label="contact">
@@ -250,16 +264,41 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const LAUNCH_POPUP_KEY = 'rnx_hide_launch_popup';
+const LAUNCH_POPUP_SESSION_KEY = 'rnx_hide_launch_popup_session';
 
 class Component extends DCLogic {
   state = { menuOpen: false, showLaunchPopup: false };
 
   componentDidMount() {
+    this._onKeydown = (event) => {
+      if (event.key === 'Escape') {
+        if (this.state.showLaunchPopup) this.closeLaunchPopup();
+        else if (this.state.menuOpen) this.closeMenu();
+        return;
+      }
+      if (event.key !== 'Tab' || !this.state.showLaunchPopup || !this._launchDialog) return;
+      const focusable = [...this._launchDialog.querySelectorAll('a[href], button:not([disabled])')];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', this._onKeydown);
     try {
-      if (localStorage.getItem(LAUNCH_POPUP_KEY) !== '1') {
+      if (localStorage.getItem(LAUNCH_POPUP_KEY) !== '1' && sessionStorage.getItem(LAUNCH_POPUP_SESSION_KEY) !== '1') {
         this.setState({ showLaunchPopup: true });
       }
     } catch {}
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this._onKeydown);
   }
 
   toggleMenu = () => {
@@ -271,7 +310,13 @@ class Component extends DCLogic {
   };
 
   closeLaunchPopup = () => {
+    try { sessionStorage.setItem(LAUNCH_POPUP_SESSION_KEY, '1'); } catch {}
     this.setState({ showLaunchPopup: false });
+  };
+
+  launchDialogRef = (el) => {
+    this._launchDialog = el;
+    if (el) setTimeout(() => el.focus(), 0);
   };
 
   stopClick = (e) => {
@@ -299,8 +344,10 @@ class Component extends DCLogic {
       barMidStyle: barBase + (open ? 'opacity:0;' : ''),
       barBotStyle: barBase + (open ? 'transform:translateY(-6px) rotate(-45deg);' : ''),
       mobileMenuStyle: 'display:' + (open ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:#f7f6f4; border-bottom:1px solid rgba(35,34,31,.08); box-shadow:0 16px 32px -16px rgba(0,0,0,.18); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;',
+      menuOpen: open,
       showLaunchPopup: this.state.showLaunchPopup,
       closeLaunchPopup: this.closeLaunchPopup,
+      launchDialogRef: this.launchDialogRef,
       stopClick: this.stopClick,
       dismissLaunchPopupForever: this.dismissLaunchPopupForever,
       trackDownloadClick: this.trackDownloadClick
