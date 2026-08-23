@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,9 +9,17 @@
 <meta property="og:description" content="A calm space with no ads and no accounts — mandalas, puzzles, paint by number, and ambient music, all offline.">
 <meta property="og:image" content="https://rnxgames.com/assets/logo.png">
 <meta property="og:url" content="https://rnxgames.com/r-zen.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<script src="./support.js"></script>
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="R-Zen Experience — Mandalas, Puzzles & Paint by Number">
+  <meta name="twitter:description" content="A calm, offline space for mandalas, puzzles, paint by number, and ambient music on iPhone and iPad.">
+  <meta name="twitter:image" content="https://rnxgames.com/assets/logo.png">
+  <link rel="canonical" href="https://rnxgames.com/r-zen.html">
+  <meta name="theme-color" content="#1d1318">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"R-Zen Experience","applicationCategory":"LifestyleApplication","operatingSystem":"iOS","description":"A calm, offline space for mandalas, puzzles, paint by number, and ambient music on iPhone and iPad.","url":"https://rnxgames.com/r-zen.html","image":"https://rnxgames.com/assets/logo.png","downloadUrl":"https://apps.apple.com/us/app/r-zen-exp-puzzle-and-mandala/id6786930057"}</script>
+  <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -21,8 +29,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; padding: 0; }
     body { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    :focus-visible { outline: 3px solid var(--accent2, #e4608d); outline-offset: 3px; }
+    section, header, footer { scroll-margin-top: 82px; }
     @font-face {
       font-family: 'Great Vibes';
       src: url('./assets/fonts/GreatVibes-Regular.otf') format('opentype'),
@@ -140,7 +151,7 @@
       </div>
 
       <div style="display: flex; align-items: center; gap: 30px;" data-nav-links="1">
-        <a href="#home" style="font-size: .88rem; font-weight: 600; color: var(--ink); text-decoration: none; position: relative; padding-bottom: 14px;">{{ copy.navHome }}
+        <a href="#v2" style="font-size: .88rem; font-weight: 600; color: var(--ink); text-decoration: none; position: relative; padding-bottom: 14px;">{{ copy.navHome }}
           <span style="position: absolute; bottom: 0; left: 50%; translate: -50% 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>
         </a>
         <a href="#v2" style="font-size: .88rem; font-weight: 700; color: var(--accent2); text-decoration: none;">{{ copy.navWhatsNew }}</a>
@@ -163,7 +174,7 @@
           <span style="{{ moonIconStyle }}">&#9790;</span>
           <span style="{{ sunIconStyle }}">&#9728;</span>
         </button>
-        <button type="button" onclick="{{ toggleMenu }}" aria-label="Menu" class="rz-hamburger" style="display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--pill); align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: 0 0 auto; padding: 0;">
+        <button type="button" onclick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuOpen }}" aria-controls="rzen-mobile-menu" class="rz-hamburger" style="display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--pill); align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; flex: 0 0 auto; padding: 0;">
           <span style="{{ barTopStyle }}"></span>
           <span style="{{ barMidStyle }}"></span>
           <span style="{{ barBotStyle }}"></span>
@@ -171,8 +182,8 @@
       </div>
     </div>
 
-    <div style="{{ mobileMenuStyle }}">
-      <a href="#home" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navHome }}</a>
+    <div id="rzen-mobile-menu" style="{{ mobileMenuStyle }}">
+      <a href="#v2" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navHome }}</a>
       <a href="#v2" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 700; color: var(--accent2); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navWhatsNew }}</a>
       <a href="#features" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navFeatures }}</a>
       <a href="#benefits" onclick="{{ closeMenu }}" style="padding: 14px 4px; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line);">{{ copy.navBenefits }}</a>
@@ -188,6 +199,7 @@
     </div>
   </nav>
 
+  <main>
   <!-- R-ZEN 2.0 ANNOUNCEMENT -->
   <section id="v2" style="{{ v2SectionStyle }}">
     <div style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1;">
@@ -215,11 +227,11 @@
       <!-- DEVICE TABS -->
       <div style="margin-top: 34px; display: flex; justify-content: center;">
         <div style="display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: var(--v2-tabTrack); border: 1px solid var(--line);">
-          <button type="button" onclick="{{ v2ShowIpad }}" class="rz-v2-tab" style="{{ v2TabIpadStyle }}">
+          <button type="button" onclick="{{ v2ShowIpad }}" aria-pressed="{{ v2IsIpad }}" class="rz-v2-tab" style="{{ v2TabIpadStyle }}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.4"/><line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/></svg>
             {{ copy.v2TabIpad }}
           </button>
-          <button type="button" onclick="{{ v2ShowIphone }}" class="rz-v2-tab" style="{{ v2TabIphoneStyle }}">
+          <button type="button" onclick="{{ v2ShowIphone }}" aria-pressed="{{ v2IsIphone }}" class="rz-v2-tab" style="{{ v2TabIphoneStyle }}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.4"/><line x1="10.8" y1="18.8" x2="13.2" y2="18.8"/></svg>
             {{ copy.v2TabIphone }}
           </button>
@@ -232,7 +244,7 @@
           <sc-for list="{{ v2Track }}" as="slide">
             <div class="rz-v2-cell">
               <button type="button" onclick="{{ slide.open }}" aria-label="{{ slide.caption }}" class="rz-v2-frame {{ slide.frameClass }}">
-                <img src="{{ slide.img }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
+                <img src="{{ slide.img }}" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
                 <span class="rz-v2-zoom" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.4" y1="15.4" x2="21" y2="21"/><line x1="10.5" y1="7.8" x2="10.5" y2="13.2"/><line x1="7.8" y1="10.5" x2="13.2" y2="10.5"/></svg>
                 </span>
@@ -284,12 +296,12 @@
 
     <!-- LIGHTBOX -->
     <sc-if value="{{ v2LightboxOpen }}" hint-placeholder-val="{{ false }}">
-      <div onclick="{{ v2Close }}" style="position: fixed; inset: 0; z-index: 120; background: rgba(10,6,9,.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 24px;">
+      <div onclick="{{ v2Close }}" role="dialog" aria-modal="true" aria-labelledby="v2-lightbox-caption" tabindex="-1" ref="{{ lightboxDialogRef }}" style="position: fixed; inset: 0; z-index: 120; background: rgba(10,6,9,.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 24px;">
         <div onclick="{{ stopClick }}" style="display: flex; align-items: center; gap: 18px; max-width: 100%;">
           <button type="button" onclick="{{ v2Prev }}" aria-label="{{ copy.v2Prev }}" class="rz-v2-lb-btn">&#8592;</button>
           <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0;">
             <img src="{{ v2LightboxImg }}" alt="{{ v2LightboxCaption }}" class="rz-v2-lightbox-img">
-            <p style="margin: 0; text-align: center; font-size: .88rem; font-weight: 600; color: #f6ece6; max-width: 40ch;">{{ v2LightboxCaption }}</p>
+            <p id="v2-lightbox-caption" style="margin: 0; text-align: center; font-size: .88rem; font-weight: 600; color: #f6ece6; max-width: 40ch;">{{ v2LightboxCaption }}</p>
           </div>
           <button type="button" onclick="{{ v2Next }}" aria-label="{{ copy.v2Next }}" class="rz-v2-lb-btn">&#8594;</button>
         </div>
@@ -300,14 +312,8 @@
 
   <!-- HERO -->
   <header id="home" style="position: relative; padding: 76px 32px 0; overflow: hidden; background: radial-gradient(1100px 520px at 78% -8%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%);">
-    <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}">
-      <img src="./assets/hero-bg.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
-      <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
-    </sc-if>
-    <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}">
-      <img src="./assets/hero-bg-light.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
-      <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
-    </sc-if>
+    <img src="{{ heroBgSrc }}" alt="" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
+    <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
     <div class="rz-hero-grid" style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
 
       <div>
@@ -335,14 +341,14 @@
 
         <div style="position: absolute; left: 0; top: 0; width: 66%; aspect-ratio: 3/4; border-radius: 24px; background: var(--bezel); border: 9px solid var(--bezel); box-shadow: var(--shadow); overflow: hidden; z-index: 1;">
           <div style="position: absolute; inset: 0; margin: 3px; border-radius: 17px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
-            <img src="./assets/screen-ipad.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <img src="./assets/screen-ipad.webp" alt="" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
         </div>
 
         <div style="position: absolute; right: 2%; bottom: 0; width: 44%; aspect-ratio: 9/19.5; border-radius: 34px; background: var(--bezel); border: 7px solid var(--bezel); box-shadow: var(--shadow); overflow: hidden; z-index: 3;">
           <div style="position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 34%; height: 16px; border-radius: 10px; background: var(--bezel); z-index: 2;"></div>
           <div style="position: absolute; inset: 0; margin: 4px; border-radius: 28px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
-            <img src="./assets/screen-iphone.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 22px;">
+            <img src="./assets/screen-iphone.webp" alt="" decoding="async" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 22px;">
           </div>
         </div>
 
@@ -376,7 +382,7 @@
           <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modeMandalaP }}</p>
           <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
             <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
-              <img src="./assets/mandala-photo.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+              <img src="./assets/mandala-photo.webp" alt="" loading="lazy" decoding="async" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
             </div>
           </div>
         </div>
@@ -389,7 +395,7 @@
           <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modePuzzleP }}</p>
           <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
             <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
-              <img src="./assets/puzzle-photo.jpeg" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+              <img src="./assets/puzzle-photo.webp" alt="" loading="lazy" decoding="async" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
             </div>
           </div>
         </div>
@@ -402,7 +408,7 @@
           <p style="margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5;">{{ copy.modePbnP }}</p>
           <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
             <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center;">
-              <img src="./assets/pbn-photo.png" alt="" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
+              <img src="./assets/pbn-photo.webp" alt="" loading="lazy" decoding="async" style="width: 95%; height: 95%; object-fit: cover; display: block; border-radius: 12px;">
             </div>
           </div>
         </div>
@@ -416,7 +422,7 @@
           <div style="margin-top: auto; aspect-ratio: 9/14; border-radius: 20px; background: var(--bezel); border: 5px solid var(--bezel); overflow: hidden; position: relative;">
             <div style="position: absolute; inset: 3px; border-radius: 15px; overflow: hidden; background: var(--screen); display: flex; align-items: center; justify-content: center; padding: 10px;">
               <div style="position: relative; width: 88%; aspect-ratio: 74/96; border-radius: 8px; overflow: hidden; box-shadow: 0 16px 30px -10px rgba(0,0,0,.5); animation: rzFloat 4s ease-in-out infinite;">
-                <img src="./assets/diary-book.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <img src="./assets/diary-book.webp" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;">
 
                 <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.6) 100%); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding: 12px 8px 14px;">
                   <button type="button" onclick="{{ togglePlay }}" aria-label="Play" style="width: 42px; height: 42px; border-radius: 50%; background: var(--accent); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; box-shadow: 0 8px 18px -6px rgba(0,0,0,.5);">
@@ -488,8 +494,7 @@
   <section id="download" style="padding: 72px 32px;">
     <div style="max-width: 1180px; margin: 0 auto;">
       <div class="rz-pricing-grid" style="position: relative; border-radius: 24px; padding: 52px 64px 52px 0; display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; box-shadow: var(--shadow); overflow: hidden; min-height: 560px;">
-        <img src="./assets/pricing-bg.png" alt="" class="rz-pricing-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; {{ pricingImgDarkStyle }}">
-        <img src="./assets/pricing-bg-light.png" alt="" class="rz-pricing-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; {{ pricingImgLightStyle }}">
+        <img src="{{ pricingBgSrc }}" alt="" loading="lazy" decoding="async" class="rz-pricing-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
         <div class="rz-pricing-spacer" style="grid-column: 1;"></div>
 
         <div style="position: relative; z-index: 1; color: var(--ink); background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 22px; padding: 34px 38px; box-shadow: 0 24px 48px -26px rgba(0,0,0,.4);">
@@ -529,6 +534,7 @@
     </div>
   </section>
 
+  </main>
   <!-- FOOTER -->
   <footer id="contact" style="border-top: 1px solid var(--line); padding: 40px 32px 36px;">
     <div style="max-width: 1180px; margin: 0 auto;">
@@ -873,8 +879,8 @@ const V2_SLIDES = [
 ];
 
 // Each half of the marquee must be wider than the viewport for the loop to look
-// seamless, so the filtered set is repeated twice per half.
-const V2_MARQUEE_REPEATS = 4;
+// seamless, so the filtered set is rendered twice.
+const V2_MARQUEE_REPEATS = 2;
 
 class Component extends DCLogic {
   state = { theme: 'dark', lang: 'en', trackIndex: 0, playing: false, menuOpen: false, v2Device: 'ipad', v2Index: -1 };
@@ -888,6 +894,10 @@ class Component extends DCLogic {
   };
 
   audioRef = (el) => { this._audio = el; };
+  lightboxDialogRef = (el) => {
+    this._lightboxDialog = el;
+    if (el) requestAnimationFrame(() => el.focus());
+  };
 
   v2Filtered() {
     return V2_SLIDES.filter((s) => s.device === this.state.v2Device);
@@ -900,6 +910,7 @@ class Component extends DCLogic {
   }
 
   v2Open(index) {
+    this._lightboxReturnFocus = document.activeElement;
     this.v2LockScroll(true);
     this.setState({ v2Index: index });
   }
@@ -907,7 +918,12 @@ class Component extends DCLogic {
   v2ShowIpad = () => { this.v2LockScroll(false); this.setState({ v2Device: 'ipad', v2Index: -1 }); };
   v2ShowIphone = () => { this.v2LockScroll(false); this.setState({ v2Device: 'iphone', v2Index: -1 }); };
 
-  v2Close = () => { this.v2LockScroll(false); this.setState({ v2Index: -1 }); };
+  v2Close = () => {
+    this.v2LockScroll(false);
+    this.setState({ v2Index: -1 });
+    const returnFocus = this._lightboxReturnFocus;
+    if (returnFocus && typeof returnFocus.focus === 'function') requestAnimationFrame(() => returnFocus.focus());
+  };
 
   v2Step(delta) {
     const n = this.v2Filtered().length;
@@ -984,6 +1000,29 @@ class Component extends DCLogic {
       if (savedLang && DICT[savedLang]) next.lang = savedLang;
       if (Object.keys(next).length) this.setState(next);
     } catch (e) {}
+    this.applyDocumentLanguage(this.state.lang);
+    this._onHashChange = () => {
+      const id = window.location.hash.slice(1);
+      const target = id && document.getElementById(id);
+      if (target) target.scrollIntoView({ block: 'start' });
+    };
+    this._onKeydown = (event) => {
+      if (event.key === 'Escape') {
+        if (this.state.v2Index >= 0) { event.preventDefault(); this.v2Close(); return; }
+        if (this.state.menuOpen) { event.preventDefault(); this.closeMenu(); }
+      }
+      if (this.state.v2Index >= 0 && event.key === 'ArrowLeft') { event.preventDefault(); this.v2Prev(); }
+      if (this.state.v2Index >= 0 && event.key === 'ArrowRight') { event.preventDefault(); this.v2Next(); }
+    };
+    window.addEventListener('hashchange', this._onHashChange);
+    document.addEventListener('keydown', this._onKeydown);
+    requestAnimationFrame(this._onHashChange);
+  }
+
+  componentWillUnmount() {
+    this.v2LockScroll(false);
+    window.removeEventListener('hashchange', this._onHashChange);
+    document.removeEventListener('keydown', this._onKeydown);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -993,6 +1032,7 @@ class Component extends DCLogic {
       try { localStorage.setItem('rzen-theme-v2', this.state.theme); } catch (e) {}
     }
     if (prevState.lang !== this.state.lang) {
+      this.applyDocumentLanguage(this.state.lang);
       try { localStorage.setItem('rzen-lang-v2', this.state.lang); } catch (e) {}
     }
   }
@@ -1004,6 +1044,10 @@ class Component extends DCLogic {
   toggleLang = () => {
     this.setState((s) => ({ lang: s.lang === 'en' ? 'es' : 'en' }));
   };
+
+  applyDocumentLanguage(lang) {
+    document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+  }
 
   trackDownloadClick = () => {
     try {
@@ -1068,24 +1112,27 @@ class Component extends DCLogic {
       barTopStyle: barBase + (menuOpen ? 'transform:translateY(6px) rotate(45deg);' : ''),
       barMidStyle: barBase + (menuOpen ? 'opacity:0;' : ''),
       barBotStyle: barBase + (menuOpen ? 'transform:translateY(-6px) rotate(-45deg);' : ''),
-      mobileMenuStyle: 'display:' + (menuOpen ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:' + t0.bg + '; border-bottom:1px solid ' + t0.line + '; box-shadow:0 16px 32px -16px rgba(0,0,0,.35); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;',
+       mobileMenuStyle: 'display:' + (menuOpen ? 'flex' : 'none') + '; position:absolute; top:100%; left:0; right:0; background:' + t0.bg + '; border-bottom:1px solid ' + t0.line + '; box-shadow:0 16px 32px -16px rgba(0,0,0,.35); flex-direction:column; padding:8px 24px 24px; gap:2px; z-index:49;',
+       menuOpen,
       rootRef: this.rootRef,
       t0,
       copy,
       isDark,
-      isLight: !isDark,
-      pricingImgDarkStyle: 'opacity:' + (isDark ? '1' : '0') + ';transition:opacity .35s ease;',
-      pricingImgLightStyle: 'opacity:' + (isDark ? '0' : '1') + ';transition:opacity .35s ease;',
+       heroBgSrc: isDark ? './assets/hero-bg.webp' : './assets/hero-bg-light.webp',
+       pricingBgSrc: isDark ? './assets/pricing-bg.webp' : './assets/pricing-bg-light.webp',
       audioRef: this.audioRef,
       v2SectionStyle,
       v2Track,
-      v2TabIpadStyle: v2IsIpad ? v2TabOn : v2TabOff,
-      v2TabIphoneStyle: v2IsIpad ? v2TabOff : v2TabOn,
+       v2TabIpadStyle: v2IsIpad ? v2TabOn : v2TabOff,
+       v2TabIphoneStyle: v2IsIpad ? v2TabOff : v2TabOn,
+       v2IsIpad,
+       v2IsIphone: !v2IsIpad,
       v2ShowIpad: this.v2ShowIpad,
       v2ShowIphone: this.v2ShowIphone,
       v2LightboxOpen: !!v2Active,
       v2LightboxImg: v2Active ? './assets/v2/full/' + v2Active.file : '',
-      v2LightboxCaption: v2Active ? copy[v2Active.capKey] : '',
+       v2LightboxCaption: v2Active ? copy[v2Active.capKey] : '',
+       lightboxDialogRef: this.lightboxDialogRef,
       v2Close: this.v2Close,
       v2Prev: this.v2Prev,
       v2Next: this.v2Next,

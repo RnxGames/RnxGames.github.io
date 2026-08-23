@@ -1,0 +1,16 @@
+{
+  "name": "RnxGames",
+  "short_name": "RnxGames",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f7f6f4",
+  "theme_color": "#f7f6f4",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
