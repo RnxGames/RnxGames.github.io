@@ -244,7 +244,7 @@
           <sc-for list="{{ v2Track }}" as="slide">
             <div class="rz-v2-cell">
               <button type="button" onclick="{{ slide.open }}" aria-label="{{ slide.caption }}" class="rz-v2-frame {{ slide.frameClass }}">
-                <img src="{{ slide.img }}" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;">
+                <div aria-hidden="true" style="{{ slide.imageStyle }}"></div>
                 <span class="rz-v2-zoom" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.4" y1="15.4" x2="21" y2="21"/><line x1="10.5" y1="7.8" x2="10.5" y2="13.2"/><line x1="7.8" y1="10.5" x2="13.2" y2="10.5"/></svg>
                 </span>
@@ -300,7 +300,7 @@
         <div onclick="{{ stopClick }}" style="display: flex; align-items: center; gap: 18px; max-width: 100%;">
           <button type="button" onclick="{{ v2Prev }}" aria-label="{{ copy.v2Prev }}" class="rz-v2-lb-btn">&#8592;</button>
           <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0;">
-            <img src="{{ v2LightboxImg }}" alt="{{ v2LightboxCaption }}" class="rz-v2-lightbox-img">
+            <div role="img" aria-label="{{ v2LightboxCaption }}" class="rz-v2-lightbox-img" style="{{ v2LightboxStyle }}"></div>
             <p id="v2-lightbox-caption" style="margin: 0; text-align: center; font-size: .88rem; font-weight: 600; color: #f6ece6; max-width: 40ch;">{{ v2LightboxCaption }}</p>
           </div>
           <button type="button" onclick="{{ v2Next }}" aria-label="{{ copy.v2Next }}" class="rz-v2-lb-btn">&#8594;</button>
@@ -312,7 +312,7 @@
 
   <!-- HERO -->
   <header id="home" style="position: relative; padding: 76px 32px 0; overflow: hidden; background: radial-gradient(1100px 520px at 78% -8%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%);">
-    <img src="{{ heroBgSrc }}" alt="" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; z-index: 0; pointer-events: none;">
+    <div aria-hidden="true" style="{{ heroBgStyle }}"></div>
     <div style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%); pointer-events: none;"></div>
     <div class="rz-hero-grid" style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
 
@@ -494,7 +494,7 @@
   <section id="download" style="padding: 72px 32px;">
     <div style="max-width: 1180px; margin: 0 auto;">
       <div class="rz-pricing-grid" style="position: relative; border-radius: 24px; padding: 52px 64px 52px 0; display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; box-shadow: var(--shadow); overflow: hidden; min-height: 560px;">
-        <img src="{{ pricingBgSrc }}" alt="" loading="lazy" decoding="async" class="rz-pricing-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+        <div aria-hidden="true" class="rz-pricing-img" style="{{ pricingBgStyle }}"></div>
         <div class="rz-pricing-spacer" style="grid-column: 1;"></div>
 
         <div style="position: relative; z-index: 1; color: var(--ink); background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 22px; padding: 34px 38px; box-shadow: 0 24px 48px -26px rgba(0,0,0,.4);">
@@ -1075,7 +1075,7 @@ class Component extends DCLogic {
     for (let r = 0; r < V2_MARQUEE_REPEATS; r++) {
       v2Filtered.forEach((s, i) => {
         v2Track.push({
-          img: './assets/v2/' + s.file,
+          imageStyle: 'width:100%;height:100%;background-image:url(./assets/v2/' + s.file + ');background-size:cover;background-position:top center;display:block;',
           frameClass: s.device === 'ipad' ? 'rz-v2-ipad' : 'rz-v2-iphone',
           caption: copy[s.capKey],
           open: () => this.v2Open(i)
@@ -1118,8 +1118,8 @@ class Component extends DCLogic {
       t0,
       copy,
       isDark,
-       heroBgSrc: isDark ? './assets/hero-bg.webp' : './assets/hero-bg-light.webp',
-       pricingBgSrc: isDark ? './assets/pricing-bg.webp' : './assets/pricing-bg-light.webp',
+       heroBgStyle: 'position:absolute;inset:0;background-image:url(' + (isDark ? './assets/hero-bg.webp' : './assets/hero-bg-light.webp') + ');background-size:cover;background-position:62% 40%;z-index:0;pointer-events:none;',
+       pricingBgStyle: 'position:absolute;inset:0;background-image:url(' + (isDark ? './assets/pricing-bg.webp' : './assets/pricing-bg-light.webp') + ');background-size:cover;background-position:center;z-index:0;',
       audioRef: this.audioRef,
       v2SectionStyle,
       v2Track,
@@ -1130,8 +1130,8 @@ class Component extends DCLogic {
       v2ShowIpad: this.v2ShowIpad,
       v2ShowIphone: this.v2ShowIphone,
       v2LightboxOpen: !!v2Active,
-      v2LightboxImg: v2Active ? './assets/v2/full/' + v2Active.file : '',
        v2LightboxCaption: v2Active ? copy[v2Active.capKey] : '',
+       v2LightboxStyle: v2Active ? 'width:min(' + (v2Active.device === 'ipad' ? '88vw,520px' : '76vw,330px') + ');aspect-ratio:' + (v2Active.device === 'ipad' ? '2064 / 2752' : '1242 / 2688') + ';background-image:url(./assets/v2/full/' + v2Active.file + ');background-size:cover;background-position:top center;' : '',
        lightboxDialogRef: this.lightboxDialogRef,
       v2Close: this.v2Close,
       v2Prev: this.v2Prev,
