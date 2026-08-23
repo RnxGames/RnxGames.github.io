@@ -293,7 +293,7 @@
             <div style="display: flex; justify-content: space-between; gap: 16px; color: rgba(255,255,255,.9); font-size: .71rem; font-weight: 800; letter-spacing: .1em;"><span>R-ZEN 2.5</span><span>{{ activeSlideNumber }}</span></div>
             <div class="rz-v25-mock">
               <div class="rz-v25-mock-top"><span>{{ copy.v25PreviewLabel }}</span><span>● ● ●</span></div>
-              <div class="rz-v25-mock-art"><span>{{ activeSlideTitle }}</span></div>
+              <div role="img" aria-label="{{ activeSlideTitle }}" class="rz-v25-mock-art" style="{{ activeSlideImageStyle }}"></div>
               <div class="rz-v25-mock-lines"><span></span><span></span><span></span></div>
             </div>
             <p style="margin: 19px 0 0; color: rgba(255,255,255,.84); font-size: .76rem; font-weight: 700; letter-spacing: .06em;">{{ copy.v25ImagePlaceholder }}</p>
@@ -713,11 +713,23 @@ const DICT = {
     v25SeasonLabel: 'Choose a seasonal theme', v25Autumn: '🍂 Autumn Zen', v25Spring: '✿ Spring Zen', v25Classic: '◌ Classic',
     v25HemisphereLabel: 'Choose your hemisphere', v25North: 'Northern hemisphere', v25South: 'Southern hemisphere',
     v25ParticlesOn: 'Effects on', v25ParticlesOff: 'Effects off', v25NorthNote: 'Northern hemisphere selected — R-Zen is ready to follow your season.', v25SouthNote: 'Southern hemisphere selected — R-Zen is ready to follow your season.',
-    v25CarouselEyebrow: 'A FIRST LOOK', v25PreviewLabel: 'SEASONAL PREVIEW', v25ImagePlaceholder: 'Screenshots for this update will appear here soon.', v25Previous: 'Previous preview', v25Next: 'Next preview',
+    v25CarouselEyebrow: 'A FIRST LOOK', v25PreviewLabel: 'SEASONAL PREVIEW', v25ImagePlaceholder: 'New illustrations, seasonal friends, and places to explore.', v25Previous: 'Previous preview', v25Next: 'Next preview',
     v25SlideSeasonTitle: 'A season that feels like yours', v25SlideSeasonText: 'Autumn Zen, Spring Zen, or Classic — with a globe, color palette, and gentle atmosphere that all move with the season.',
     v25SlideLibraryTitle: 'A calmer way to find your next sheet', v25SlideLibraryText: 'New lanes, grid view, new-content markers, and a clearer home for seasonal, new, and Legacy packs.',
     v25SlideCreateTitle: 'Tools that stay out of your way', v25SlideCreateText: 'A redesigned brush bar brings palettes, favorite sizes, and clearer controls to every coloring moment.',
     v25SlideLifeTitle: 'More little moments that come to life', v25SlideLifeText: 'New Zodiac and Autumn Friends animations, plus smoother zooming, collections, and seasonal effects.',
+    v25SlideCozyTitle: 'A quiet night to color', v25SlideCozyText: 'Soft, cozy illustrations add a new kind of calm to the growing library.',
+    v25SlideLambTitle: 'A sweet spring stop', v25SlideLambText: 'Fresh, cheerful scenes are ready to color, collect, and return to whenever you need a lift.',
+    v25SlideBakeryTitle: 'Tea, treats, and tiny details', v25SlideBakeryText: 'The new Illustrations category gives charming scenes their own space beyond traditional Mandalas.',
+    v25SlideReadingTitle: 'A nook made for slowing down', v25SlideReadingText: 'Browse new art in lanes or grid view, then pick up exactly where you left off.',
+    v25SlidePieTitle: 'Autumn friends arrive', v25SlidePieText: 'Seasonal packs bring warm little stories, cozy color palettes, and new moments to create.',
+    v25SlideSquirrelTitle: 'Gather the good moments', v25SlideSquirrelText: 'Zen Autumn adds playful companions and seasonal details throughout your experience.',
+    v25SlideParisTitle: 'Rainy autumn glow', v25SlideParisText: 'A seasonal world of golden streets and calmer evenings joins the puzzle collection.',
+    v25SlideHarvestTitle: 'Follow the harvest light', v25SlideHarvestText: 'Autumn landscapes bring a slower rhythm to the new seasonal collection.',
+    v25SlideGardenTitle: 'Spring is ready to grow', v25SlideGardenText: 'New friendly illustrations make the Spring Zen collection feel bright and personal.',
+    v25SlideCapeTitle: 'A brighter world to explore', v25SlideCapeText: 'Spring locations add wide-open color and a fresh sense of discovery.',
+    v25SlideKoalaTitle: 'Flowers to bring to life', v25SlideKoalaText: 'Seasonal color, gentle animation, and new companions make every finished sheet feel special.',
+    v25SlideWildflowersTitle: 'Fields in bloom', v25SlideWildflowersText: 'Spring Zen opens into vibrant landscapes made for a moment of calm.',
     v25GridTitle: 'What blooms in R-Zen 2.5',
     v25Cat1Title: 'YOUR SEASON', v25Cat1Items: ['Choose Autumn Zen, Spring Zen, or the Classic look.', 'Set your hemisphere so the experience follows your season.', 'Seasonal colors, particle effects, and a globe that changes with you.'],
     v25Cat2Title: 'NEW TO EXPLORE', v25Cat2Items: ['Zen Autumn and Spring Zen packs, plus new traditional mandalas and illustrations.', 'New paint-by-number collections for both seasons.', 'A dedicated Illustrations category, separate from traditional Mandalas.'],
@@ -821,11 +833,23 @@ const DICT = {
     v25SeasonLabel: 'Elige un tema de temporada', v25Autumn: '🍂 Otoño Zen', v25Spring: '✿ Primavera Zen', v25Classic: '◌ Clásico',
     v25HemisphereLabel: 'Elige tu hemisferio', v25North: 'Hemisferio norte', v25South: 'Hemisferio sur',
     v25ParticlesOn: 'Efectos activados', v25ParticlesOff: 'Efectos desactivados', v25NorthNote: 'Hemisferio norte seleccionado — R-Zen se adapta a tu estación.', v25SouthNote: 'Hemisferio sur seleccionado — R-Zen se adapta a tu estación.',
-    v25CarouselEyebrow: 'UN PRIMER VISTAZO', v25PreviewLabel: 'AVANCE ESTACIONAL', v25ImagePlaceholder: 'Las capturas de esta actualización aparecerán aquí muy pronto.', v25Previous: 'Vista anterior', v25Next: 'Siguiente vista',
+    v25CarouselEyebrow: 'UN PRIMER VISTAZO', v25PreviewLabel: 'AVANCE ESTACIONAL', v25ImagePlaceholder: 'Ilustraciones nuevas, amigos estacionales y lugares por explorar.', v25Previous: 'Vista anterior', v25Next: 'Siguiente vista',
     v25SlideSeasonTitle: 'Una estación que se siente tuya', v25SlideSeasonText: 'Otoño Zen, Primavera Zen o el tema clásico, con un globo, una paleta y una atmósfera suave que se mueven con la estación.',
     v25SlideLibraryTitle: 'Una forma más tranquila de encontrar tu próxima lámina', v25SlideLibraryText: 'Nuevos carriles, vista de cuadrícula, indicadores de contenido nuevo y un hogar más claro para packs estacionales, novedades y Legacy.',
     v25SlideCreateTitle: 'Herramientas que no se interponen', v25SlideCreateText: 'La barra de pinceles rediseñada reúne paletas, tamaños predefinidos y controles más claros para cada momento de color.',
     v25SlideLifeTitle: 'Más pequeños momentos que cobran vida', v25SlideLifeText: 'Nuevas animaciones de Cobra vida: Zodiacal y Amigos de otoño, junto a zoom, colecciones y efectos estacionales más fluidos.',
+    v25SlideCozyTitle: 'Una noche tranquila para colorear', v25SlideCozyText: 'Ilustraciones suaves y acogedoras suman una nueva forma de calma a la biblioteca.',
+    v25SlideLambTitle: 'Una dulce parada de primavera', v25SlideLambText: 'Escenas frescas y alegres listas para colorear, coleccionar y volver a ellas cuando necesites animarte.',
+    v25SlideBakeryTitle: 'Té, dulces y pequeños detalles', v25SlideBakeryText: 'La nueva categoría de Ilustraciones da a las escenas encantadoras su propio espacio, más allá de los Mandalas tradicionales.',
+    v25SlideReadingTitle: 'Un rincón hecho para bajar el ritmo', v25SlideReadingText: 'Explora el arte nuevo en carriles o cuadrícula y retoma exactamente donde lo dejaste.',
+    v25SlidePieTitle: 'Llegan los amigos de otoño', v25SlidePieText: 'Los packs estacionales traen pequeñas historias cálidas, paletas acogedoras y nuevos momentos para crear.',
+    v25SlideSquirrelTitle: 'Reúne los buenos momentos', v25SlideSquirrelText: 'Zen Autumn añade compañeros juguetones y detalles de temporada a toda la experiencia.',
+    v25SlideParisTitle: 'El brillo lluvioso del otoño', v25SlideParisText: 'Un mundo estacional de calles doradas y tardes tranquilas se suma a la colección de puzzles.',
+    v25SlideHarvestTitle: 'Sigue la luz de la cosecha', v25SlideHarvestText: 'Los paisajes de otoño llevan un ritmo más lento a la nueva colección estacional.',
+    v25SlideGardenTitle: 'La primavera está lista para crecer', v25SlideGardenText: 'Nuevas ilustraciones amistosas hacen que la colección Primavera Zen se sienta luminosa y personal.',
+    v25SlideCapeTitle: 'Un mundo más brillante para explorar', v25SlideCapeText: 'Los lugares de primavera añaden color abierto y una nueva sensación de descubrimiento.',
+    v25SlideKoalaTitle: 'Flores que cobran vida', v25SlideKoalaText: 'Color de temporada, animación suave y nuevos compañeros hacen especial cada lámina terminada.',
+    v25SlideWildflowersTitle: 'Campos en flor', v25SlideWildflowersText: 'Primavera Zen se abre en paisajes vibrantes creados para un momento de calma.',
     v25GridTitle: 'Lo que florece en R-Zen 2.5',
     v25Cat1Title: 'TU ESTACIÓN', v25Cat1Items: ['Elige Otoño Zen, Primavera Zen o el aspecto clásico.', 'Define tu hemisferio para que la experiencia siga tu estación.', 'Colores, partículas y un globo adaptados a cada temporada.'],
     v25Cat2Title: 'NUEVO PARA EXPLORAR', v25Cat2Items: ['Packs Zen Autumn y Primavera Zen, además de mandalas e ilustraciones tradicionales.', 'Nuevas colecciones para pintar por número en ambas estaciones.', 'Una categoría propia de Ilustraciones, separada de Mandalas tradicionales.'],
@@ -945,10 +969,18 @@ const V2_SLIDES = [
 const V2_MARQUEE_REPEATS = 2;
 
 const V25_SLIDES = [
-  { titleKey: 'v25SlideSeasonTitle', textKey: 'v25SlideSeasonText', gradient: 'linear-gradient(145deg, #9d3e28, #d68037 54%, #f2c96f)' },
-  { titleKey: 'v25SlideLibraryTitle', textKey: 'v25SlideLibraryText', gradient: 'linear-gradient(145deg, #365d54, #71966e 52%, #c8d187)' },
-  { titleKey: 'v25SlideCreateTitle', textKey: 'v25SlideCreateText', gradient: 'linear-gradient(145deg, #5c447b, #9880c7 54%, #e0abd5)' },
-  { titleKey: 'v25SlideLifeTitle', textKey: 'v25SlideLifeText', gradient: 'linear-gradient(145deg, #79424b, #b96b62 52%, #f1bb88)' }
+  { file: 'cozy-night-lineart.webp', fit: 'cover', titleKey: 'v25SlideCozyTitle', textKey: 'v25SlideCozyText', gradient: 'linear-gradient(145deg, #384162, #7a6992 54%, #e3bed1)' },
+  { file: 'lamb-sweet-cart-lineart.webp', fit: 'cover', titleKey: 'v25SlideLambTitle', textKey: 'v25SlideLambText', gradient: 'linear-gradient(145deg, #d77691, #efb5bd 54%, #f6db9b)' },
+  { file: 'bunny-bakery-lineart.webp', fit: 'cover', titleKey: 'v25SlideBakeryTitle', textKey: 'v25SlideBakeryText', gradient: 'linear-gradient(145deg, #d48c70, #e7b59d 54%, #f4d9ae)' },
+  { file: 'bunny-reading-lineart.webp', fit: 'cover', titleKey: 'v25SlideReadingTitle', textKey: 'v25SlideReadingText', gradient: 'linear-gradient(145deg, #6d5f91, #9e94c4 54%, #d8c8a2)' },
+  { file: 'bunny-pie-autumn.webp', fit: 'contain', titleKey: 'v25SlidePieTitle', textKey: 'v25SlidePieText', gradient: 'linear-gradient(145deg, #a83c29, #d67938 54%, #f1bd69)' },
+  { file: 'squirrel-acorns-autumn.webp', fit: 'contain', titleKey: 'v25SlideSquirrelTitle', textKey: 'v25SlideSquirrelText', gradient: 'linear-gradient(145deg, #7f351d, #bd6226 54%, #df9c3f)' },
+  { file: 'paris-rainy-autumn.webp', fit: 'cover', titleKey: 'v25SlideParisTitle', textKey: 'v25SlideParisText', gradient: 'linear-gradient(145deg, #252d4b, #62556d 54%, #d87841)' },
+  { file: 'tuscany-harvest-autumn.webp', fit: 'cover', titleKey: 'v25SlideHarvestTitle', textKey: 'v25SlideHarvestText', gradient: 'linear-gradient(145deg, #8e3e26, #d57830 54%, #f0bb4c)' },
+  { file: 'dog-garden-spring.webp', fit: 'contain', titleKey: 'v25SlideGardenTitle', textKey: 'v25SlideGardenText', gradient: 'linear-gradient(145deg, #6b995d, #a9c86e 54%, #f3c59f)' },
+  { file: 'cape-town-spring.webp', fit: 'cover', titleKey: 'v25SlideCapeTitle', textKey: 'v25SlideCapeText', gradient: 'linear-gradient(145deg, #4b87ad, #8fc1d0 54%, #edc86d)' },
+  { file: 'koala-flowers-spring.webp', fit: 'contain', titleKey: 'v25SlideKoalaTitle', textKey: 'v25SlideKoalaText', gradient: 'linear-gradient(145deg, #786797, #b08bc0 54%, #edb0bb)' },
+  { file: 'wildflowers-spring.webp', fit: 'cover', titleKey: 'v25SlideWildflowersTitle', textKey: 'v25SlideWildflowersText', gradient: 'linear-gradient(145deg, #4d8fb0, #8fc6ce 54%, #eebc57)' }
 ];
 
 const V25_SKINS = {
@@ -1276,6 +1308,7 @@ class Component extends DCLogic {
       particleButtonStyle: v25ChoiceStyle(this.state.v25Particles),
       seasonParticles,
       activeSlideGradient: v25Slide.gradient,
+      activeSlideImageStyle: 'background-color:rgba(255,255,255,.96);background-image:url(./assets/v25/' + v25Slide.file + ');background-size:' + v25Slide.fit + ';background-position:center;background-repeat:no-repeat;',
       activeSlideNumber: String(this.state.v25SlideIndex + 1).padStart(2, '0') + ' / ' + String(V25_SLIDES.length).padStart(2, '0'),
       activeSlideTitle: copy[v25Slide.titleKey],
       activeSlideText: copy[v25Slide.textKey],
