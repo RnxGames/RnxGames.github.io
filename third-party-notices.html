@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R-Zen — Open Source & Notices</title>
+<style>
+  html,body { margin:0;min-height:100%;background:#0f0f1a;color:#e8e8f0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:22px 16px 60px; }
+  main { max-width:800px;margin:0 auto; }
+  h1 { color:#9b59b6;margin:0 0 4px;font-size:1.8rem; }
+  .sub { color:#a0a0bd;font-size:.9rem;margin:0 0 22px; }
+  pre { margin:0;padding:18px;border-radius:14px;background:#1a1a2e;border:1px solid rgba(155,89,182,.5);color:#e8e8f0;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere; }
+  a { color:#c9a4ff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Open Source & Notices</h1>
+  <p class="sub">Complete third-party license notices included with R-Zen.</p>
+  <pre id="notices">Loading notices…</pre>
+  <noscript><p><a href="THIRD-PARTY-NOTICES.txt">Open the complete notices</a></p></noscript>
+</main>
+<script>
+  fetch('THIRD-PARTY-NOTICES.txt').then(function(r){ if(!r.ok) throw new Error('load'); return r.text(); })
+    .then(function(t){ document.getElementById('notices').textContent=t; })
+    .catch(function(){ document.getElementById('notices').textContent='The notices could not be displayed here. Open THIRD-PARTY-NOTICES.txt from the app bundle.'; });
+</script>
+</body>
+</html>
