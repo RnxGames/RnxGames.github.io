@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "ios": {
     "enabled": true,
-    "latestVersion": "3.0",
+    "latestVersion": "3.0.1",
     "minimumSupportedVersion": "2.5.1",
     "mandatory": false,
     "remindAfterDays": 3,
