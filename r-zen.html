@@ -175,6 +175,17 @@
     .rz-hw-stat { min-height: 98px; padding: 17px 15px; display: flex; align-items: center; justify-content: center; gap: 13px; background: rgba(40,25,57,.94); backdrop-filter: blur(12px); }
     .rz-hw-stat strong { display: block; color: #ffc477; font-family: 'Lora', serif; font-size: 1.75rem; line-height: 1; }
     .rz-hw-stat span { display: block; margin-top: 5px; color: #f2dfeb; font-size: .72rem; line-height: 1.3; font-weight: 700; }
+    .rz-hw-peek { margin: 53px 0 0; }
+    .rz-hw-peek-head { max-width: 720px; margin: 0 auto 23px; text-align: center; }
+    .rz-hw-peek-head > span { color: #ffc27b; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .rz-hw-peek-head h2 { margin: 10px 0 8px; color: #fff1e8; font: 600 clamp(1.8rem, 3.3vw, 2.55rem)/1.15 'Lora',serif; }
+    .rz-hw-peek-head p { margin: 0; color: #ddcde0; line-height: 1.6; }
+    .rz-hw-peek-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+    .rz-hw-peek-card { position: relative; min-width: 0; margin: 0; padding: 8px; border: 1px solid rgba(255,220,189,.25); border-radius: 22px; background: rgba(255,255,255,.07); box-shadow: 0 18px 35px rgba(7,4,18,.2); overflow: hidden; }
+    .rz-hw-peek-card img { display: block; width: 100%; height: 280px; border-radius: 15px; background: #fff; object-fit: cover; }
+    .rz-hw-peek-card:nth-child(2) img { object-position: center 38%; }
+    .rz-hw-peek-card figcaption { display: flex; align-items: center; gap: 9px; padding: 13px 8px 7px; color: #fff2e9; font-size: .83rem; font-weight: 800; }
+    .rz-hw-peek-card figcaption > span[aria-hidden] { color: #ffc27b; font-size: 1.15rem; }
     .rz-hw-section-heading { max-width: 760px; margin: 66px auto 31px; text-align: center; }
     .rz-hw-section-heading .rz-hw-eyebrow { color: #ffc27b; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
     .rz-hw-section-heading h2 { margin: 11px 0; font: 600 clamp(1.85rem, 3.4vw, 2.65rem)/1.14 'Lora',serif; text-wrap: balance; }
@@ -220,6 +231,7 @@
       .rz-v25-side { padding: 20px; }
       .rz-v25-grid { grid-template-columns: repeat(2, 1fr); }
       .rz-hw-grid { grid-template-columns: repeat(2, 1fr); }
+      .rz-hw-peek-card img { height: 230px; }
     }
     @media (max-width: 480px) {
       .rz-v2-ipad { width: 192px; }
@@ -234,6 +246,11 @@
       .rz-hw-stat-row { grid-template-columns: repeat(2, 1fr); margin-top: -33px; }
       .rz-hw-stat { min-height: 84px; padding: 12px 8px; }
       .rz-hw-stat strong { font-size: 1.35rem; }
+      .rz-hw-peek { margin-top: 38px; }
+      .rz-hw-peek-grid { display: flex; gap: 12px; margin: 0 -24px; padding: 0 24px 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .rz-hw-peek-grid::-webkit-scrollbar { display: none; }
+      .rz-hw-peek-card { flex: 0 0 79%; scroll-snap-align: center; }
+      .rz-hw-peek-card img { height: 255px; }
       .rz-hw-stat span { font-size: .63rem; }
       .rz-hw-grid { grid-template-columns: 1fr; }
       .rz-hw-content { padding: 0 16px 50px; }
@@ -366,6 +383,14 @@
           <div class="rz-hw-stat"><strong>18</strong><span>{{ copy.hwStatNumber }}</span></div>
           <div class="rz-hw-stat"><strong>9</strong><span>{{ copy.hwStatAlive }}</span></div>
         </div>
+        <section class="rz-hw-peek" aria-labelledby="halloween-peek-title">
+          <div class="rz-hw-peek-head"><span>{{ copy.hwPeekEyebrow }}</span><h2 id="halloween-peek-title">{{ copy.hwPeekTitle }}</h2><p>{{ copy.hwPeekIntro }}</p></div>
+          <div class="rz-hw-peek-grid">
+            <figure class="rz-hw-peek-card"><img src="./assets/halloween/pumpkin-pattern.webp" width="760" height="760" loading="lazy" decoding="async" alt="{{ copy.hwPeekPatternAlt }}"><figcaption><span aria-hidden="true">✿</span>{{ copy.hwPeekPattern }}</figcaption></figure>
+            <figure class="rz-hw-peek-card"><img src="./assets/halloween/witch-illustration.webp" width="760" height="1140" loading="lazy" decoding="async" alt="{{ copy.hwPeekIllustrationAlt }}"><figcaption><span aria-hidden="true">✎</span>{{ copy.hwPeekIllustration }}</figcaption></figure>
+            <figure class="rz-hw-peek-card"><img src="./assets/halloween/ghost-train.webp" width="760" height="760" loading="lazy" decoding="async" alt="{{ copy.hwPeekNumberAlt }}"><figcaption><span aria-hidden="true">#</span>{{ copy.hwPeekNumber }}</figcaption></figure>
+          </div>
+        </section>
         <div class="rz-hw-section-heading"><span class="rz-hw-eyebrow">{{ copy.hwFeatureEyebrow }}</span><h2>{{ copy.hwFeatureTitle }}</h2><p>{{ copy.hwFeatureLede }}</p></div>
         <div class="rz-hw-grid">
           <article class="rz-hw-card"><span class="rz-hw-card-icon" aria-hidden="true">🎃</span><h3>{{ copy.hwCat1Title }}</h3><ul><sc-for list="{{ copy.hwCat1Items }}" as="item"><li>{{ item }}</li></sc-for></ul></article>
@@ -846,6 +871,9 @@ const DICT = {
     hwLede: 'A little magic, a lot of calm. Explore Enchanted Night, new art to color, Magic Color, and 140 more puzzles when R-Zen 2.8 arrives.',
     hwExplore: 'Discover the update', hwPointOne: 'Enchanted Night is optional', hwPointTwo: 'No ads or accounts', hwPointThree: 'Made for iPhone & iPad',
     hwStatsLabel: 'Cozy Halloween pack contents', hwStatPatterns: 'patterns', hwStatIllustrations: 'illustrations', hwStatNumber: 'paint-by-number scenes', hwStatAlive: 'characters that come alive',
+    hwPeekEyebrow: 'ART FROM THE PACK', hwPeekTitle: 'A closer look at Cozy Halloween', hwPeekIntro: 'A few real pieces from the new collection: line art to make your own, and a scene full of color.',
+    hwPeekPattern: 'Halloween patterns', hwPeekIllustration: 'Illustrations to color', hwPeekNumber: 'Paint by number',
+    hwPeekPatternAlt: 'Halloween coloring pattern with a smiling pumpkin, leaves, lanterns, and bats', hwPeekIllustrationAlt: 'Line art of a friendly young witch flying with her cat under a crescent moon', hwPeekNumberAlt: 'Colorful Halloween train station at night with autumn leaves and a full moon',
     hwFeatureEyebrow: 'A NEW CHAPTER IN R-ZEN', hwFeatureTitle: 'Halloween, with room to breathe.', hwFeatureLede: 'A full seasonal world and new creative tools, made to feel playful and peaceful.',
     hwCat1Title: 'Your Enchanted Night', hwCat1Items: ['Choose Off, Subtle, or Enchanted in settings; Halloween never switches on automatically.', 'Five palettes, illustrated stamps, 24 journal stickers, frames, and an optional companion.', 'A one-minute pumpkin breathing pause and gentle seasonal details.'],
     hwCat2Title: 'New ways to create', hwCat2Items: ['Cozy Halloween brings 18 patterns, 18 illustrations, 18 paint-by-number scenes, and 9 Comes Alive characters.', 'Magic Color reveals full-color artwork with a simple brush.', 'More generous free selections across creative modes.'],
@@ -980,6 +1008,9 @@ const DICT = {
     hwLede: 'Un poco de magia y mucha calma. Descubre Noche encantada, nuevas láminas, Color mágico y 140 puzzles más cuando llegue R-Zen 2.8.',
     hwExplore: 'Descubre la actualización', hwPointOne: 'Noche encantada es opcional', hwPointTwo: 'Sin anuncios ni cuentas', hwPointThree: 'Para iPhone y iPad',
     hwStatsLabel: 'Contenido del pack Cozy Halloween', hwStatPatterns: 'patrones', hwStatIllustrations: 'ilustraciones', hwStatNumber: 'escenas por número', hwStatAlive: 'personajes que cobran vida',
+    hwPeekEyebrow: 'ARTE DEL PACK', hwPeekTitle: 'Cozy Halloween, de cerca', hwPeekIntro: 'Tres láminas reales de la nueva colección: dibujos para colorear y una escena llena de color.',
+    hwPeekPattern: 'Patrones de Halloween', hwPeekIllustration: 'Ilustraciones para colorear', hwPeekNumber: 'Pintar por número',
+    hwPeekPatternAlt: 'Patrón para colorear con una calabaza sonriente, hojas, faroles y murciélagos', hwPeekIllustrationAlt: 'Ilustración en blanco y negro de una pequeña bruja volando con su gato bajo la luna', hwPeekNumberAlt: 'Estación de tren de Halloween a todo color, de noche, con hojas otoñales y luna llena',
     hwFeatureEyebrow: 'UNA NUEVA ETAPA EN R-ZEN', hwFeatureTitle: 'Halloween, a tu propio ritmo.', hwFeatureLede: 'Un mundo de temporada y nuevas herramientas creativas con un toque divertido y tranquilo.',
     hwCat1Title: 'Tu Noche encantada', hwCat1Items: ['Elige Desactivado, Sutil o Encantado en ajustes; Halloween no se activa automáticamente.', 'Cinco paletas, sellos ilustrados, 24 stickers para el Diario, marcos y un acompañante opcional.', 'Una pausa de respiración de un minuto con calabaza y detalles suaves de temporada.'],
     hwCat2Title: 'Más formas de crear', hwCat2Items: ['Cozy Halloween trae 18 patrones, 18 ilustraciones, 18 escenas por número y 9 personajes Cobra vida.', 'Color mágico revela ilustraciones a todo color con un pincel sencillo.', 'Selecciones gratuitas más generosas en los modos creativos.'],
