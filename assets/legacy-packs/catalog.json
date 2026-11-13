@@ -1,0 +1,284 @@
+{
+  "sourceRef": "3f1c599e78e80ab71ea52644f4b648fe3edf7dfe",
+  "sourceRepository": "RnxGames/rzen-packs",
+  "selection": "Evergreen Legacy packs only; seasonal Halloween is kept in the historical archive.",
+  "packs": [
+    {
+      "id": "md-estelar",
+      "slug": "estelar",
+      "shelf": "legacy",
+      "season": null,
+      "title": {
+        "es": "Pack Estelar",
+        "en": "Stellar Pack"
+      },
+      "count": 95,
+      "modes": [
+        "trad",
+        "reveal"
+      ],
+      "cover": "estelar-cover.webp",
+      "samples": [
+        {
+          "src": "estelar-1.webp",
+          "name": "Portal de Nubes",
+          "width": 360,
+          "height": 270
+        },
+        {
+          "src": "estelar-2.webp",
+          "name": "Vórtice",
+          "width": 360,
+          "height": 360
+        },
+        {
+          "src": "estelar-3.webp",
+          "name": "Loto Estelar",
+          "width": 360,
+          "height": 270
+        }
+      ],
+      "tagline": {
+        "es": "Cosmos, naturaleza y fantasía",
+        "en": "Cosmos, nature & imagination"
+      },
+      "description": {
+        "es": "95 mandalas que recorren el cosmos, los paisajes, las flores y los animales. Elige tus colores o descubre la imagen con el modo Revelar.",
+        "en": "95 mandalas inspired by the cosmos, landscapes, flowers and animals. Choose your own colors or uncover the artwork in Reveal mode."
+      },
+      "tags": {
+        "es": [
+          "95 diseños",
+          "Colorear y revelar",
+          "5 temáticas"
+        ],
+        "en": [
+          "95 designs",
+          "Color & reveal",
+          "5 themes"
+        ]
+      }
+    },
+    {
+      "id": "nm-numero",
+      "slug": "numero",
+      "shelf": "legacy",
+      "season": null,
+      "title": {
+        "es": "Pack Extra Número",
+        "en": "Extra Number Pack"
+      },
+      "count": 59,
+      "modes": [
+        "pbn"
+      ],
+      "cover": "numero-cover.webp",
+      "samples": [
+        {
+          "src": "numero-1.webp",
+          "name": "Sushi de Salmón",
+          "width": 280,
+          "height": 280
+        },
+        {
+          "src": "numero-2.webp",
+          "name": "Rosa Arcoíris",
+          "width": 300,
+          "height": 300
+        },
+        {
+          "src": "numero-3.webp",
+          "name": "Máscara de Tutankamón",
+          "width": 300,
+          "height": 300
+        }
+      ],
+      "tagline": {
+        "es": "Delicias, flores y arte",
+        "en": "Food, flowers & art"
+      },
+      "description": {
+        "es": "59 láminas para pintar por número entre platos llenos de color, composiciones florales y obras de museo. Sigue los números y descubre cada detalle.",
+        "en": "59 paint-by-number sheets featuring colorful food, floral compositions and museum artwork. Follow the numbers and discover every detail."
+      },
+      "tags": {
+        "es": [
+          "59 láminas",
+          "Pintar por número",
+          "Comida · flores · museo"
+        ],
+        "en": [
+          "59 sheets",
+          "Paint by Number",
+          "Food · flowers · museum"
+        ]
+      }
+    },
+    {
+      "id": "md-zodiaco",
+      "slug": "zodiaco",
+      "shelf": "legacy",
+      "season": null,
+      "title": {
+        "es": "Pack Zodíaco",
+        "en": "Zodiac Pack"
+      },
+      "count": 13,
+      "modes": [
+        "trad",
+        "reveal"
+      ],
+      "cover": "zodiaco-cover.webp",
+      "samples": [
+        {
+          "src": "zodiaco-1.webp",
+          "name": "Aries",
+          "width": 360,
+          "height": 360
+        },
+        {
+          "src": "zodiaco-2.webp",
+          "name": "Leo",
+          "width": 360,
+          "height": 360
+        },
+        {
+          "src": "zodiaco-3.webp",
+          "name": "Sagitario",
+          "width": 360,
+          "height": 360
+        }
+      ],
+      "tagline": {
+        "es": "Tu signo, a tu manera",
+        "en": "Your sign, your colors"
+      },
+      "description": {
+        "es": "13 diseños zodiacales para colorear y revelar. Una colección de signos y detalles celestes que puedes explorar con tu propia paleta o descubrir poco a poco.",
+        "en": "13 zodiac designs to color and reveal. Explore celestial signs and details with your own palette, or uncover their colors a little at a time."
+      },
+      "tags": {
+        "es": [
+          "13 signos",
+          "Colorear y revelar",
+          "Inspiración zodiacal"
+        ],
+        "en": [
+          "13 signs",
+          "Color & reveal",
+          "Zodiac inspiration"
+        ]
+      }
+    },
+    {
+      "id": "nm-zodiaco-pixel",
+      "slug": "zodiaco-pixel",
+      "shelf": "legacy",
+      "season": null,
+      "title": {
+        "es": "Zodíaco Pixel",
+        "en": "Pixel Zodiac"
+      },
+      "count": 13,
+      "modes": [
+        "pbn"
+      ],
+      "cover": null,
+      "samples": [
+        {
+          "src": "zodiaco-pixel-1.webp",
+          "name": "Aries",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "zodiaco-pixel-2.webp",
+          "name": "Leo",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "zodiaco-pixel-3.webp",
+          "name": "Sagitario",
+          "width": 320,
+          "height": 320
+        }
+      ],
+      "tagline": {
+        "es": "El zodíaco en pixel art épico",
+        "en": "The zodiac in epic pixel art"
+      },
+      "description": {
+        "es": "Los 13 signos toman forma en una colección de pixel art épico para pintar por número. Completa las casillas y descubre cada ilustración.",
+        "en": "The 13 zodiac signs take shape in an epic pixel-art collection for paint by number. Fill the cells and reveal each illustration."
+      },
+      "tags": {
+        "es": [
+          "13 láminas",
+          "Pintar por número",
+          "Pixel art épico"
+        ],
+        "en": [
+          "13 sheets",
+          "Paint by Number",
+          "Epic pixel art"
+        ]
+      }
+    },
+    {
+      "id": "nm-zodiaco-chibi",
+      "slug": "zodiaco-chibi",
+      "shelf": "legacy",
+      "season": null,
+      "title": {
+        "es": "Zodíaco Chibi",
+        "en": "Chibi Zodiac"
+      },
+      "count": 13,
+      "modes": [
+        "pbn"
+      ],
+      "cover": null,
+      "samples": [
+        {
+          "src": "zodiaco-chibi-1.webp",
+          "name": "Aries",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "zodiaco-chibi-2.webp",
+          "name": "Leo",
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "zodiaco-chibi-3.webp",
+          "name": "Sagitario",
+          "width": 320,
+          "height": 320
+        }
+      ],
+      "tagline": {
+        "es": "El lado más tierno del zodíaco",
+        "en": "The softer side of the zodiac"
+      },
+      "description": {
+        "es": "13 personajes zodiacales en estilo chibi para pintar por número. Una versión tierna y colorida de los signos, llena de pequeños detalles.",
+        "en": "13 zodiac characters in chibi style for paint by number. A cute, colorful take on the signs, filled with little details."
+      },
+      "tags": {
+        "es": [
+          "13 láminas",
+          "Pintar por número",
+          "Estilo chibi"
+        ],
+        "en": [
+          "13 sheets",
+          "Paint by Number",
+          "Chibi style"
+        ]
+      }
+    }
+  ]
+}

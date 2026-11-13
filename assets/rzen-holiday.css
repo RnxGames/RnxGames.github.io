@@ -66,3 +66,22 @@ html[lang=es] .hero h1{font-size:clamp(2.7rem,4.4vw,4.2rem)}.art-tag{bottom:110p
 .launch-copy .eyebrow{margin-bottom:15px}.launch-copy h2{font-size:clamp(1.8rem,3.3vw,2.7rem);margin-bottom:18px}.launch-copy p{font-size:14px;line-height:1.8;margin-bottom:22px}
 .launch-current{display:inline-block;font-size:12px;font-weight:700;text-underline-offset:4px;line-height:1.6}
 @media(max-width:620px){.launch-section{padding-top:12px;padding-bottom:0}.launch-panel{grid-template-columns:1fr;gap:25px;padding:25px 22px}.launch-date{display:grid;grid-template-columns:80px minmax(0,1fr);gap:5px 16px;text-align:left;align-items:center;border-right:0;border-bottom:1px solid var(--line);padding:0 0 23px}.launch-date>span{grid-column:2;grid-row:1;font-size:9px;letter-spacing:.07em;align-self:end}.launch-date strong{grid-column:1;grid-row:1/3;font-size:65px;line-height:1.1}.launch-date time{grid-column:2;grid-row:2;font-size:16px;align-self:start}.launch-copy h2{font-size:30px}.launch-copy p{font-size:14px}.launch-current{font-size:13px;min-height:44px}}
+
+/* Evergreen Legacy collection showcase. */
+.collection-stats{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:20px;max-width:850px;margin:0 auto 38px;padding:22px 0;border-block:1px solid var(--line)}
+.collection-stats>div{display:flex;align-items:center;justify-content:center;gap:12px}
+.collection-stats strong{font:500 31px/1.2 'Lora',Georgia,serif;color:var(--gold)}
+.collection-stats span{font-size:11px;line-height:1.6;color:var(--muted);max-width:20ch}
+.collection-featured{grid-column:1/-1;display:grid;grid-template-columns:1.15fr 1fr;align-items:center}
+.collection-cover{min-width:0;overflow:hidden}
+.collection-cover .pack-cover-image{width:100%;height:auto;aspect-ratio:1000/563;object-fit:contain}
+.pack-samples{aspect-ratio:1000/563;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:10px;padding:25px 22px;background:linear-gradient(135deg,#221d40,#633668)}
+.pack-samples.zodiaco-chibi{background:linear-gradient(135deg,#fce1ee,#ddf1f8)}
+.collection-card .pack-samples img{width:100%;height:100%;max-height:245px;aspect-ratio:auto;object-fit:contain;filter:drop-shadow(0 7px 10px #0002)}
+.pack-samples.zodiaco-pixel img{image-rendering:pixelated}
+.pack-examples{margin-top:18px;border-top:1px solid var(--line)}
+.pack-examples summary{font:700 12px/1.5 'Manrope',system-ui,sans-serif;padding:12px 0;min-height:44px}
+.pack-example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:3px 0 14px}
+.collection-card .pack-example-grid img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:5px;background:var(--bg)}
+@media(max-width:899px){.collection-featured{grid-template-columns:1fr}.collection-featured .collection-body{padding:24px}.collection-stats{gap:12px}.collection-stats strong{font-size:26px}}
+@media(max-width:620px){.collection-featured{grid-template-columns:1fr}.collection-featured .collection-body{padding:22px 20px}.collection-stats{grid-template-columns:1fr 1fr;gap:18px 14px;padding:20px 0;margin-bottom:27px}.collection-stats>div{justify-content:flex-start;gap:11px}.collection-stats>div:last-child{grid-column:1/-1}.collection-stats strong{font-size:29px}.collection-stats span{font-size:12px;max-width:none}.collection-stats>div:last-child strong{font-size:23px}.pack-samples{padding:18px 16px;gap:8px}.pack-examples summary{font-size:13px}.pack-example-grid{gap:8px}.collection-body .eyebrow{font-size:10px}}
