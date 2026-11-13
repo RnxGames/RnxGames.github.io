@@ -1,0 +1,43 @@
+/* Presentation animations copied from the app snapshot; see app-previews/provenance.json. */
+.md-family-thumb{position:relative;width:88px;height:88px;border-radius:32px;background-size:cover;background-position:center;overflow:hidden;border:3px solid rgba(255,255,255,.94);box-shadow:0 5px 13px rgba(44,29,72,.2),0 0 0 1px var(--fam-glow);transform:translateX(-11px) translateZ(0);transition:transform .25s ease,filter .25s ease}
+.md-family-thumb::after{content:"✦";position:absolute;right:5px;top:3px;color:#fff6a9;font-size:11px;text-shadow:0 0 7px #fff,0 0 10px var(--fam);animation:mdSparkle 2.1s ease-in-out infinite;pointer-events:none}
+.md-thumb-trad{background:radial-gradient(circle,#fff 0 38%,var(--fam-soft) 72%)}
+.md-thumb-trad::before{content:"";position:absolute;inset:2px;background:url('./app-previews/traditional.webp') center/contain no-repeat;border-radius:50%;animation:mdMandalaTurn 10s linear infinite;}
+.md-thumb-illustration{background-image:url('./app-previews/illustrations.webp');background-size:contain;background-repeat:no-repeat;background-color:#fff8ee;animation:mdIllustrationFloat 3.4s ease-in-out infinite}
+.md-thumb-illustration::before{content:"";position:absolute;inset:-8px;background:radial-gradient(circle at 20% 25%,#fff7a8 0 2px,transparent 3px),radial-gradient(circle at 77% 22%,#fff 0 2px,transparent 3px),radial-gradient(circle at 70% 80%,#ffd45d 0 2px,transparent 3px);animation:mdSparkle 2.4s ease-in-out infinite}
+.md-thumb-reveal{background-image:url('./app-previews/reveal.webp');background-size:contain;background-repeat:no-repeat;background-color:#eef1ff}
+.md-thumb-reveal::before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.75) 0 6%,transparent 28%),repeating-linear-gradient(125deg,rgba(255,255,255,.18) 0 3px,rgba(255,255,255,0) 3px 7px),linear-gradient(145deg,#c9c1ea,#e9e4f8 55%,#b8aedd);clip-path:polygon(0 0,100% 0,100% 100%,0 100%);animation:mdFamilyReveal 5.6s ease-in-out infinite}
+.md-thumb-reveal::after{content:"✦";animation:mdFamilyRevealSpark 5.6s ease-in-out infinite}
+.md-magic-thumb{background:#fff url('./app-previews/magic-color.webp') center/contain no-repeat}
+.md-magic-thumb::before{content:"";position:absolute;inset:0;background:url('./app-previews/magic-color.webp') center/contain no-repeat;filter:grayscale(1) contrast(1.05);animation:mdMagicCover 5.2s ease-in-out infinite}
+.md-magic-thumb::after{z-index:3}
+.md-thumb-pbn{background-image:url('./app-previews/by-number.webp');background-size:contain;background-repeat:no-repeat;background-color:#f2fff9}
+.md-thumb-pbn::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(76,215,190,.36) 48%,transparent 70%);transform:translateX(-125%);animation:mdPbnArtSweep 3.6s ease-in-out infinite}
+.md-thumb-vida{background-image:url('./app-previews/comes-alive.webp');background-size:contain;background-repeat:no-repeat;background-color:#fff8e9;animation:mdVidaFloat 6s ease-in-out infinite}
+.md-thumb-vida::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.72) 46%,transparent 66%);transform:translateX(-130%);animation:mdVidaShine 4s ease-in-out infinite}
+.md-family-free-glyph{width:82px;height:66px;transform:translateX(-8px);border-radius:24px;background:linear-gradient(135deg,#ffe8bd,#ffc671);display:flex;align-items:center;justify-content:center;color:#9e5817;font-size:28px;font-weight:800;overflow:hidden}
+.md-family-free-glyph svg{width:56px;height:45px}
+.md-family-free-glyph path:first-child{stroke-dasharray:150;animation:mdFreeStroke 2.8s ease-in-out infinite}
+.md-family-free-glyph path:last-child{transform-origin:center;animation:mdFreeWiggle 2.8s ease-in-out infinite}
+@keyframes mdMandalaTurn{to{transform:rotate(360deg)}}
+@keyframes mdIllustrationFloat{0%,100%{transform:translateY(2px) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+@keyframes mdSparkle{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(90deg)}}
+@keyframes mdVidaFloat{0%,44%{transform:translateY(0) rotate(0deg)}56%{transform:translateY(-7px) rotate(-4deg)}72%{transform:translateY(-3px) rotate(3deg)}88%{transform:translateY(-6px) rotate(-2deg)}100%{transform:translateY(0) rotate(0deg)}}
+@keyframes mdMagicCover{0%,12%{clip-path:inset(0)}48%,68%{clip-path:inset(0 100% 0 0)}92%,100%{clip-path:inset(0)}}
+@keyframes mdPbnArtSweep{0%,18%{transform:translateX(-125%)}64%,100%{transform:translateX(130%)}}
+@keyframes mdFamilyReveal{0%,13%{clip-path:inset(0 0 0 0)}45%,66%{clip-path:inset(0 0 0 82%)}92%,100%{clip-path:inset(0 0 0 0)}}
+@keyframes mdFamilyRevealSpark{0%,12%,92%,100%{opacity:0;transform:translateX(-45px) scale(.5)}42%,66%{opacity:1;transform:translateX(44px) scale(1.15)}}
+@keyframes mdVidaShine{0%,35%{transform:translateX(-130%)}70%,100%{transform:translateX(150%)}}
+@keyframes mdFreeStroke{0%,10%{stroke-dashoffset:150}60%,82%{stroke-dashoffset:0}100%{stroke-dashoffset:150}}
+@keyframes mdFreeWiggle{0%,10%{transform:translate(-9px,3px) rotate(-5deg)}60%,82%{transform:translate(9px,-3px) rotate(3deg)}100%{transform:translate(-9px,3px) rotate(-5deg)}}
+@keyframes asmTL{0%{transform:translate(-23px,-23px) scale(.88);opacity:.32}33%,70%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(-23px,-23px) scale(.88);opacity:.32}}
+@keyframes asmTR{0%{transform:translate(23px,-23px) scale(.88);opacity:.32}33%,70%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(23px,-23px) scale(.88);opacity:.32}}
+@keyframes asmBL{0%{transform:translate(-23px,23px) scale(.88);opacity:.32}33%,70%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(-23px,23px) scale(.88);opacity:.32}}
+@keyframes asmBR{0%{transform:translate(23px,23px) scale(.88);opacity:.32}33%,70%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(23px,23px) scale(.88);opacity:.32}}
+@keyframes slideRt{0%,8%{transform:translateX(0)}28%,46%{transform:translateX(46px)}66%,100%{transform:translateX(0)}}
+@keyframes slideDn{0%,54%{transform:translateY(0)}70%,86%{transform:translateY(46px)}100%{transform:translateY(0)}}
+@keyframes swapTileA{0%,12%,100%{transform:translate(0,0) scale(1)}20%{transform:translate(0,0) scale(.88)}42%,68%{transform:translate(92px,92px) scale(.92)}78%{transform:translate(92px,92px) scale(1)}88%{transform:translate(0,0) scale(.92)}}
+@keyframes swapTileB{0%,12%,100%{transform:translate(0,0) scale(1)}20%{transform:translate(0,0) scale(.88)}42%,68%{transform:translate(-92px,-92px) scale(.92)}78%{transform:translate(-92px,-92px) scale(1)}88%{transform:translate(0,0) scale(.92)}}
+@keyframes swapSelect{0%,100%{opacity:.18;transform:scale(.88)}20%,72%{opacity:1;transform:scale(1.08)}84%{opacity:.25;transform:scale(.94)}}
+@keyframes pzGlowPulse{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:.95;transform:scale(1.06)}}
+@keyframes pzSpark{0%{transform:translate(0,0) scale(.6);opacity:0}25%{opacity:.95}60%{opacity:.5}100%{transform:translate(var(--sx,6px),var(--sy,-12px)) scale(1.25);opacity:0}}

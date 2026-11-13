@@ -134,6 +134,33 @@ COPY = {
 
 APPLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12c0-2 1.5-3.1 1.6-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3-.8C6.5 7.1 4 9 4 12.8c0 2.4.9 4.9 2 6.5.9 1.3 1.7 2.4 2.9 2.4s1.7-.8 3.2-.8 1.9.8 3.2.8 2.1-1.1 2.9-2.3c1-1.4 1.4-2.8 1.4-2.9-.1 0-2.6-1-2.6-4.5ZM14.8 5.5c.7-.9 1.2-2.1 1.1-3.3-1 .1-2.3.7-3 1.6-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.5 3-1.4Z"/></svg>'
 
+PREVIEWS = json.loads((ROOT / 'assets/app-previews/markup.json').read_text(encoding='utf-8'))
+MODE_KEYS = ['traditional', 'puzzles', 'illustrations', 'by-number', 'magic-color', 'comes-alive', 'reveal', 'free']
+COPY['en']['modes'].extend([
+ ['Reveal', 'Brush gently across a hidden picture and uncover its colors.', '', ''],
+ ['Free Drawing', 'Begin with a blank canvas and follow your own ideas, colors and brushstrokes.', '', '']
+])
+COPY['es']['modes'].extend([
+ ['Revelar', 'Pasa suavemente el pincel por una imagen oculta y descubre sus colores.', '', ''],
+ ['Dibujo libre', 'Empieza con un lienzo en blanco y sigue tus ideas, colores y pinceladas.', '', '']
+])
+
+def mode_cards(c, es):
+ cards = []
+ for i, ((title, description, _, _), key) in enumerate(zip(c['modes'], MODE_KEYS)):
+  label = ('Vista animada de ' if es else 'Animated preview: ') + title
+  controls = ''
+  if key == 'puzzles':
+   art = ''.join(PREVIEWS['puzzle-' + kind] for kind in ['classic','slide','swap'])
+   controls = '<div class="app-puzzle-choices" role="group" aria-label="' + ('Tipo de puzzle' if es else 'Puzzle type') + '">'
+   for kind, icon, name in zip(['classic','slide','swap'], ['◈','↕','⇄'], ['Clásico','Deslizar','Intercambiar'] if es else ['Classic','Slide','Swap']):
+    controls += f'<button type="button" data-puzzle-choice="{kind}" aria-pressed="{str(kind == "classic").lower()}" aria-label="{name}" title="{name}"><span aria-hidden="true">{icon}</span><span class="preview-choice-label">{name}</span></button>'
+   controls += '</div>'
+  else:
+   art = PREVIEWS[key]
+  cards.append(f'<article class="mode" data-app-mode="{key}"><div class="mode-picture app-mode-preview" data-preview-active="true"><div class="app-preview-visual" role="img" aria-label="{escape(label)}"><div class="app-preview-content" aria-hidden="true">{art}</div></div>{controls}</div><span class="mode-index">0{i+1} / R-ZEN</span><h3>{escape(title)}</h3><p>{escape(description)}</p></article>')
+ return ''.join(cards)
+
 def build(lang):
  c = COPY[lang]
  es = lang == 'es'
@@ -144,7 +171,7 @@ def build(lang):
   return f'<a class="button {classes}" href="{STORE}" target="_blank" rel="noopener" data-download>{APPLE}{escape(label or c["download"])}</a>'
  updates = ''.join(f'<article class="release-row"><span>{escape(n)}</span><div><h3>{escape(h)}</h3><p>{escape(p)}</p></div></article>' for n,h,p in c['updates'])
  collections = ''.join(f'<article class="collection-card"><img src="./assets/v3/{image}.webp" width="1000" height="563" alt="{escape(a[0])}" loading="lazy" decoding="async"><div class="collection-body"><div class="eyebrow">{escape(a[1])}</div><h3>{escape(a[0])}</h3><p>{escape(a[2])}</p><div class="chips">'+''.join(f'<span>{escape(v)}</span>' for v in a[3:])+'</div></div></article>' for a,image in zip(c['collections'],['noir','memory']))
- modes = ''.join(f'<article class="mode"><div class="mode-picture"><img src="./assets/{img}" width="600" height="400" alt="{escape(alt)}" loading="lazy" decoding="async"></div><span class="mode-index">0{i+1} / R-ZEN</span><h3>{escape(h)}</h3><p>{escape(p)}</p></article>' for i,(h,p,img,alt) in enumerate(c['modes']))
+ modes = mode_cards(c, es)
  gallery = ''.join(f'<figure><a class="screenshot-button" style="display:block" href="./assets/v2/full/{image}.jpg" data-screenshot aria-label="{escape(c["viewImage"]+caption)}"><img src="./assets/v2/{image}.jpg" width="{w}" height="{h}" alt="{escape(caption)}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)}</figcaption></figure>' for image,caption,w,h in zip(['iphone-canada','ipad-mandalas','iphone-packs','ipad-diary'],c['gallery'],[460,640,460,640],[996,853,996,853]))
  rituals = ''.join(f'<article class="ritual-step"><b>{n}</b><div><h3>{escape(h)}</h3><p>{escape(p)}</p></div></article>' for n,h,p in c['rituals'])
  faqs = ''.join(f'<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q,a in c['faqs'])
@@ -170,8 +197,10 @@ def build(lang):
 <meta name="theme-color" content="#f7f5ee"><link rel="icon" href="./assets/logo.png"><link rel="apple-touch-icon" href="./assets/logo.png"><link rel="manifest" href="./site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>try{{const t=localStorage.getItem('rzen-web-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}}catch{{}}</script>
-<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-mobile-v2">
-<script src="./assets/rzen-holiday.js?v=20261113-mobile-v2" defer></script>
+<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-animations">
+<link rel="stylesheet" href="./assets/app-previews.css?v=20261113-animations">
+<link rel="stylesheet" href="./assets/app-preview-layout.css?v=20261113-animations">
+<script src="./assets/rzen-holiday.js?v=20261113-animations" defer></script>
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script>
 <noscript><style>@media(max-width:899px){{.nav-links{{position:static;display:flex;flex-wrap:wrap;padding:12px 0;border:0}}.nav{{flex-wrap:wrap}}}}.tools{{margin-left:auto}}</style></noscript>
 </head>
@@ -192,7 +221,7 @@ def build(lang):
 <div class="trust">{''.join(f'<div><span aria-hidden="true">{icon}</span>{escape(label)}</div>' for icon,label in zip(['✧','↟','◎','◇'],c['trust']))}</div></div></section>
 <section class="section" id="whats-new"><div class="wrap release"><div class="release-intro"><div class="eyebrow">{c['releaseEye']}</div><h2>{c['releaseTitle']}</h2><p>{c['releaseLede']}</p><a class="button secondary small" href="#collections">{c['releaseLink']}</a></div><div class="release-list">{updates}</div></div></section>
 <section class="section collections" id="collections"><div class="wrap"><div class="section-head center"><div class="eyebrow">{c['collectionEye']}</div><h2>{c['collectionTitle']}</h2><p>{c['collectionLede']}</p></div><div class="collection-grid">{collections}</div><p class="collection-note">{c['collectionNote']}</p></div></section>
-<section class="section" id="explore"><div class="wrap"><div class="section-head"><div class="eyebrow">{c['modesEye']}</div><h2>{c['modesTitle']}</h2><p>{c['modesLede']}</p></div><div class="modes-grid">{modes}</div>
+<section class="section" id="explore"><div class="wrap"><div class="section-head"><div class="eyebrow">{c['modesEye']}</div><h2>{c['modesTitle']}</h2><p>{c['modesLede']}</p></div><div class="app-preview-toolbar"><button class="button secondary small" type="button" data-preview-motion aria-pressed="false" hidden>{'Pausar animaciones' if es else 'Pause animations'}</button></div><div class="modes-grid">{modes}</div>
 <article class="journal"><div class="journal-art" aria-hidden="true"><img src="./assets/v25/bunny-pie-autumn.webp" width="400" height="500" alt="" loading="lazy" decoding="async"><img src="./assets/v25/koala-flowers-spring.webp" width="400" height="500" alt="" loading="lazy" decoding="async"></div><div><div class="eyebrow">{c['journalEye']}</div><h3>{c['journalTitle']}</h3><p>{c['journalText']}</p><div class="player"><button type="button" data-play aria-label="{c['play']}" aria-pressed="false">▶</button><span>{c['music']}</span><label class="sr-only" for="track">{c['trackLabel']}</label><select id="track" data-track><option value="./assets/song-1.mp3">Soft Focus</option><option value="./assets/song-2.mp3">Whispering Bamboo</option></select></div><audio preload="none" src="./assets/song-1.mp3"></audio><p class="fine" data-audio-status role="status"></p></div></article></div></section>
 <section class="section" id="gallery" style="padding-top:0"><div class="wrap"><div class="section-head center"><div class="eyebrow">{c['galleryEye']}</div><h2>{c['galleryTitle']}</h2><p>{c['galleryLede']}</p></div><div class="gallery">{gallery}</div></div></section>
 <section class="section ritual" id="new-year"><div class="wrap ritual-grid"><div><div class="eyebrow">{c['ritualEye']}</div><h2>{c['ritualTitle']}</h2><p>{c['ritualLede']}</p></div><div class="ritual-steps">{rituals}</div></div></section>

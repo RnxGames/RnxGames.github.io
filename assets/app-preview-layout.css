@@ -1,0 +1,45 @@
+/* Website framing only. Original artwork, motion curves and timing are in app-previews.css. */
+.app-preview-toolbar{display:flex;justify-content:flex-end;margin:-8px 0 24px}
+.app-preview-toolbar .button{min-height:44px;font-size:12px;cursor:pointer}
+.app-mode-preview{--fam:#8351ee;--fam-dark:#5530b5;--fam-soft:#eadcff;--fam-glow:rgba(131,81,238,.3);--puzzle-scale:1.05;isolation:isolate}
+.app-preview-visual,.app-preview-content{position:absolute;inset:0;display:grid;place-items:center}
+.app-preview-content{isolation:isolate}
+.app-mode-preview .md-family-thumb{display:block;width:82%;max-width:180px;height:auto;aspect-ratio:1;margin:0;transform:none;border-radius:35px;flex:none}
+.app-mode-preview .md-family-thumb::after{font-size:16px;right:9px;top:7px}
+.app-mode-preview .md-family-free-glyph{display:block;width:83%;max-width:190px;height:auto;aspect-ratio:100/70;transform:none;border-radius:26px}
+.app-mode-preview .md-family-free-glyph svg{display:block;width:100%;height:100%;overflow:visible}
+[data-app-mode=illustrations] .app-mode-preview{--fam:#8351ee;--fam-soft:#eadcff;background:var(--soft)!important}
+[data-app-mode=traditional] .app-mode-preview{background:var(--soft)!important}
+[data-app-mode=reveal] .app-mode-preview,[data-app-mode=magic-color] .app-mode-preview{--fam:#2d83ef;--fam-dark:#15529d;--fam-soft:#dcecff;--fam-glow:rgba(35,118,226,.29)}
+[data-app-mode=by-number] .app-mode-preview,[data-app-mode=comes-alive] .app-mode-preview{--fam:#25b9aa;--fam-dark:#116e69;--fam-soft:#d7fff5;--fam-glow:rgba(28,169,154,.28)}
+[data-app-mode=free] .app-mode-preview{--fam:#ef9b38;--fam-dark:#9a5617;--fam-soft:#fff0d8;--fam-glow:rgba(232,137,43,.3)}
+[data-app-mode=puzzles] .app-preview-visual{bottom:38px}
+.app-puzzle-demo{position:absolute!important;inset:0;width:100%!important;height:100%!important}
+.app-puzzle-demo[hidden]{display:none!important}
+.app-puzzle-choices{position:absolute;z-index:3;bottom:8px;left:5px;right:5px;display:flex;align-items:center;justify-content:center;gap:4px}
+.app-puzzle-choices button{display:flex;align-items:center;justify-content:center;gap:4px;min-height:34px;padding:5px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:700 11px/1.3 'Manrope',system-ui,sans-serif;cursor:pointer}
+.app-puzzle-choices button[aria-pressed=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.app-puzzle-choices button>span:first-child{font-size:14px}
+.app-puzzle-demo[hidden] *,.app-puzzle-demo[hidden] *::before,.app-puzzle-demo[hidden] *::after,
+.app-mode-preview[data-preview-active=false] *,.app-mode-preview[data-preview-active=false] *::before,.app-mode-preview[data-preview-active=false] *::after,
+#explore[data-preview-paused=true] .app-mode-preview *,#explore[data-preview-paused=true] .app-mode-preview *::before,#explore[data-preview-paused=true] .app-mode-preview *::after,
+#explore[data-preview-hidden=true] .app-mode-preview *,#explore[data-preview-hidden=true] .app-mode-preview *::before,#explore[data-preview-hidden=true] .app-mode-preview *::after{animation-play-state:paused!important}
+@media(min-width:1200px){#explore .modes-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 22px}}
+@media(max-width:620px){
+ .app-preview-toolbar{justify-content:flex-start;margin:-6px 0 22px}
+ .app-preview-toolbar .button{font-size:13px;padding:11px 15px}
+ .app-mode-preview{--puzzle-scale:.7}
+ .app-mode-preview .md-family-thumb{width:83%;border-radius:25px;border-width:2px}
+ .app-mode-preview .md-family-thumb::after{font-size:12px}
+ .app-mode-preview .md-family-free-glyph{width:83%;border-radius:18px}
+ [data-app-mode=puzzles] .app-preview-visual{bottom:38px}
+ .app-puzzle-choices{gap:4px;bottom:5px}
+ .app-puzzle-choices button{min-width:34px;min-height:34px;padding:5px 7px}
+ .preview-choice-label{display:none}
+}
+@media(max-width:359px){.app-mode-preview{--puzzle-scale:.56}.app-puzzle-choices button{min-width:30px;min-height:32px;padding:4px 6px}}
+@media(prefers-reduced-motion:reduce){
+ .app-mode-preview *,.app-mode-preview *::before,.app-mode-preview *::after{animation:none!important;transition:none!important}
+ .app-mode-preview .md-magic-thumb::before,.app-mode-preview .md-thumb-reveal::before{display:none}
+ .app-preview-toolbar button:disabled{cursor:default;opacity:.8}
+}

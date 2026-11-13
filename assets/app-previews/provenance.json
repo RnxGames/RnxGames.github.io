@@ -1,0 +1,55 @@
+{
+  "source": "R-Zen app index.html (local read-only snapshot)",
+  "sourceSha256": "dbe7afe0368a8a111189b9fec40417546a38f5a3d61a8ab2ff35677a1451195f",
+  "animationNames": [
+    "mdMandalaTurn",
+    "mdIllustrationFloat",
+    "mdSparkle",
+    "mdVidaFloat",
+    "mdMagicCover",
+    "mdPbnArtSweep",
+    "mdFamilyReveal",
+    "mdFamilyRevealSpark",
+    "mdVidaShine",
+    "mdFreeStroke",
+    "mdFreeWiggle",
+    "asmTL",
+    "asmTR",
+    "asmBL",
+    "asmBR",
+    "slideRt",
+    "slideDn",
+    "swapTileA",
+    "swapTileB",
+    "swapSelect",
+    "pzGlowPulse",
+    "pzSpark"
+  ],
+  "assets": [
+    {
+      "file": "by-number.webp",
+      "sha256": "75445b51356da8e45113ea6da0c69b0eabf060945d2e486b2182e8148502afc4"
+    },
+    {
+      "file": "comes-alive.webp",
+      "sha256": "e94d9c0487fca314858c2f7e113942fcf93bdb5fd38555c7eee587238a774c03"
+    },
+    {
+      "file": "illustrations.webp",
+      "sha256": "9db5a815e9e2b0f00645ef53ac80cae0ba4b377d5928c9463bb3aeb1bdb84295"
+    },
+    {
+      "file": "magic-color.webp",
+      "sha256": "934898ae535db9d08b2736046d016d299a0766010a6c48928a5bef6588b39eec"
+    },
+    {
+      "file": "reveal.webp",
+      "sha256": "6c64be5649d7916666e61c51808eeba994ba48af59fb8016f505a3466c7a7d94"
+    },
+    {
+      "file": "traditional.webp",
+      "sha256": "844ef9c11c76e63f2da95a0e7868b6b551d161292a8a77efc7f76cbf0c01e4bb"
+    }
+  ],
+  "changes": "Presentation only; website wrapper sizing and local asset URLs. App files were read, never written."
+}

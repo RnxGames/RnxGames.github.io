@@ -58,4 +58,36 @@
     // Preserve the existing anonymous, disclosed website download-click counter.
     fetch('https://script.google.com/macros/s/AKfycbxjD3tsT3Jt5JaAjF0J_ga3QsPeEbixUgKTYe1nPhBSPMJ_nR-e7Z_8CDD3w36UMVzmnA/exec', { mode:'no-cors', keepalive:true }).catch(() => {});
   }));
+  const previewSection = document.querySelector('#explore');
+  const pausePreviews = document.querySelector('[data-preview-motion]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let previewsPaused = false;
+  function describePreviews() {
+    previewSection.dataset.previewPaused = String(previewsPaused || reducedMotion.matches);
+    pausePreviews.disabled = reducedMotion.matches;
+    pausePreviews.setAttribute('aria-pressed', String(previewsPaused || reducedMotion.matches));
+    pausePreviews.textContent = reducedMotion.matches
+      ? (es ? 'Movimiento reducido activado' : 'Reduced motion enabled')
+      : previewsPaused ? (es ? 'Reanudar animaciones' : 'Resume animations')
+      : (es ? 'Pausar animaciones' : 'Pause animations');
+  }
+  pausePreviews.hidden = false;
+  pausePreviews.addEventListener('click', () => { previewsPaused = !previewsPaused; describePreviews(); });
+  reducedMotion.addEventListener('change', describePreviews);
+  describePreviews();
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { entry.target.dataset.previewActive = String(entry.isIntersecting); });
+    }, { threshold:0.1 });
+    document.querySelectorAll('.app-mode-preview').forEach(preview => observer.observe(preview));
+  }
+  function pageVisibility() { previewSection.dataset.previewHidden = String(document.hidden); }
+  document.addEventListener('visibilitychange', pageVisibility);
+  pageVisibility();
+  document.querySelectorAll('[data-puzzle-choice]').forEach(button => button.addEventListener('click', () => {
+    const kind = button.dataset.puzzleChoice;
+    const card = button.closest('[data-app-mode="puzzles"]');
+    card.querySelectorAll('[data-puzzle-kind]').forEach(demo => { demo.hidden = demo.dataset.puzzleKind !== kind; });
+    card.querySelectorAll('[data-puzzle-choice]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+  }));
 })();
