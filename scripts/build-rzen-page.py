@@ -7,19 +7,19 @@ ROOT = Path(__file__).resolve().parent.parent
 STORE = 'https://apps.apple.com/app/id6786930057'
 COPY = {
  'en': {
-  'title':'R-Zen 3.0.1 — A little calm for Christmas & the New Year',
-  'description':'Make room for calm this Christmas and New Year with R-Zen 3.0.1: puzzles, coloring, Magic Color, collectible journal cards and the Noir Nights and Day of the Dead collections. For iPhone and iPad.',
-  'announcement':'Christmas & New Year · A season to slow down', 'skip':'Skip to content',
-  'nav':['What’s new','Explore','Collections','FAQ'], 'download':'Download on the App Store', 'shortDownload':'Get R-Zen',
-  'eyebrow':'The holiday edition · R-Zen 3.0.1',
+  'title':'R-Zen 3.2 — Christmas update coming December 2026',
+  'description':'R-Zen 3.2 arrives in December 2026 with a Christmas-themed update. Discover the next chapter, or download the current version 3.0.1 for iPhone and iPad.',
+  'announcement':'R-Zen 3.2 · Coming December 2026', 'skip':'Skip to content',
+  'nav':['Coming 3.2','Explore','Collections','FAQ'], 'download':'Download on the App Store', 'shortDownload':'Get R-Zen',
+  'eyebrow':'Next release · Christmas & New Year',
   'hero':'A little color.<br>A little wonder.<br><em>A moment for you.</em>',
-  'lede':'Between the Christmas lights and new beginnings, make a little room for yourself. Color, piece together a puzzle, and find your own kind of calm.',
-  'explore':'Discover R-Zen', 'heroNote':'Free to download · Made for iPhone & iPad',
+  'lede':'A new season of calm is on its way. R-Zen 3.2 arrives in December with a Christmas theme to welcome the holidays and the New Year.',
+  'explore':'Discover R-Zen', 'heroNote':'Coming in December 2026 · Version 3.0.1 available now',
   'artTag':'A quieter kind of holiday.', 'artAlt':'Illustrated snowy lakeside cabin and Christmas tree, with warm golden lights among evergreen trees.',
-  'versionNote':'Now available<br>More calm. Smoother galleries.',
+  'versionNote':'Next release<br>December 2026',
   'trust':['No ads. No accounts.','Create offline','8 app languages','Optional one-time Premium'],
-  'releaseEye':'The latest chapter', 'releaseTitle':'New memories.<br>A smoother journey.',
-  'releaseLede':'R-Zen 3.0 brought Nights of Light and Memory. Version 3.0.1 makes exploring your puzzle galleries lighter and more stable.',
+  'releaseEye':'Available now · R-Zen 3.0.1', 'releaseTitle':'New memories.<br>A smoother journey.',
+  'releaseLede':'While we prepare the next chapter, enjoy R-Zen 3.0.1 today: smoother puzzle galleries, plus the collections and collectible cards introduced in 3.0.',
   'releaseLink':'Meet the collections ↓',
   'updates':[
    ['01 / 3.0.1','Less loading. More unwinding.','Puzzle galleries load pictures as they come into view, using less memory and helping prevent unexpected reloads on iPhone and iPad.'],
@@ -52,7 +52,7 @@ COPY = {
   'ritualLede':'A quiet Christmas morning. A pause between celebrations. The first page of a new year. There is no perfect time to begin—just a moment that is yours.',
   'rituals':[['01','Pick something small','One color, one puzzle, one journal entry. Start wherever you feel like it.'],['02','Make yourself at home','Choose your music and take your time. There is nothing to keep up with.'],['03','Keep a little memory','Save your creation, return to it tomorrow, or begin something new.']],
   'downloadEye':'Your next quiet moment', 'downloadTitle':'Give yourself<br>a little room to breathe.',
-  'downloadText':'Start with a free selection across the main creative modes. Unlock more with an optional one-time Premium purchase. No subscriptions.',
+  'downloadText':'Version 3.0.1 is available now. Start with a free selection across the main creative modes. Unlock more with an optional one-time Premium purchase. No subscriptions.',
   'downloadFine':'iPhone & iPad · 8 app languages · No ads or accounts',
   'historyTitle':'Earlier chapters · Halloween & the seasons', 'historyEye':'Previous update · R-Zen 2.8',
   'historyName':'Cozy Halloween', 'historyText':'A previous chapter, still part of R-Zen’s seasonal world. Enchanted Night is optional and never switches on automatically.',
@@ -63,25 +63,25 @@ COPY = {
    ['Is R-Zen free?','R-Zen is free to download and includes a selection of content in the main modes. Premium is an optional one-time purchase, with no subscription. Prices are shown in the App Store and inside the app.'],
    ['Can I use it offline?','The included creative content works offline. Optional packs need an internet connection to download; once saved on your device, you can use them offline too. Purchases and external links also need a connection.'],
    ['What changed in version 3.0.1?','This update improves stability and memory use in puzzle galleries. The new collections and collectible journal cards were introduced in version 3.0.'],
-   ['Are there new Christmas packs?','This page has a special Christmas and New Year design. The collections featured here are Noir Nights and Day of the Dead, introduced in R-Zen 3.0. The holiday illustration is website artwork.'],
+   ['When is R-Zen 3.2 coming?','R-Zen 3.2 arrives in December 2026 with a Christmas-themed update. The exact date and full details will be shared closer to launch. Version 3.0.1 is available now.'],
    ['Which languages does the app support?','Spanish, English, Portuguese, French, Italian, Japanese, German and Vietnamese. This website is available in English and Spanish.']
   ],
   'footerMessage':'May your days be a little more colorful.', 'footerLinks':['Support & FAQ','Privacy','Terms of Use'], 'studio':'An independent app by RnxGames', 'rights':'All rights reserved.', 'close':'Close image', 'viewImage':'View image: ',
  },
  'es': {
-  'title':'R-Zen 3.0.1 — Un poco de calma en Navidad y Año Nuevo',
-  'description':'Haz espacio para la calma esta Navidad y Año Nuevo con R-Zen 3.0.1: puzzles, colorear, Color mágico, cartas coleccionables del diario y las colecciones Noches Noir y Día de Muertos. Para iPhone y iPad.',
-  'announcement':'Navidad y Año Nuevo · Una temporada para ir despacio', 'skip':'Saltar al contenido',
-  'nav':['Novedades','Explorar','Colecciones','Preguntas'], 'download':'Descárgala en la App Store', 'shortDownload':'Descargar R-Zen',
-  'eyebrow':'Edición de fiestas · R-Zen 3.0.1',
+  'title':'R-Zen 3.2 — La actualización navideña llega en diciembre de 2026',
+  'description':'R-Zen 3.2 llegará en diciembre de 2026 con una actualización de temática navideña. Descubre el próximo capítulo o descarga la versión actual 3.0.1 para iPhone y iPad.',
+  'announcement':'R-Zen 3.2 · Próximo lanzamiento: diciembre de 2026', 'skip':'Saltar al contenido',
+  'nav':['Próxima 3.2','Explorar','Colecciones','Preguntas'], 'download':'Descárgala en la App Store', 'shortDownload':'Descargar R-Zen',
+  'eyebrow':'Próximo lanzamiento · Navidad y Año Nuevo',
   'hero':'Un poco de color.<br>Un poco de magia.<br><em>Un momento para ti.</em>',
-  'lede':'Entre las luces de Navidad y los nuevos comienzos, haz un pequeño espacio para ti. Colorea, arma un puzzle y encuentra tu propia forma de desconectar.',
-  'explore':'Descubre R-Zen', 'heroNote':'Gratis para descargar · Para iPhone y iPad',
+  'lede':'Una nueva temporada de calma está en camino. R-Zen 3.2 llegará en diciembre con una temática navideña para acompañarte durante las fiestas y el Año Nuevo.',
+  'explore':'Descubre R-Zen', 'heroNote':'Llega en diciembre de 2026 · Versión 3.0.1 disponible ahora',
   'artTag':'Unas fiestas con más calma.', 'artAlt':'Ilustración de una cabaña nevada junto a un lago y un árbol de Navidad, con luces doradas entre abetos.',
-  'versionNote':'Ya disponible<br>Más calma. Galerías más fluidas.',
+  'versionNote':'Próximo lanzamiento<br>Diciembre de 2026',
   'trust':['Sin anuncios ni cuentas','Crea sin conexión','8 idiomas en la app','Premium opcional de pago único'],
-  'releaseEye':'El capítulo más reciente', 'releaseTitle':'Nuevos recuerdos.<br>Un recorrido más fluido.',
-  'releaseLede':'R-Zen 3.0 presentó Noches de luz y memoria. La versión 3.0.1 hace que explorar tus galerías de puzzles sea más ligero y estable.',
+  'releaseEye':'Disponible ahora · R-Zen 3.0.1', 'releaseTitle':'Nuevos recuerdos.<br>Un recorrido más fluido.',
+  'releaseLede':'Mientras preparamos el próximo capítulo, disfruta de R-Zen 3.0.1: galerías de puzzles más fluidas y las colecciones y cartas coleccionables que llegaron con 3.0.',
   'releaseLink':'Conoce las colecciones ↓',
   'updates':[
    ['01 / 3.0.1','Menos carga. Más calma.','Las galerías de puzzles cargan las imágenes a medida que aparecen en pantalla: usan menos memoria y ayudan a evitar recargas inesperadas en iPhone y iPad.'],
@@ -114,7 +114,7 @@ COPY = {
   'ritualLede':'Una mañana tranquila de Navidad. Una pausa entre celebraciones. La primera página de un nuevo año. No hace falta un momento perfecto para empezar, solo uno que sea tuyo.',
   'rituals':[['01','Elige algo pequeño','Un color, un puzzle, unas líneas en el diario. Empieza por lo que te apetezca.'],['02','Haz tuyo el espacio','Elige tu música y tómate tu tiempo. No tienes que seguir el ritmo de nadie.'],['03','Guarda un recuerdo','Conserva tu creación, vuelve mañana o empieza algo nuevo.']],
   'downloadEye':'Tu próximo momento de calma', 'downloadTitle':'Regálate un espacio<br>para respirar.',
-  'downloadText':'Empieza con una selección gratuita en los principales modos creativos. Desbloquea más con Premium opcional de pago único. Sin suscripciones.',
+  'downloadText':'La versión 3.0.1 ya está disponible. Empieza con una selección gratuita en los principales modos creativos. Desbloquea más con Premium opcional de pago único. Sin suscripciones.',
   'downloadFine':'iPhone y iPad · 8 idiomas en la app · Sin anuncios ni cuentas',
   'historyTitle':'Capítulos anteriores · Halloween y las estaciones', 'historyEye':'Actualización anterior · R-Zen 2.8',
   'historyName':'Cozy Halloween', 'historyText':'Un capítulo anterior que sigue formando parte del mundo de temporada de R-Zen. Noche encantada es opcional y nunca se activa automáticamente.',
@@ -125,7 +125,7 @@ COPY = {
    ['¿R-Zen es gratis?','R-Zen es gratis para descargar e incluye una selección de contenido en los modos principales. Premium es una compra opcional de pago único, sin suscripción. El precio se muestra en la App Store y dentro de la app.'],
    ['¿Puedo usarla sin conexión?','El contenido creativo incluido funciona sin internet. Los packs opcionales necesitan conexión para descargarse; una vez guardados en tu dispositivo, también funcionan sin conexión. Las compras y los enlaces externos necesitan internet.'],
    ['¿Qué cambia en la versión 3.0.1?','Esta actualización mejora la estabilidad y el uso de memoria en las galerías de puzzles. Las nuevas colecciones y las cartas del diario llegaron con la versión 3.0.'],
-   ['¿Hay nuevos packs de Navidad?','Esta página tiene un diseño especial de Navidad y Año Nuevo. Las colecciones destacadas son Noches Noir y Día de Muertos, que llegaron con R-Zen 3.0. La ilustración navideña es arte para la web.'],
+   ['¿Cuándo llega R-Zen 3.2?','R-Zen 3.2 llegará en diciembre de 2026 con una actualización de temática navideña. La fecha exacta y todos los detalles se anunciarán más cerca del lanzamiento. La versión 3.0.1 ya está disponible.'],
    ['¿En qué idiomas está la app?','Español, inglés, portugués, francés, italiano, japonés, alemán y vietnamita. Esta web está disponible en inglés y español.']
   ],
   'footerMessage':'Que tus días tengan un poquito más de color.', 'footerLinks':['Ayuda y preguntas','Privacidad','Condiciones de uso'], 'studio':'Una app independiente de RnxGames', 'rights':'Todos los derechos reservados.', 'close':'Cerrar imagen', 'viewImage':'Ver imagen: ',
@@ -175,7 +175,7 @@ def build(lang):
  gallery = ''.join(f'<figure><a class="screenshot-button" style="display:block" href="./assets/v2/full/{image}.jpg" data-screenshot aria-label="{escape(c["viewImage"]+caption)}"><img src="./assets/v2/{image}.jpg" width="{w}" height="{h}" alt="{escape(caption)}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)}</figcaption></figure>' for image,caption,w,h in zip(['iphone-canada','ipad-mandalas','iphone-packs','ipad-diary'],c['gallery'],[460,640,460,640],[996,853,996,853]))
  rituals = ''.join(f'<article class="ritual-step"><b>{n}</b><div><h3>{escape(h)}</h3><p>{escape(p)}</p></div></article>' for n,h,p in c['rituals'])
  faqs = ''.join(f'<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q,a in c['faqs'])
- schema = {'@context':'https://schema.org','@type':'SoftwareApplication','name':'R-Zen Experience','softwareVersion':'3.0.1','operatingSystem':'iOS','applicationCategory':'LifestyleApplication','description':c['description'],'url':canonical,'downloadUrl':STORE,'image':'https://rnxgames.com/assets/logo.png','inLanguage':['es','en','pt','fr','it','ja','de','vi']}
+ schema = {'@context':'https://schema.org','@type':'SoftwareApplication','name':'R-Zen Experience','softwareVersion':'3.0.1','operatingSystem':'iOS','applicationCategory':'LifestyleApplication','description':('Un espacio para mandalas, puzzles, pintura por número, Color mágico y tu diario en iPhone y iPad.' if es else 'A calm space for mandalas, puzzles, paint by number, Magic Color and your journal on iPhone and iPad.'),'url':canonical,'downloadUrl':STORE,'image':'https://rnxgames.com/assets/logo.png','inLanguage':['es','en','pt','fr','it','ja','de','vi']}
  content = f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -197,28 +197,29 @@ def build(lang):
 <meta name="theme-color" content="#f7f5ee"><link rel="icon" href="./assets/logo.png"><link rel="apple-touch-icon" href="./assets/logo.png"><link rel="manifest" href="./site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>try{{const t=localStorage.getItem('rzen-web-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}}catch{{}}</script>
-<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-animations">
-<link rel="stylesheet" href="./assets/app-previews.css?v=20261113-animations">
-<link rel="stylesheet" href="./assets/app-preview-layout.css?v=20261113-animations">
-<script src="./assets/rzen-holiday.js?v=20261113-animations" defer></script>
+<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-next32">
+<link rel="stylesheet" href="./assets/app-previews.css?v=20261113-next32">
+<link rel="stylesheet" href="./assets/app-preview-layout.css?v=20261113-next32">
+<script src="./assets/rzen-holiday.js?v=20261113-next32" defer></script>
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script>
 <noscript><style>@media(max-width:899px){{.nav-links{{position:static;display:flex;flex-wrap:wrap;padding:12px 0;border:0}}.nav{{flex-wrap:wrap}}}}.tools{{margin-left:auto}}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">{c['skip']}</a>
-<div class="announcement"><a href="#new-year">✦ &nbsp; {c['announcement']} &nbsp; ✦</a></div>
+<div class="announcement"><a href="#next-release">✦ &nbsp; {c['announcement']} &nbsp; ✦</a></div>
 <header class="site-header"><div class="wrap nav">
 <a class="brand" href="./index.html"><img src="./assets/logo.png" width="42" height="42" alt=""><span><strong>R-Zen</strong><small>Experience</small></span></a>
-<nav class="nav-links" id="navigation" aria-label="{'Navegación principal' if es else 'Main navigation'}">{''.join(f'<a href="#{anchor}">{label}</a>' for anchor,label in zip(['whats-new','explore','collections','faq'],c['nav']))}</nav>
+<nav class="nav-links" id="navigation" aria-label="{'Navegación principal' if es else 'Main navigation'}">{''.join(f'<a href="#{anchor}">{label}</a>' for anchor,label in zip(['next-release','explore','collections','faq'],c['nav']))}</nav>
 <div class="tools"><a class="lang" href="./{other}" data-language lang="{'en' if es else 'es'}" hreflang="{'en' if es else 'es'}" aria-label="{'Read in English' if es else 'Leer en español'}">{'EN' if es else 'ES'}</a>
 <button class="icon-button" type="button" data-theme-toggle hidden aria-label="{'Cambiar tema' if es else 'Switch theme'}"><svg data-moon viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15A8 8 0 0 1 9 4a8 8 0 1 0 11 11Z"/></svg></button>
 <button class="icon-button menu-button" data-menu-toggle type="button" hidden aria-label="{'Menú' if es else 'Menu'}" aria-expanded="false" aria-controls="navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
 {button(c['shortDownload'],'small')}</div></header>
 <main id="main">
 <section class="hero" id="home" aria-labelledby="hero-title"><div class="wrap">
-<div class="hero-grid"><div class="hero-copy"><div class="eyebrow">{c['eyebrow']}</div><h1 id="hero-title">{c['hero']}</h1><p>{c['lede']}</p><div class="hero-actions">{button()}<a class="button secondary" href="#explore">{c['explore']} <span aria-hidden="true">↗</span></a></div><p class="hero-note">{c['heroNote']}</p></div>
-<div class="hero-art"><div class="hero-scene" role="img" aria-label="{escape(c['artAlt'])}"></div><div class="ornament" aria-hidden="true"><svg viewBox="0 0 80 130"><path d="M40 0v52m-7 0h14v9H33z"/><circle cx="40" cy="88" r="27"/><ellipse cx="40" cy="88" rx="12" ry="27"/><path d="M15 80h50M14 95h52M40 60v55M29 121h22"/><path d="m40 71 3 10 10 1-8 6 2 10-7-6-8 6 3-10-8-6 10-1Z"/></svg></div><div class="art-tag">{c['artTag']}</div><div class="version-tag"><b>3.0.1</b><span>{c['versionNote']}</span></div></div></div>
+<div class="hero-grid"><div class="hero-copy"><div class="eyebrow">{c['eyebrow']}</div><h1 id="hero-title">{c['hero']}</h1><p>{c['lede']}</p><div class="hero-actions"><a class="button" href="#next-release">{'Descubre lo que viene' if es else 'Discover what’s coming'} <span aria-hidden="true">↓</span></a>{button('Descargar 3.0.1' if es else 'Download 3.0.1','secondary')}</div><p class="hero-note">{c['heroNote']}</p></div>
+<div class="hero-art"><div class="hero-scene" role="img" aria-label="{escape(c['artAlt'])}"></div><div class="ornament" aria-hidden="true"><svg viewBox="0 0 80 130"><path d="M40 0v52m-7 0h14v9H33z"/><circle cx="40" cy="88" r="27"/><ellipse cx="40" cy="88" rx="12" ry="27"/><path d="M15 80h50M14 95h52M40 60v55M29 121h22"/><path d="m40 71 3 10 10 1-8 6 2 10-7-6-8 6 3-10-8-6 10-1Z"/></svg></div><div class="art-tag">{c['artTag']}</div><div class="version-tag"><b>3.2</b><span>{c['versionNote']}</span></div></div></div>
 <div class="trust">{''.join(f'<div><span aria-hidden="true">{icon}</span>{escape(label)}</div>' for icon,label in zip(['✧','↟','◎','◇'],c['trust']))}</div></div></section>
+<section class="section launch-section" id="next-release" aria-labelledby="launch-title"><div class="wrap launch-panel"><div class="launch-date"><span>{'PRÓXIMO LANZAMIENTO' if es else 'NEXT RELEASE'}</span><strong>3.2</strong><time datetime="2026-12">{'Diciembre de 2026' if es else 'December 2026'}</time></div><div class="launch-copy"><div class="eyebrow">{'Navidad y Año Nuevo' if es else 'Christmas & New Year'}</div><h2 id="launch-title">{'La Navidad llega a R-Zen.' if es else 'Christmas is coming to R-Zen.'}</h2><p>{'La próxima actualización traerá una temática navideña para llenar tus momentos de calma de espíritu festivo. Compartiremos la fecha exacta y todas las novedades más cerca del lanzamiento.' if es else 'The next update brings a Christmas theme to fill your quiet moments with a little holiday spirit. We’ll share the exact date and all the new details closer to launch.'}</p><a class="launch-current" href="#whats-new">{'Mientras tanto, descubre la versión 3.0.1 disponible ahora' if es else 'Meanwhile, explore version 3.0.1, available now'} <span aria-hidden="true">↓</span></a></div></div></section>
 <section class="section" id="whats-new"><div class="wrap release"><div class="release-intro"><div class="eyebrow">{c['releaseEye']}</div><h2>{c['releaseTitle']}</h2><p>{c['releaseLede']}</p><a class="button secondary small" href="#collections">{c['releaseLink']}</a></div><div class="release-list">{updates}</div></div></section>
 <section class="section collections" id="collections"><div class="wrap"><div class="section-head center"><div class="eyebrow">{c['collectionEye']}</div><h2>{c['collectionTitle']}</h2><p>{c['collectionLede']}</p></div><div class="collection-grid">{collections}</div><p class="collection-note">{c['collectionNote']}</p></div></section>
 <section class="section" id="explore"><div class="wrap"><div class="section-head"><div class="eyebrow">{c['modesEye']}</div><h2>{c['modesTitle']}</h2><p>{c['modesLede']}</p></div><div class="app-preview-toolbar"><button class="button secondary small" type="button" data-preview-motion aria-pressed="false" hidden>{'Pausar animaciones' if es else 'Pause animations'}</button></div><div class="modes-grid">{modes}</div>

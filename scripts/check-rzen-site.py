@@ -22,6 +22,10 @@ def check_page(filename, lang):
     assert '<html lang="' + lang + '">' in text
     assert sum(tag == 'h1' for tag, _ in page.tags) == 1
     assert '3.0.1' in text and '2027' in text
+    title = re.search(r'<title>(.*?)</title>', text).group(1)
+    assert '3.2' in title, 'Upcoming release must lead the page title'
+    assert '2026-12' in text, 'Upcoming release month must be explicit'
+    assert any(a.get('id') == 'next-release' for _, a in page.tags)
     assert 'ARRIVING OCTOBER' not in text
     ids = [attrs['id'] for _, attrs in page.tags if 'id' in attrs]
     assert len(ids) == len(set(ids)), f'{filename}: duplicate IDs'
