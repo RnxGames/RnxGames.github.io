@@ -38,9 +38,9 @@ COPY = {
   'modes':[
    ['Mandalas','Let color find its rhythm. Fill intricate patterns at your own pace.','modes/mandala.webp','Lotus mandala coloring artwork from R-Zen'],
    ['Puzzles','Travel through beautiful places, one piece at a time. No timer. No rush.','modes/puzzle.webp','A landscape from the R-Zen puzzle collection'],
-   ['Illustrations','Cozy scenes and little details, ready for your own palette.','v3/noir.webp','Noir Nights coloring collection artwork'],
+   ['Illustrations','Cozy scenes and little details, ready for your own palette.','modes/illustration.svg','A cozy café illustration to color in R-Zen'],
    ['Paint by Number','Follow the numbers and watch a picture come together.','modes/number.png','Paint-by-number artwork in R-Zen'],
-   ['Magic Color','Brush across the canvas to reveal a full-color world underneath.','v3/memory.webp','Day of the Dead collection artwork'],
+   ['Magic Color','Brush across the canvas to reveal a full-color world underneath.','modes/magic.webp','A patchwork scene from Magic Color in R-Zen'],
    ['Comes Alive','Finish selected paint-by-number artworks and see them begin to move.','v25/koala-flowers-spring.webp','An example of seasonal R-Zen artwork']
   ],
   'journalEye':'Keep the feeling', 'journalTitle':'Little moments.<br>Lasting memories.',
@@ -100,9 +100,9 @@ COPY = {
   'modes':[
    ['Mandalas','Deja que el color encuentre su ritmo. Pinta los detalles a tu manera.','modes/mandala.webp','Un mandala de loto para colorear de R-Zen'],
    ['Puzzles','Viaja por lugares hermosos, pieza a pieza. Sin reloj. Sin prisa.','modes/puzzle.webp','Un paisaje de la colección de puzzles de R-Zen'],
-   ['Ilustraciones','Escenas acogedoras y pequeños detalles, listos para tu propia paleta.','v3/noir.webp','Arte de la colección para colorear Noches Noir'],
+   ['Ilustraciones','Escenas acogedoras y pequeños detalles, listos para tu propia paleta.','modes/illustration.svg','Una ilustración de un café acogedor para colorear en R-Zen'],
    ['Pintar por número','Sigue los números y descubre cómo toma forma una imagen.','modes/number.png','Una obra de pintura por número de R-Zen'],
-   ['Color mágico','Pasa el pincel por el lienzo y revela un mundo a todo color.','v3/memory.webp','Arte de la colección Día de Muertos'],
+   ['Color mágico','Pasa el pincel por el lienzo y revela un mundo a todo color.','modes/magic.webp','Una escena patchwork de Color mágico en R-Zen'],
    ['Cobra vida','Termina ciertas obras de pintura por número y verás cómo empiezan a moverse.','v25/koala-flowers-spring.webp','Un ejemplo del arte de temporada de R-Zen']
   ],
   'journalEye':'Conserva la sensación', 'journalTitle':'Pequeños momentos.<br>Recuerdos que se quedan.',
@@ -170,8 +170,8 @@ def build(lang):
 <meta name="theme-color" content="#f7f5ee"><link rel="icon" href="./assets/logo.png"><link rel="apple-touch-icon" href="./assets/logo.png"><link rel="manifest" href="./site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>try{{const t=localStorage.getItem('rzen-web-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}}catch{{}}</script>
-<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-compact-modes">
-<script src="./assets/rzen-holiday.js?v=20261113-compact-modes" defer></script>
+<link rel="stylesheet" href="./assets/rzen-holiday.css?v=20261113-mobile-v2">
+<script src="./assets/rzen-holiday.js?v=20261113-mobile-v2" defer></script>
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script>
 <noscript><style>@media(max-width:899px){{.nav-links{{position:static;display:flex;flex-wrap:wrap;padding:12px 0;border:0}}.nav{{flex-wrap:wrap}}}}.tools{{margin-left:auto}}</style></noscript>
 </head>
