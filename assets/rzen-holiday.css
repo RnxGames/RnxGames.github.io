@@ -85,3 +85,29 @@ html[lang=es] .hero h1{font-size:clamp(2.7rem,4.4vw,4.2rem)}.art-tag{bottom:110p
 .collection-card .pack-example-grid img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:5px;background:var(--bg)}
 @media(max-width:899px){.collection-featured{grid-template-columns:1fr}.collection-featured .collection-body{padding:24px}.collection-stats{gap:12px}.collection-stats strong{font-size:26px}}
 @media(max-width:620px){.collection-featured{grid-template-columns:1fr}.collection-featured .collection-body{padding:22px 20px}.collection-stats{grid-template-columns:1fr 1fr;gap:18px 14px;padding:20px 0;margin-bottom:27px}.collection-stats>div{justify-content:flex-start;gap:11px}.collection-stats>div:last-child{grid-column:1/-1}.collection-stats strong{font-size:29px}.collection-stats span{font-size:12px;max-width:none}.collection-stats>div:last-child strong{font-size:23px}.pack-samples{padding:18px 16px;gap:8px}.pack-examples summary{font-size:13px}.pack-example-grid{gap:8px}.collection-body .eyebrow{font-size:10px}}
+
+/* Manual Legacy pack carousel: native touch scrolling, buttons and mouse dragging. */
+.pack-carousel{min-width:0}
+.pack-carousel-hint{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 14px;font-size:12px;color:var(--muted)}
+.pack-carousel-hint span{font-size:24px;color:var(--gold)}
+.collection-grid.pack-track{position:relative;display:flex;align-items:stretch;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:4px 2px 16px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;cursor:grab;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.pack-track::-webkit-scrollbar{height:6px}.pack-track::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
+.pack-track .pack-slide{flex:0 0 calc(100% - 64px);min-width:0;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;scroll-snap-align:start;scroll-snap-stop:always;box-shadow:none}
+.pack-track .collection-cover{align-self:center}
+.pack-track .collection-body{padding:30px}
+.pack-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
+.pack-track.is-dragging *{cursor:grabbing!important;user-select:none}
+.pack-carousel-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px 20px;margin-top:13px}
+.pack-carousel-controls[hidden]{display:none}
+.pack-carousel-status{font-size:13px;font-weight:700;line-height:1.6;margin:0;color:var(--ink)}
+.pack-carousel-arrows{display:flex;gap:9px}
+.pack-carousel-arrows button{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink);font-size:22px;cursor:pointer}
+.pack-carousel-arrows button:hover:not(:disabled){background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.pack-carousel-arrows button:disabled{opacity:.35;cursor:default}
+.pack-carousel-dots{grid-column:1/-1;display:flex;justify-content:center;gap:4px}
+.pack-carousel-dots button{width:32px;height:32px;padding:0;display:grid;place-items:center;border:0;background:transparent;cursor:pointer}
+.pack-carousel-dots span{display:block;width:7px;height:7px;border-radius:50%;background:var(--line);transition:width .2s,background .2s}
+.pack-carousel-dots button[aria-current=true] span{width:23px;border-radius:5px;background:var(--gold)}
+@media(max-width:899px){.pack-track .pack-slide{grid-template-columns:1fr;flex-basis:calc(80% - 12px);align-content:start}.pack-track .collection-body{padding:24px}}
+@media(max-width:620px){.collection-grid.pack-track{gap:14px}.pack-track .pack-slide{flex-basis:calc(100% - 26px)}.pack-track .collection-body{padding:22px 20px}.pack-carousel-hint{font-size:13px}.pack-carousel-controls{gap:8px 12px}.pack-carousel-status{font-size:12px}.pack-carousel-dots button{width:34px;height:36px}}
+@media(prefers-reduced-motion:reduce){.pack-track{scroll-behavior:auto}.pack-carousel-dots span{transition:none}}

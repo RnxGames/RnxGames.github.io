@@ -90,4 +90,94 @@
     card.querySelectorAll('[data-puzzle-kind]').forEach(demo => { demo.hidden = demo.dataset.puzzleKind !== kind; });
     card.querySelectorAll('[data-puzzle-choice]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
   }));
+  const packTrack = document.querySelector('#legacy-pack-track');
+  const packSlides = [...packTrack.querySelectorAll('[data-pack-id]')];
+  const packUI = document.querySelector('[data-carousel-ui]');
+  const packPrev = document.querySelector('[data-pack-prev]');
+  const packNext = document.querySelector('[data-pack-next]');
+  const packDots = [...document.querySelectorAll('[data-pack-dot]')];
+  const packStatus = document.querySelector('[data-pack-status]');
+  let packIndex = 0;
+  let packIntent = null;
+  function packPosition(index) { return packSlides[index].offsetLeft - 2; }
+  function describePack(index) {
+    packIndex = index;
+    packPrev.disabled = index === 0;
+    packNext.disabled = index === packSlides.length - 1;
+    packDots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
+    const label = `${index + 1} / ${packSlides.length} · ${packSlides[index].querySelector('h3').textContent}`;
+    if (packStatus.textContent !== label) packStatus.textContent = label;
+  }
+  function nearestPack() {
+    return packSlides.reduce((best, _, index) =>
+      Math.abs(packPosition(index) - packTrack.scrollLeft) < Math.abs(packPosition(best) - packTrack.scrollLeft) ? index : best, 0);
+  }
+  function goToPack(index, animate = true) {
+    const next = Math.max(0, Math.min(index, packSlides.length - 1));
+    const destination = Math.min(Math.max(0, packPosition(next)), packTrack.scrollWidth - packTrack.clientWidth);
+    const smooth = animate && !reducedMotion.matches;
+    packIntent = smooth && Math.abs(packTrack.scrollLeft - destination) >= 2 ? next : null;
+    describePack(next);
+    packTrack.scrollTo({ left:destination, behavior:smooth ? 'smooth' : 'instant' });
+  }
+  packUI.hidden = false;
+  describePack(0);
+  packPrev.addEventListener('click', () => goToPack((packIntent ?? packIndex) - 1));
+  packNext.addEventListener('click', () => goToPack((packIntent ?? packIndex) + 1));
+  packDots.forEach((dot, i) => dot.addEventListener('click', () => goToPack(i)));
+  let packScrollFrame = 0;
+  packTrack.addEventListener('scroll', () => {
+    if (packScrollFrame) return;
+    packScrollFrame = requestAnimationFrame(() => {
+      describePack(nearestPack());
+      if (packIntent !== null) {
+        const destination = Math.min(Math.max(0, packPosition(packIntent)), packTrack.scrollWidth - packTrack.clientWidth);
+        if (Math.abs(packTrack.scrollLeft - destination) < 2) packIntent = null;
+      }
+      packScrollFrame = 0;
+    });
+  }, { passive:true });
+  packTrack.addEventListener('keydown', event => {
+    if (event.target !== packTrack) return;
+    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    goToPack(event.key === 'Home' ? 0 : event.key === 'End' ? packSlides.length - 1 : (packIntent ?? packIndex) + (event.key === 'ArrowRight' ? 1 : -1));
+  });
+  let packDrag = null;
+  packTrack.addEventListener('wheel', () => { packIntent = null; }, { passive:true });
+  packTrack.addEventListener('dragstart', event => event.preventDefault());
+  packTrack.addEventListener('pointerdown', event => {
+    packIntent = null;
+    if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('button,a,summary,details[open]')) return;
+    packTrack.scrollTo({ left:packTrack.scrollLeft, behavior:'instant' });
+    packDrag = { id:event.pointerId, x:event.clientX, left:packTrack.scrollLeft, moved:false };
+    packTrack.setPointerCapture(event.pointerId);
+  });
+  packTrack.addEventListener('pointermove', event => {
+    if (!packDrag || event.pointerId !== packDrag.id) return;
+    const distance = event.clientX - packDrag.x;
+    if (!packDrag.moved && Math.abs(distance) < 6) return;
+    packDrag.moved = true;
+    packTrack.classList.add('is-dragging');
+    event.preventDefault();
+    packTrack.scrollLeft = packDrag.left - distance;
+  });
+  function finishPackDrag(event) {
+    if (!packDrag || event.pointerId !== packDrag.id) return;
+    const moved = packDrag.moved;
+    if (packTrack.hasPointerCapture(packDrag.id)) packTrack.releasePointerCapture(packDrag.id);
+    packDrag = null;
+    packTrack.classList.remove('is-dragging');
+    if (moved) goToPack(nearestPack());
+  }
+  packTrack.addEventListener('pointerup', finishPackDrag);
+  packTrack.addEventListener('pointercancel', finishPackDrag);
+  let packWidth = packTrack.clientWidth;
+  function resizePacks() {
+    if (packWidth === packTrack.clientWidth) return;
+    packWidth = packTrack.clientWidth;
+    goToPack(packIndex, false);
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(resizePacks).observe(packTrack);
+  else window.addEventListener('resize', resizePacks);
 })();

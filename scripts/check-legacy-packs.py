@@ -24,4 +24,7 @@ for file in ['r-zen.html', 'r-zen-es.html']:
     assert len(re.findall(r'data-pack-id=', section)) == 5
     assert not re.search(r'Noir|Halloween|Muertos|Day of the Dead|Primavera Zen|Autumn Zen', section)
     assert '193' in section and 'Legacy' in section
+    assert 'id="legacy-pack-track"' in section
+    assert len(re.findall(r'data-pack-dot=', section)) == 5
+    assert 'data-pack-prev' in section and 'data-pack-next' in section
 print('PASS: Premium shows only the 5 evergreen Legacy packs (193 designs), in both languages; all covers and artwork samples exist.')
