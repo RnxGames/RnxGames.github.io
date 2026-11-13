@@ -12,3 +12,20 @@ button[hidden],svg[hidden]{display:none!important}
 
 @media(max-width:620px){.hero h1{font-size:clamp(2.25rem,10vw,2.65rem)}.hero-actions{margin-top:24px}.hero-copy>p{max-width:39ch}.hero-note{margin-top:14px!important}}
 html[lang=es] .hero h1{font-size:clamp(2.7rem,4.4vw,4.2rem)}.art-tag{bottom:110px}@media(max-width:899px) and (min-width:621px){html[lang=es] .hero h1{font-size:2.2rem}}@media(max-width:620px){html[lang=es] .hero h1{font-size:clamp(1.9rem,8.8vw,2.3rem)}}
+
+/* Compact creative-mode previews; keep complete artwork visible. */
+#explore>.wrap{max-width:1040px}
+#explore .section-head{max-width:620px;margin-bottom:28px}
+#explore .section-head h2{font-size:clamp(1.85rem,3.2vw,2.6rem);margin-bottom:14px}
+#explore .section-head p{font-size:13px}
+#explore .modes-grid{gap:22px 24px}
+#explore .mode{padding-bottom:18px}
+#explore .mode-picture{height:144px;margin-bottom:14px;background:var(--soft)}
+#explore .mode-picture img{object-fit:contain;padding:8px}
+#explore .mode:hover img{transform:none}
+#explore .mode-index{font-size:9px;margin-bottom:7px}
+#explore .mode h3{font-size:21px;margin-bottom:7px}
+#explore .mode p{font-size:12px;line-height:1.65}
+@media(max-width:620px){#explore .modes-grid{gap:20px 16px}#explore .mode-picture{height:112px;margin-bottom:12px}#explore .mode h3{font-size:19px}#explore .mode p{font-size:11px}}
+
+#explore{padding-block:64px}@media(max-width:620px){#explore{padding-block:48px}}
