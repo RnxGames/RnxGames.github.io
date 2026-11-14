@@ -97,6 +97,29 @@
   const packNext = document.querySelector('[data-pack-next]');
   const packDots = [...document.querySelectorAll('[data-pack-dot]')];
   const packStatus = document.querySelector('[data-pack-status]');
+  const packCarousel = packTrack.closest('.pack-carousel');
+  const packAuto = document.querySelector('[data-pack-auto]');
+  let packPaused = false;
+  let packHovered = false;
+  let packVisible = false;
+  let packTimer = null;
+  function schedulePacks() {
+    clearTimeout(packTimer);
+    packTimer = null;
+    const running = !packPaused && !reducedMotion.matches;
+    packAuto.textContent = reducedMotion.matches
+      ? (es ? 'Movimiento reducido activado' : 'Reduced motion enabled')
+      : packPaused ? (es ? 'Reanudar carrusel' : 'Resume carousel')
+      : (es ? 'Pausar carrusel' : 'Pause carousel');
+    packAuto.disabled = reducedMotion.matches;
+    const canAdvance = running && packVisible && !packHovered && !document.hidden && !packCarousel.contains(document.activeElement);
+    packStatus.setAttribute('aria-live', canAdvance ? 'off' : 'polite');
+    if (canAdvance) packTimer = setTimeout(() => {
+      goToPack((packIndex + 1) % packSlides.length);
+      schedulePacks();
+    }, 6000);
+  }
+  function pausePacks() { packPaused = true; schedulePacks(); }
   let packIndex = 0;
   let packIntent = null;
   function packPosition(index) { return packSlides[index].offsetLeft - 2; }
@@ -125,6 +148,35 @@
   packPrev.addEventListener('click', () => goToPack((packIntent ?? packIndex) - 1));
   packNext.addEventListener('click', () => goToPack((packIntent ?? packIndex) + 1));
   packDots.forEach((dot, i) => dot.addEventListener('click', () => goToPack(i)));
+  // Hover pauses temporarily; touching or using controls pauses until explicitly resumed.
+  packCarousel.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'mouse') { packHovered = true; schedulePacks(); }
+  });
+  packCarousel.addEventListener('pointerleave', event => {
+    if (event.pointerType === 'mouse') { packHovered = false; schedulePacks(); }
+  });
+  packCarousel.addEventListener('pointerdown', event => {
+    if (!event.target.closest('[data-pack-auto]')) pausePacks();
+  }, { passive:true });
+  packCarousel.addEventListener('click', event => {
+    if (event.target.closest('button,summary,a') && !event.target.closest('[data-pack-auto]')) pausePacks();
+  });
+  packCarousel.addEventListener('keydown', event => {
+    if (!event.target.closest('[data-pack-auto]')) pausePacks();
+  });
+  packCarousel.addEventListener('wheel', pausePacks, { passive:true });
+  packCarousel.addEventListener('focusin', schedulePacks);
+  packCarousel.addEventListener('focusout', () => queueMicrotask(schedulePacks));
+  packAuto.addEventListener('click', () => { packPaused = !packPaused; schedulePacks(); });
+  reducedMotion.addEventListener('change', schedulePacks);
+  document.addEventListener('visibilitychange', schedulePacks);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      packVisible = entries[0].isIntersecting;
+      schedulePacks();
+    }, { threshold:0.15 }).observe(packTrack);
+  } else { packVisible = true; }
+  schedulePacks();
   let packScrollFrame = 0;
   packTrack.addEventListener('scroll', () => {
     if (packScrollFrame) return;

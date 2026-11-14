@@ -88,6 +88,8 @@ html[lang=es] .hero h1{font-size:clamp(2.7rem,4.4vw,4.2rem)}.art-tag{bottom:110p
 
 /* Manual Legacy pack carousel: native touch scrolling, buttons and mouse dragging. */
 .pack-carousel{min-width:0}
+.pack-carousel-auto{font-size:12px;min-height:44px}
+@media(max-width:620px){.pack-carousel-status{grid-column:1/-1}.pack-carousel-auto{justify-self:start}.pack-carousel-arrows{grid-column:3}}
 .pack-carousel-hint{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 14px;font-size:12px;color:var(--muted)}
 .pack-carousel-hint span{font-size:24px;color:var(--gold)}
 .collection-grid.pack-track{position:relative;display:flex;align-items:stretch;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:4px 2px 16px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;cursor:grab;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
@@ -97,7 +99,7 @@ html[lang=es] .hero h1{font-size:clamp(2.7rem,4.4vw,4.2rem)}.art-tag{bottom:110p
 .pack-track .collection-body{padding:30px}
 .pack-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
 .pack-track.is-dragging *{cursor:grabbing!important;user-select:none}
-.pack-carousel-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px 20px;margin-top:13px}
+.pack-carousel-controls{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:7px 20px;margin-top:13px}
 .pack-carousel-controls[hidden]{display:none}
 .pack-carousel-status{font-size:13px;font-weight:700;line-height:1.6;margin:0;color:var(--ink)}
 .pack-carousel-arrows{display:flex;gap:9px}
